@@ -1,0 +1,2 @@
+All assests go here, Models, art, scripts.... Ect
+ Thus when we create new unity projects you can import this folder to unity.
