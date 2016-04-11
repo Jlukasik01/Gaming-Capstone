@@ -92,9 +92,19 @@ public class IntController : MonoBehaviour {
             if(Input.GetKey(KeyCode.E))
             {
                 //find empty inv spot, 
-                inventory[] == other.gameObject;
-                currentInventorySize++;
-                Destroy(other.gameObject);
+             
+                if (findEmptySpot() != -1)
+                {
+                    inventory[] == other.gameObject;
+                    currentInventorySize++;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    //return error of no room in inventory
+
+                }
+                
             }
         }
     }
@@ -111,9 +121,10 @@ public class IntController : MonoBehaviour {
                 {
                     return returnSpot = i;
                 }
-                if(i == inventorySize
-                    ///
-                    //debug log for 
+                if(i == inventorySize)
+                {
+                    return returnSpot = -1;
+                }
             }
         }
     }
