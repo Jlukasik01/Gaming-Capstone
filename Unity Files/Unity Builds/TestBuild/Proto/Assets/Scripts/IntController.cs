@@ -26,9 +26,9 @@ public class IntController : MonoBehaviour {
             dropItem();
 
         }
-        if(Weapon.name != inventory[keyPress].name || Weapon.gameObject ==null)
+        if(Weapon.name != inventory[keyPress].name)
         {
-            Destroy(Weapon.gameObject);
+            Destroy(Weapon);
             Weapon = Instantiate(inventory[keyPress]);
             Weapon.name = inventory[keyPress].name;
         }
@@ -86,9 +86,9 @@ public class IntController : MonoBehaviour {
     {
         if(currentInventorySize > 0)
         {
-            Instantiate(inventory[keyPress], gameObject.transform.position, new Quaternion(0, 0, 0, 0));
-            inventory[keyPress] = null;
+            Weapon.GetComponent<WeaponController>().inInventory = false;
             Weapon = null;
+            inventory[keyPress] = null;
             currentInventorySize--;
         }
     }
@@ -104,11 +104,11 @@ public class IntController : MonoBehaviour {
              
                 if (findEmptySpot() != -1)
                 {
-                    GameObject temp = 
-                    inventory[findEmptySpot()] = other.gameObject;
-                    currentInventorySize++;
-                    Destroy(other.gameObject);
-                    
+                    keyPress = findEmptySpot();
+                    inventory[keyPress] = other.gameObject;
+                    Weapon = other.gameObject;
+                    Weapon.GetComponent<WeaponController>().inInventory = true;
+                    currentInventorySize++; 
                 }
                 else
                 {

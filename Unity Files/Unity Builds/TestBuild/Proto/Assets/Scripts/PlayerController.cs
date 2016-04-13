@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public Collider AttackBox;
     public GameObject[] Spells = new GameObject[4]; // store spell game objects here 
     public float animationWalkSpeed = 2;
-
+    public GameObject Arrows;
     private Vector3 MoveDir;
 
 
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        Weapon = GetComponent<IntController>().Weapon;
+
         if (animations == null)
         {
             animations = Mesh.GetComponent<Animator>();
@@ -155,10 +157,23 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (IsAttacking)
+        if (IsAttacking) // does attacks depending on the players weapons using Weapon Controller
         {
-            animations.speed = 3;
-            animations.Play("Melee");
+            if ( Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
+            { 
+                animations.speed = 3;
+                animations.Play("Melee");
+            }
+            if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+            {
+                animations.speed = 3;
+                animations.Play("Bow");
+            }
+            if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
+            {
+                animations.speed = 3;
+                animations.Play("Spell");
+            }
         }
 
         if (!IsAttacking && !isMoving) { animations.Play("Idle"); animations.speed = 1; }
@@ -221,11 +236,20 @@ public class PlayerController : MonoBehaviour
     IEnumerator Attack(float attackTime) // Attack
     {
         IsAttacking = true; // do damage
-        for (float f = 0f; f <= 0.5f; f += 0.5f)
+        for (float f = 0.0f; f <= 0.5f; f += 0.1f)
         {
 
-            yield return new WaitForSeconds(0.5f); // wait for animation to be in the position to do damage.
+            if(f == 0.4f)
+            {
+                if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+                {
+                    Instantiate(Arrows, gameObject.transform.position, gameObject.transform.rotation);
+                }
+
+            }
+            yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
         }
+        
 
         IsAttacking = false;
 
