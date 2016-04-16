@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour {
     public float detectionDistance;
     public GameObject Player;
     public GameObject Gore;
+    public GameObject Ragdoll;
     public float distance;
 	// Use this for initialization
 	void Start () {
@@ -31,7 +32,9 @@ public class EnemyController : MonoBehaviour {
         DetectAndChase();
         if(health <= 0)
         {
+            
             Instantiate(Gore, gameObject.transform.position, Gore.transform.rotation);
+            Instantiate(Ragdoll, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -70,6 +73,7 @@ public class EnemyController : MonoBehaviour {
             if(f >= 1 && !Attacked)
             {
                 Instantiate(Spell, SpellLocation.transform.position, transform.rotation);
+                
                 Attacked = true;
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
