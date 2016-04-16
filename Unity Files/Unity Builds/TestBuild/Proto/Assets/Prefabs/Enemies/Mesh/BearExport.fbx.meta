@@ -1,0 +1,932 @@
+fileFormatVersion: 2
+guid: 65e18ed0ca4be5248bbb5b73766c8f41
+timeCreated: 1460832138
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bear
+    100002: bear1
+    100004: //RootNode
+    100006: body
+    100008: body 1
+    100010: chestPatch
+    100012: chestPatch 1
+    100014: Club2
+    100016: head
+    100018: head1
+    100020: headPatch
+    100022: headPatch 1
+    100024: ikHandle_leftArm
+    100026: ikHandle_leftLeg
+    100028: ikHandle_rightArm
+    100030: ikHandle_rightLeg
+    100032: joint_chest
+    100034: joint_leftArm
+    100036: joint_leftFoot
+    100038: joint_leftHand
+    100040: joint_leftKnee
+    100042: joint_leftLeg
+    100044: joint_leftShoulder
+    100046: joint_neck
+    100048: joint_rightArm
+    100050: joint_rightFoot
+    100052: joint_rightHand
+    100054: joint_rightKnee
+    100056: joint_rightLeg
+    100058: joint_rightShoulder
+    100060: joint_waist
+    100062: leftArm
+    100064: leftArm 1
+    100066: leftEar
+    100068: leftEar 1
+    100070: leftEye
+    100072: leftEye 1
+    100074: leftLeg
+    100076: leftLeg 1
+    100078: mouth
+    100080: mouth 1
+    100082: nose
+    100084: nose 1
+    100086: polySurface1
+    100088: polySurface2
+    100090: polySurface3
+    100092: polySurface4
+    100094: polySurface5
+    100096: polySurface6
+    100098: polySurface7
+    100100: polySurface8
+    100102: rightArm
+    100104: rightArm 1
+    100106: rightEar
+    100108: rightEar 1
+    100110: rightEye
+    100112: rightEye 1
+    100114: rightLeg
+    100116: rightLeg 1
+    100118: transform1
+    100120: transform10
+    100122: transform11
+    100124: transform12
+    100126: transform13
+    100128: transform14
+    100130: transform15
+    100132: transform16
+    100134: transform17
+    100136: transform18
+    100138: transform19
+    100140: transform2
+    100142: transform20
+    100144: transform21
+    100146: transform22
+    100148: transform23
+    100150: transform24
+    100152: transform25
+    100154: transform26
+    100156: transform27
+    100158: transform28
+    100160: transform29
+    100162: transform3
+    100164: transform30
+    100166: transform31
+    100168: transform32
+    100170: transform33
+    100172: transform34
+    100174: transform35
+    100176: transform36
+    100178: transform37
+    100180: transform4
+    100182: transform5
+    100184: transform6
+    100186: transform7
+    100188: transform8
+    100190: transform9
+    400000: bear
+    400002: bear1
+    400004: //RootNode
+    400006: body
+    400008: body 1
+    400010: chestPatch
+    400012: chestPatch 1
+    400014: Club2
+    400016: head
+    400018: head1
+    400020: headPatch
+    400022: headPatch 1
+    400024: ikHandle_leftArm
+    400026: ikHandle_leftLeg
+    400028: ikHandle_rightArm
+    400030: ikHandle_rightLeg
+    400032: joint_chest
+    400034: joint_leftArm
+    400036: joint_leftFoot
+    400038: joint_leftHand
+    400040: joint_leftKnee
+    400042: joint_leftLeg
+    400044: joint_leftShoulder
+    400046: joint_neck
+    400048: joint_rightArm
+    400050: joint_rightFoot
+    400052: joint_rightHand
+    400054: joint_rightKnee
+    400056: joint_rightLeg
+    400058: joint_rightShoulder
+    400060: joint_waist
+    400062: leftArm
+    400064: leftArm 1
+    400066: leftEar
+    400068: leftEar 1
+    400070: leftEye
+    400072: leftEye 1
+    400074: leftLeg
+    400076: leftLeg 1
+    400078: mouth
+    400080: mouth 1
+    400082: nose
+    400084: nose 1
+    400086: polySurface1
+    400088: polySurface2
+    400090: polySurface3
+    400092: polySurface4
+    400094: polySurface5
+    400096: polySurface6
+    400098: polySurface7
+    400100: polySurface8
+    400102: rightArm
+    400104: rightArm 1
+    400106: rightEar
+    400108: rightEar 1
+    400110: rightEye
+    400112: rightEye 1
+    400114: rightLeg
+    400116: rightLeg 1
+    400118: transform1
+    400120: transform10
+    400122: transform11
+    400124: transform12
+    400126: transform13
+    400128: transform14
+    400130: transform15
+    400132: transform16
+    400134: transform17
+    400136: transform18
+    400138: transform19
+    400140: transform2
+    400142: transform20
+    400144: transform21
+    400146: transform22
+    400148: transform23
+    400150: transform24
+    400152: transform25
+    400154: transform26
+    400156: transform27
+    400158: transform28
+    400160: transform29
+    400162: transform3
+    400164: transform30
+    400166: transform31
+    400168: transform32
+    400170: transform33
+    400172: transform34
+    400174: transform35
+    400176: transform36
+    400178: transform37
+    400180: transform4
+    400182: transform5
+    400184: transform6
+    400186: transform7
+    400188: transform8
+    400190: transform9
+    2300000: Club2
+    3300000: Club2
+    4300000: Club2
+    4300002: bear1
+    7400000: Walk
+    7400002: Attack
+    7400004: Idle
+    9500000: //RootNode
+    13700000: bear1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bear
+        weight: 1
+      - path: bear/body
+        weight: 1
+      - path: bear/body/body 1
+        weight: 1
+      - path: bear/body/body 1/transform26
+        weight: 1
+      - path: bear/body/transform14
+        weight: 1
+      - path: bear/chestPatch
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1/transform35
+        weight: 1
+      - path: bear/chestPatch/transform11
+        weight: 1
+      - path: bear/head
+        weight: 1
+      - path: bear/head/head1
+        weight: 1
+      - path: bear/head/head1/mouth
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1/transform32
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/transform1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/transform33
+        weight: 1
+      - path: bear/head/head1/mouth/transform2
+        weight: 1
+      - path: bear/head/head1/transform34
+        weight: 1
+      - path: bear/head/transform7
+        weight: 1
+      - path: bear/headPatch
+        weight: 1
+      - path: bear/headPatch/headPatch 1
+        weight: 1
+      - path: bear/headPatch/headPatch 1/transform27
+        weight: 1
+      - path: bear/headPatch/transform15
+        weight: 1
+      - path: bear/leftArm
+        weight: 1
+      - path: bear/leftArm/leftArm 1
+        weight: 1
+      - path: bear/leftArm/leftArm 1/transform24
+        weight: 1
+      - path: bear/leftArm/transform12
+        weight: 1
+      - path: bear/leftEar
+        weight: 1
+      - path: bear/leftEar/leftEar 1
+        weight: 1
+      - path: bear/leftEar/leftEar 1/transform31
+        weight: 1
+      - path: bear/leftEar/transform6
+        weight: 1
+      - path: bear/leftEye
+        weight: 1
+      - path: bear/leftEye/leftEye 1
+        weight: 1
+      - path: bear/leftEye/leftEye 1/transform28
+        weight: 1
+      - path: bear/leftEye/transform3
+        weight: 1
+      - path: bear/leftLeg
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1/transform37
+        weight: 1
+      - path: bear/leftLeg/transform9
+        weight: 1
+      - path: bear/polySurface1
+        weight: 1
+      - path: bear/polySurface1/polySurface2
+        weight: 1
+      - path: bear/polySurface1/polySurface2/transform22
+        weight: 1
+      - path: bear/polySurface1/polySurface3
+        weight: 1
+      - path: bear/polySurface1/polySurface3/transform21
+        weight: 1
+      - path: bear/polySurface1/polySurface4
+        weight: 1
+      - path: bear/polySurface1/polySurface4/transform20
+        weight: 1
+      - path: bear/polySurface1/polySurface5
+        weight: 1
+      - path: bear/polySurface1/polySurface5/transform19
+        weight: 1
+      - path: bear/polySurface1/polySurface6
+        weight: 1
+      - path: bear/polySurface1/polySurface6/transform18
+        weight: 1
+      - path: bear/polySurface1/polySurface7
+        weight: 1
+      - path: bear/polySurface1/polySurface7/transform17
+        weight: 1
+      - path: bear/polySurface1/polySurface8
+        weight: 1
+      - path: bear/polySurface1/polySurface8/transform16
+        weight: 1
+      - path: bear/polySurface1/transform8
+        weight: 1
+      - path: bear/rightArm
+        weight: 1
+      - path: bear/rightArm/rightArm 1
+        weight: 1
+      - path: bear/rightArm/rightArm 1/transform25
+        weight: 1
+      - path: bear/rightArm/transform13
+        weight: 1
+      - path: bear/rightEar
+        weight: 1
+      - path: bear/rightEar/rightEar 1
+        weight: 1
+      - path: bear/rightEar/rightEar 1/transform30
+        weight: 1
+      - path: bear/rightEar/transform5
+        weight: 1
+      - path: bear/rightEye
+        weight: 1
+      - path: bear/rightEye/rightEye 1
+        weight: 1
+      - path: bear/rightEye/rightEye 1/transform29
+        weight: 1
+      - path: bear/rightEye/transform4
+        weight: 1
+      - path: bear/rightLeg
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1/transform36
+        weight: 1
+      - path: bear/rightLeg/transform10
+        weight: 1
+      - path: bear/transform23
+        weight: 1
+      - path: bear1
+        weight: 1
+      - path: ikHandle_leftArm
+        weight: 1
+      - path: ikHandle_leftLeg
+        weight: 1
+      - path: ikHandle_rightArm
+        weight: 1
+      - path: ikHandle_rightLeg
+        weight: 1
+      - path: joint_waist
+        weight: 1
+      - path: joint_waist/joint_chest
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm/joint_leftHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_neck
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand/Club2
+        weight: 1
+      - path: joint_waist/joint_leftLeg
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee/joint_leftFoot
+        weight: 1
+      - path: joint_waist/joint_rightLeg
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee/joint_rightFoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 150
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bear
+        weight: 1
+      - path: bear/body
+        weight: 1
+      - path: bear/body/body 1
+        weight: 1
+      - path: bear/body/body 1/transform26
+        weight: 1
+      - path: bear/body/transform14
+        weight: 1
+      - path: bear/chestPatch
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1/transform35
+        weight: 1
+      - path: bear/chestPatch/transform11
+        weight: 1
+      - path: bear/head
+        weight: 1
+      - path: bear/head/head1
+        weight: 1
+      - path: bear/head/head1/mouth
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1/transform32
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/transform1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/transform33
+        weight: 1
+      - path: bear/head/head1/mouth/transform2
+        weight: 1
+      - path: bear/head/head1/transform34
+        weight: 1
+      - path: bear/head/transform7
+        weight: 1
+      - path: bear/headPatch
+        weight: 1
+      - path: bear/headPatch/headPatch 1
+        weight: 1
+      - path: bear/headPatch/headPatch 1/transform27
+        weight: 1
+      - path: bear/headPatch/transform15
+        weight: 1
+      - path: bear/leftArm
+        weight: 1
+      - path: bear/leftArm/leftArm 1
+        weight: 1
+      - path: bear/leftArm/leftArm 1/transform24
+        weight: 1
+      - path: bear/leftArm/transform12
+        weight: 1
+      - path: bear/leftEar
+        weight: 1
+      - path: bear/leftEar/leftEar 1
+        weight: 1
+      - path: bear/leftEar/leftEar 1/transform31
+        weight: 1
+      - path: bear/leftEar/transform6
+        weight: 1
+      - path: bear/leftEye
+        weight: 1
+      - path: bear/leftEye/leftEye 1
+        weight: 1
+      - path: bear/leftEye/leftEye 1/transform28
+        weight: 1
+      - path: bear/leftEye/transform3
+        weight: 1
+      - path: bear/leftLeg
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1/transform37
+        weight: 1
+      - path: bear/leftLeg/transform9
+        weight: 1
+      - path: bear/polySurface1
+        weight: 1
+      - path: bear/polySurface1/polySurface2
+        weight: 1
+      - path: bear/polySurface1/polySurface2/transform22
+        weight: 1
+      - path: bear/polySurface1/polySurface3
+        weight: 1
+      - path: bear/polySurface1/polySurface3/transform21
+        weight: 1
+      - path: bear/polySurface1/polySurface4
+        weight: 1
+      - path: bear/polySurface1/polySurface4/transform20
+        weight: 1
+      - path: bear/polySurface1/polySurface5
+        weight: 1
+      - path: bear/polySurface1/polySurface5/transform19
+        weight: 1
+      - path: bear/polySurface1/polySurface6
+        weight: 1
+      - path: bear/polySurface1/polySurface6/transform18
+        weight: 1
+      - path: bear/polySurface1/polySurface7
+        weight: 1
+      - path: bear/polySurface1/polySurface7/transform17
+        weight: 1
+      - path: bear/polySurface1/polySurface8
+        weight: 1
+      - path: bear/polySurface1/polySurface8/transform16
+        weight: 1
+      - path: bear/polySurface1/transform8
+        weight: 1
+      - path: bear/rightArm
+        weight: 1
+      - path: bear/rightArm/rightArm 1
+        weight: 1
+      - path: bear/rightArm/rightArm 1/transform25
+        weight: 1
+      - path: bear/rightArm/transform13
+        weight: 1
+      - path: bear/rightEar
+        weight: 1
+      - path: bear/rightEar/rightEar 1
+        weight: 1
+      - path: bear/rightEar/rightEar 1/transform30
+        weight: 1
+      - path: bear/rightEar/transform5
+        weight: 1
+      - path: bear/rightEye
+        weight: 1
+      - path: bear/rightEye/rightEye 1
+        weight: 1
+      - path: bear/rightEye/rightEye 1/transform29
+        weight: 1
+      - path: bear/rightEye/transform4
+        weight: 1
+      - path: bear/rightLeg
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1/transform36
+        weight: 1
+      - path: bear/rightLeg/transform10
+        weight: 1
+      - path: bear/transform23
+        weight: 1
+      - path: bear1
+        weight: 1
+      - path: ikHandle_leftArm
+        weight: 1
+      - path: ikHandle_leftLeg
+        weight: 1
+      - path: ikHandle_rightArm
+        weight: 1
+      - path: ikHandle_rightLeg
+        weight: 1
+      - path: joint_waist
+        weight: 1
+      - path: joint_waist/joint_chest
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm/joint_leftHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_neck
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand/Club2
+        weight: 1
+      - path: joint_waist/joint_leftLeg
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee/joint_leftFoot
+        weight: 1
+      - path: joint_waist/joint_rightLeg
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee/joint_rightFoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 250
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bear
+        weight: 1
+      - path: bear/body
+        weight: 1
+      - path: bear/body/body 1
+        weight: 1
+      - path: bear/body/body 1/transform26
+        weight: 1
+      - path: bear/body/transform14
+        weight: 1
+      - path: bear/chestPatch
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1
+        weight: 1
+      - path: bear/chestPatch/chestPatch 1/transform35
+        weight: 1
+      - path: bear/chestPatch/transform11
+        weight: 1
+      - path: bear/head
+        weight: 1
+      - path: bear/head/head1
+        weight: 1
+      - path: bear/head/head1/mouth
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/nose 1/transform32
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/nose/transform1
+        weight: 1
+      - path: bear/head/head1/mouth/mouth 1/transform33
+        weight: 1
+      - path: bear/head/head1/mouth/transform2
+        weight: 1
+      - path: bear/head/head1/transform34
+        weight: 1
+      - path: bear/head/transform7
+        weight: 1
+      - path: bear/headPatch
+        weight: 1
+      - path: bear/headPatch/headPatch 1
+        weight: 1
+      - path: bear/headPatch/headPatch 1/transform27
+        weight: 1
+      - path: bear/headPatch/transform15
+        weight: 1
+      - path: bear/leftArm
+        weight: 1
+      - path: bear/leftArm/leftArm 1
+        weight: 1
+      - path: bear/leftArm/leftArm 1/transform24
+        weight: 1
+      - path: bear/leftArm/transform12
+        weight: 1
+      - path: bear/leftEar
+        weight: 1
+      - path: bear/leftEar/leftEar 1
+        weight: 1
+      - path: bear/leftEar/leftEar 1/transform31
+        weight: 1
+      - path: bear/leftEar/transform6
+        weight: 1
+      - path: bear/leftEye
+        weight: 1
+      - path: bear/leftEye/leftEye 1
+        weight: 1
+      - path: bear/leftEye/leftEye 1/transform28
+        weight: 1
+      - path: bear/leftEye/transform3
+        weight: 1
+      - path: bear/leftLeg
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1
+        weight: 1
+      - path: bear/leftLeg/leftLeg 1/transform37
+        weight: 1
+      - path: bear/leftLeg/transform9
+        weight: 1
+      - path: bear/polySurface1
+        weight: 1
+      - path: bear/polySurface1/polySurface2
+        weight: 1
+      - path: bear/polySurface1/polySurface2/transform22
+        weight: 1
+      - path: bear/polySurface1/polySurface3
+        weight: 1
+      - path: bear/polySurface1/polySurface3/transform21
+        weight: 1
+      - path: bear/polySurface1/polySurface4
+        weight: 1
+      - path: bear/polySurface1/polySurface4/transform20
+        weight: 1
+      - path: bear/polySurface1/polySurface5
+        weight: 1
+      - path: bear/polySurface1/polySurface5/transform19
+        weight: 1
+      - path: bear/polySurface1/polySurface6
+        weight: 1
+      - path: bear/polySurface1/polySurface6/transform18
+        weight: 1
+      - path: bear/polySurface1/polySurface7
+        weight: 1
+      - path: bear/polySurface1/polySurface7/transform17
+        weight: 1
+      - path: bear/polySurface1/polySurface8
+        weight: 1
+      - path: bear/polySurface1/polySurface8/transform16
+        weight: 1
+      - path: bear/polySurface1/transform8
+        weight: 1
+      - path: bear/rightArm
+        weight: 1
+      - path: bear/rightArm/rightArm 1
+        weight: 1
+      - path: bear/rightArm/rightArm 1/transform25
+        weight: 1
+      - path: bear/rightArm/transform13
+        weight: 1
+      - path: bear/rightEar
+        weight: 1
+      - path: bear/rightEar/rightEar 1
+        weight: 1
+      - path: bear/rightEar/rightEar 1/transform30
+        weight: 1
+      - path: bear/rightEar/transform5
+        weight: 1
+      - path: bear/rightEye
+        weight: 1
+      - path: bear/rightEye/rightEye 1
+        weight: 1
+      - path: bear/rightEye/rightEye 1/transform29
+        weight: 1
+      - path: bear/rightEye/transform4
+        weight: 1
+      - path: bear/rightLeg
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1
+        weight: 1
+      - path: bear/rightLeg/rightLeg 1/transform36
+        weight: 1
+      - path: bear/rightLeg/transform10
+        weight: 1
+      - path: bear/transform23
+        weight: 1
+      - path: bear1
+        weight: 1
+      - path: ikHandle_leftArm
+        weight: 1
+      - path: ikHandle_leftLeg
+        weight: 1
+      - path: ikHandle_rightArm
+        weight: 1
+      - path: ikHandle_rightLeg
+        weight: 1
+      - path: joint_waist
+        weight: 1
+      - path: joint_waist/joint_chest
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_leftShoulder/joint_leftArm/joint_leftHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_neck
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand
+        weight: 1
+      - path: joint_waist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand/Club2
+        weight: 1
+      - path: joint_waist/joint_leftLeg
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee
+        weight: 1
+      - path: joint_waist/joint_leftLeg/joint_leftKnee/joint_leftFoot
+        weight: 1
+      - path: joint_waist/joint_rightLeg
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee
+        weight: 1
+      - path: joint_waist/joint_rightLeg/joint_rightKnee/joint_rightFoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
