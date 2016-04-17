@@ -160,7 +160,8 @@ public class PlayerController : MonoBehaviour
         if (IsAttacking) // does attacks depending on the players weapons using Weapon Controller
         {
             if ( Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
-            { 
+            {
+                Weapon.GetComponent<WeaponController>().ActivateCollider();
                 animations.speed = 3;
                 animations.Play("Melee");
             }

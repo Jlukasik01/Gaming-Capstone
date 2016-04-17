@@ -38,6 +38,13 @@ public class EnemyController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Weapon")
+        {
+            health -= 1;
+        }
+    }
     void DetectAndChase()
     {
         if(distance < detectionDistance)

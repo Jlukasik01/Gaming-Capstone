@@ -18,5 +18,18 @@ public class WeaponController : MonoBehaviour {
     {
         
     }
+    public void ActivateCollider()
+    {
+        StartCoroutine("Activation");
+    }
 
+    IEnumerator Activation()
+    {
+        GetComponent<Collider>().isTrigger = false;
+        for(float i = 0f; i < 0.7f; i += 0.1f)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        GetComponent<Collider>().isTrigger = true;
+    }
 }
