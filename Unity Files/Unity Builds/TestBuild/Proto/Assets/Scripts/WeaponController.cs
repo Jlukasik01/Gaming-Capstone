@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WeaponController : MonoBehaviour {
-    public string WeaponType;
+    public string WeaponType; 
     public int damage;
     public Texture ImageUI;
     public bool inInventory;

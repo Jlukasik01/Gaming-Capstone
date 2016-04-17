@@ -79,8 +79,10 @@ public class EnemyController : MonoBehaviour {
         {
             if(f >= 1 && !Attacked)
             {
-                Instantiate(Spell, SpellLocation.transform.position, transform.rotation);
-                
+                if (Spell != null)
+                {
+                    Instantiate(Spell, SpellLocation.transform.position, transform.rotation);
+                }
                 Attacked = true;
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
