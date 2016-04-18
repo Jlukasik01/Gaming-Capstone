@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject Gore;
     public GameObject Ragdoll;
     public float distance;
+
 	// Use this for initialization
 	void Start () {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -32,12 +33,12 @@ public class EnemyController : MonoBehaviour {
         DetectAndChase();
         if(health <= 0)
         {
-            
             Instantiate(Gore, gameObject.transform.position, Gore.transform.rotation);
             Instantiate(Ragdoll, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }
+
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Weapon")
@@ -45,6 +46,7 @@ public class EnemyController : MonoBehaviour {
             health -= 1;
         }
     }
+
     void DetectAndChase()
     {
         if(distance < detectionDistance)
@@ -59,6 +61,7 @@ public class EnemyController : MonoBehaviour {
         }
         
     }
+
     void Attack()
     {
         if (distance < attackDistance)
@@ -71,6 +74,7 @@ public class EnemyController : MonoBehaviour {
             StartCoroutine("AttackSeq");
         }
     }
+
     IEnumerator AttackSeq() // Destory object in time
     {
         isAttacking = true;
@@ -89,6 +93,7 @@ public class EnemyController : MonoBehaviour {
         }
         isAttacking = false;
     }
+
     void AnimationFunction()
     {
         if(isAttacking)

@@ -71,6 +71,9 @@
     <Compile Include="Assets\Scripts\LootController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\UI_Controller.cs" />
+    <Compile Include="Assets\Scripts\UI_SwitchScript.cs" />
+    <Compile Include="Assets\Scripts\UI_buttonBehavior.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
     <Compile Include="Assets\SpellController.cs" />
   </ItemGroup>

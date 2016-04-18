@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -22,15 +23,20 @@ public class PlayerController : MonoBehaviour
     public float animationWalkSpeed = 2;
     public GameObject Arrows;
     private Vector3 MoveDir;
+    //public Slider healthBarSlider;
+    //public Slider manaBarSlider;
+
+    //public int maxHealth;
+    //public int maxMana;
 
 
     void OnStart()
     {
         MoveDir = Vector3.zero;
         animations = Mesh.GetComponent<GameObject>().GetComponent<Animator>();
-
         Hitbox = GetComponent<Collider>();
     }
+
     void Update()
     {
         Weapon = GetComponent<IntController>().Weapon;
@@ -48,8 +54,16 @@ public class PlayerController : MonoBehaviour
             attackFunction();
             CheckMove();
         }
-
+        //if (healthBarSlider.maxValue != maxHealth)
+            //healthBarSlider.maxValue = maxHealth;
+        //if (manaBarSlider.maxValue != maxMana)
+            //manaBarSlider.maxValue = maxMana;
+        //if (healthBarSlider.value != health)
+            //healthBarSlider.value = health;
+        //if (manaBarSlider.value != mana)
+            //manaBarSlider.value = mana;
     }
+
     void attackFunction()
     {
         if (Input.GetMouseButton(0))
@@ -61,6 +75,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void CheckMove()
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
@@ -82,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 MoveDir += Vector3.right * -1;
             }
         }
+
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
             if (Input.GetKeyUp(KeyCode.W))
@@ -101,6 +117,7 @@ public class PlayerController : MonoBehaviour
                 MoveDir -= Vector3.right * -1;
             }
         }
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W))
         {
             if (Input.GetKey(KeyCode.W))
@@ -125,6 +142,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
         if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W))
         {
 
@@ -137,6 +155,7 @@ public class PlayerController : MonoBehaviour
         else isMoving = false;
         Debug.Log(gameObject.transform.rotation.y);
     }
+
     void animationFunction()
     {
         if (!IsAttacking)
@@ -180,6 +199,7 @@ public class PlayerController : MonoBehaviour
         if (!IsAttacking && !isMoving) { animations.Play("Idle"); animations.speed = 1; }
 
     }
+
     bool CheckIfMovingFoward()
     {
         if (MoveDir == Vector3.forward)
@@ -189,6 +209,7 @@ public class PlayerController : MonoBehaviour
                 return true;
             }
         }
+
         if (MoveDir == -Vector3.forward)
         {
             if (gameObject.transform.rotation.y > 0)
@@ -196,6 +217,7 @@ public class PlayerController : MonoBehaviour
                 return true;
             }
         }
+
         if (MoveDir == Vector3.right)
         {
             if (gameObject.transform.rotation.y < -0.66f || gameObject.transform.rotation.y > 0.72f)
@@ -203,6 +225,7 @@ public class PlayerController : MonoBehaviour
                 return true;
             }
         }
+
         if (MoveDir == -Vector3.right)
         {
             if (gameObject.transform.rotation.y > -0.66f || gameObject.transform.rotation.y < 0.72f)
@@ -213,6 +236,7 @@ public class PlayerController : MonoBehaviour
         return false;
 
     }
+
     void OnCollisionEnter(Collider other)
     {
         if (other.tag == "Enemy")
@@ -223,10 +247,12 @@ public class PlayerController : MonoBehaviour
                 // if enemy is in hit box take damage
             }
         }
+
         if (other.tag == "Wall")
         {
             // make sure you dont go through wall
         }
+
         if (other.tag == "Loot")
         {
             // add to inv
@@ -250,11 +276,8 @@ public class PlayerController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
         }
-        
-
+    
         IsAttacking = false;
-
-
     }
 
     IEnumerator Damage(float DamageTimer) // Take Damage make invinvible
@@ -268,6 +291,7 @@ public class PlayerController : MonoBehaviour
 
         invincable = false;
     }
+
     public void TakeDamage(int damage)
     {
         if (!invincable)
@@ -279,7 +303,9 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        GetComponent<UI_Controller>().updateHealth(health);
     }
+
     void rotation() // player faces mouse.
     {
         //rotation
@@ -293,6 +319,7 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
     }
+
     private void spell()
     {
 
