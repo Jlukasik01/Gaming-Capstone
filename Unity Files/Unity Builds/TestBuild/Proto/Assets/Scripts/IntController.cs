@@ -53,7 +53,7 @@ public class IntController : MonoBehaviour {
 
     public void changeUIcolor(int j, int k)
     {
-        if (k < 10)
+        if (k != -1)
             GetComponent<UI_Controller>().items[k].color = Color.gray;
         if (inventory[j] != null)
             GetComponent<UI_Controller>().items[j].color = Color.yellow;
@@ -152,17 +152,16 @@ public class IntController : MonoBehaviour {
 
     int findEmptySpot()
     {
-        int returnSpot;
         if (currentInventorySize > 0)
         {
             for(int i = 0; i < inventorySize; i++)
             {
                 if(inventory[i] == null)
                 {
-                    return returnSpot = i;
+                    return i;
                 }
             }
         }
-        return returnSpot = -1;
+        return -1;
     }
 }

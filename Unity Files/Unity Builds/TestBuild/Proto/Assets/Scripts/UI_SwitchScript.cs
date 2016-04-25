@@ -19,7 +19,8 @@ public class UI_SwitchScript : MonoBehaviour {
             temp++;
             if (temp > 9) temp = 0;
             if (player.GetComponent<IntController>().inventory[temp] != null)
-            { //changeUIcolor highlights the first paramater, and unhighlights the second
+            { 
+                //changeUIcolor highlights the first paramater, and unhighlights the second
                 player.GetComponent<IntController>().changeUIcolor(temp, player.GetComponent<IntController>().keyPress);
                 player.GetComponent<IntController>().keyPress = temp;
                 return;

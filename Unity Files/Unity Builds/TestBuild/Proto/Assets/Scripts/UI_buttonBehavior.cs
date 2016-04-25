@@ -16,7 +16,7 @@ public class UI_buttonBehavior : MonoBehaviour {
         if (player.GetComponent<IntController>().inventory[k] != null)
         {
             if (k == player.GetComponent<IntController>().keyPress)
-                player.GetComponent<IntController>().changeUIcolor(k, 10);
+                player.GetComponent<IntController>().changeUIcolor(k, -1);
             else
                 player.GetComponent<IntController>().changeUIcolor(k, player.GetComponent<IntController>().keyPress);
             player.GetComponent<IntController>().keyPress = k;
