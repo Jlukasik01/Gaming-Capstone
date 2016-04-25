@@ -27,6 +27,20 @@ public class IntController : MonoBehaviour {
         {
             dropItem();
         }
+
+        //Function for using useable items
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //Checks it the item is actually useable
+            if (inventory[keyPress].GetComponent<ItemController>().useable == true)
+            {
+                //If it is useable, then does function based on Type in item controller
+                inventory[keyPress].GetComponent<SpellController>().CallFunction();
+            }
+            else
+            { }
+        }
+
         if (inventory[keyPress] != null)
         {
             if (Weapon == null)

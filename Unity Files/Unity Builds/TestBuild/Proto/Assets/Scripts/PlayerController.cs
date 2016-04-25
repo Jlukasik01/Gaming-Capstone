@@ -14,7 +14,13 @@ public class PlayerController : MonoBehaviour
     public int health;
     public float maxHealth;
     public int damaged;
-    //public int mana;
+    public int mana;
+    public int stamina;
+    public int defense; //how much extra/less the player takes when hit
+    public int spellDamageModifier; //how much extra the player's spells hit
+    public int weaponDamageModifier; //how much extra the player's weapons hit
+    public int manaRegenRate; //how fast the player's mana regenerates
+    public int staminaRegenRate; //how fast the player's stamina regenerates
     public float moveSpeed = 1;
     public float attackTime = 1;
     public float DamageTimer = 1;
@@ -233,9 +239,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
 
             if (IsAttacking)
@@ -244,12 +250,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (other.tag == "Wall")
+        if (other.gameObject.tag == "Wall")
         {
             // make sure you dont go through wall
         }
 
-        if (other.tag == "Loot")
+        if (other.gameObject.tag == "Loot")
         {
             // add to inv
         }
