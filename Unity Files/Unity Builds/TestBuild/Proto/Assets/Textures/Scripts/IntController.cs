@@ -12,36 +12,51 @@ public class IntController : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        keyPress = 1;
         Weapon = Instantiate(inventory[keyPress] as GameObject);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
+
         getPress();
-        //Debug.Log("Current Selected Inv Space: ");
-        //Debug.Log(keyPress);
+        Debug.Log("Current Selected Inv Space: ");
+        Debug.Log(keyPress);
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
-
         }
-        if(Weapon.name != inventory[keyPress].name)
+        if (inventory[keyPress] != null)
         {
-            Destroy(Weapon);
-            Weapon = Instantiate(inventory[keyPress]);
-            Weapon.name = inventory[keyPress].name;
+            if (Weapon == null)
+            {
+                Weapon = Instantiate(inventory[keyPress] as GameObject);
+                changeUIcolor(keyPress, keyPress);
+            }
+            if (Weapon.name != inventory[keyPress].name)
+            {
+                Destroy(Weapon);
+                Weapon = Instantiate(inventory[keyPress]);
+                Weapon.name = inventory[keyPress].name;
+            }
         }
-
-        Weapon.transform.position = weaponLoc.transform.position;
-        Weapon.transform.rotation = weaponLoc.transform.rotation;
+        else keyPress++;
+        if (keyPress > 9) { keyPress = 0; }
+        if ( Weapon != null)
+        {
+            Weapon.transform.position = weaponLoc.transform.position;
+            Weapon.transform.rotation = weaponLoc.transform.rotation;
+        }
+        
 	}
 
     public void changeUIcolor(int j, int k)
     {
-
-        GetComponent<UI_Controller>().items[k].color = Color.gray;
-        GetComponent<UI_Controller>().items[j].color = Color.yellow;
+        if (k < 10)
+            GetComponent<UI_Controller>().items[k].color = Color.gray;
+        if (inventory[j] != null)
+            GetComponent<UI_Controller>().items[j].color = Color.yellow;
     }
 
     void getPress()
@@ -96,18 +111,18 @@ public class IntController : MonoBehaviour {
         {
             changeUIcolor(0, keyPress);
             keyPress = 0;
-
         }
     }
 
     void dropItem()
     {
-        if(currentInventorySize > 0)
+        if(currentInventorySize > 0 && Weapon != null)
         {
             Weapon.GetComponent<WeaponController>().inInventory = false;
             Weapon = null;
             inventory[keyPress] = null;
             currentInventorySize--;
+            GetComponent<PlayerController>().equip();
         }
     }
 
@@ -118,15 +133,13 @@ public class IntController : MonoBehaviour {
             Debug.Log("On Loot!!!!!");
             if(Input.GetKey(KeyCode.E))
             {
-               
-             
                 if (findEmptySpot() != -1)
                 {
                     keyPress = findEmptySpot();
                     inventory[keyPress] = other.gameObject;
                     Weapon = other.gameObject;
                     Weapon.GetComponent<WeaponController>().inInventory = true;
-                    currentInventorySize++; 
+                    currentInventorySize++;
                 }
                 else
                 {

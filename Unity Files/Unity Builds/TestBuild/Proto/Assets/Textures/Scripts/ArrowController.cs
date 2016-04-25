@@ -4,22 +4,24 @@ using System.Collections;
 public class ArrowController : MonoBehaviour {
     public float speed;
     public bool isActive;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         isActive = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if(isActive)
         {
             gameObject.transform.Translate(Vector3.right* Time.deltaTime * speed);
             // gameObject.transform.Rotate(Vector3.right);
         }
-     
-
         StartCoroutine("Destroy", 5f);
     }
+
     IEnumerator Destroy(float Time) // Destory object in time
     {
         
@@ -30,6 +32,7 @@ public class ArrowController : MonoBehaviour {
         }
         Destroy(gameObject);
     }
+
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Object" || other.gameObject.tag == "Enemy")

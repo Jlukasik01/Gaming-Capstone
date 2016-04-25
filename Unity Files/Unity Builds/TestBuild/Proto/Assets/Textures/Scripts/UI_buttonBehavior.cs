@@ -4,18 +4,26 @@ using System.Collections;
 
 public class UI_buttonBehavior : MonoBehaviour {
 
-    private GameObject image;
-    private GameObject playerHolder;
-    private int temp;
+    private GameObject player;
+    private GameObject item;
+    private Sprite def;
+    public int invSlot;
 
+
+    // Used to highlight selected item
     public void intSelect(int k)
     {
-        temp = playerHolder.GetComponent<IntController>().keyPress;
-        playerHolder.GetComponent<IntController>().changeUIcolor(k, temp);
-        playerHolder.GetComponent<IntController>().keyPress = k;
+        if (player.GetComponent<IntController>().inventory[k] != null)
+        {
+            if (k == player.GetComponent<IntController>().keyPress)
+                player.GetComponent<IntController>().changeUIcolor(k, 10);
+            else
+                player.GetComponent<IntController>().changeUIcolor(k, player.GetComponent<IntController>().keyPress);
+            player.GetComponent<IntController>().keyPress = k;
+        }
     }
 
-    public void setImage()
+    public void switchImage()
     {
         if (GetComponent<Image>().enabled)
         {
@@ -28,6 +36,19 @@ public class UI_buttonBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        playerHolder = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
+        def = GetComponent<Image>().sprite;
+    }
+
+    void Update ()
+    {
+        if (player.GetComponent<IntController>().inventory[invSlot] != null)
+            GetComponent<Image>().sprite = player.GetComponent<IntController>().inventory[invSlot].GetComponent<WeaponController>().ImageUI;
+        
+        else
+        {
+            GetComponent<Image>().sprite = def;
+            player.GetComponent<IntController>().changeUIcolor(invSlot, invSlot);
+        }
     }
 }

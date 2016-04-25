@@ -4,27 +4,38 @@ using System.Collections;
 
 public class UI_Controller : MonoBehaviour {
 
+    public Slider healthSlider;
+    //public Slider manaBarSlider;
     public Image[] items;
-    public Slider healthBarSlider;
-    public Slider manaBarSlider;
-    public int health;
-    public int mana;
-    public int maxHealth;
-    public int maxMana;
+    //public int health;
+    //public int mana;
+    //public int maxHealth;
+    //public int maxMana;
+    private GameObject player;
 
     void OnStart()
     {
-        GetComponent<PlayerController>().health = health;
-        maxHealth = health;
-        healthBarSlider.maxValue = maxHealth;
+
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        //health = player.GetComponent<PlayerController>().health;
+        //maxHealth = health;
+        //updateHealth(health, maxHealth);
         //GetComponent<PlayerController>.mana = mana;
         //maxMana = mana;
         //manaBarSlider.maxValue = maxMana;
-    }
-    public void updateHealth(int h)
-    {
-        health = h;
-        healthBarSlider.value = health;
+        //float maxHealth = (GetComponent<PlayerController>().health) *1.0f;
+        //healthSlider.maxValue = maxHealth;
     }
 
+    public void updateHealth(int h, float m)
+    {
+        healthSlider.maxValue = m;
+        healthSlider.value = h;
+    }
+    /*
+    public void changeImage()
+    {
+        
+    }*/
 }

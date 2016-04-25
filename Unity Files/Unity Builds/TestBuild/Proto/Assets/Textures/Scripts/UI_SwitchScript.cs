@@ -2,20 +2,29 @@
 using System.Collections;
 
 public class UI_SwitchScript : MonoBehaviour {
-    public GameObject playerHolder;
+    public GameObject player;
 
-    public void switchHighlight()
-    {
-        int temp2 = playerHolder.GetComponent<IntController>().keyPress;
-        int temp = temp2;
-        temp++;
-        if (temp > 9) { temp = 0; }
-        playerHolder.GetComponent<IntController>().changeUIcolor(temp, temp2);
-        playerHolder.GetComponent<IntController>().keyPress = temp;
-    }
 
 	// Use this for initialization
 	void Start () {
-        playerHolder = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
+        switchHighlight();
+    }
+
+    public void switchHighlight()
+    {
+        int temp = player.GetComponent<IntController>().keyPress;
+        for (int i = 0; i < 10; i++)
+        {
+            temp++;
+            if (temp > 9) temp = 0;
+            if (player.GetComponent<IntController>().inventory[temp] != null)
+            { //changeUIcolor highlights the first paramater, and unhighlights the second
+                player.GetComponent<IntController>().changeUIcolor(temp, player.GetComponent<IntController>().keyPress);
+                player.GetComponent<IntController>().keyPress = temp;
+                return;
+            }
+        }
+
     }
 }

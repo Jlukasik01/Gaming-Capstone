@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public GameObject Mesh;
     Animator animations;
     public int health;
+    public float maxHealth;
     public int damaged;
-    public int mana;
-    public int souls;
+    //public int mana;
     public float moveSpeed = 1;
     public float attackTime = 1;
     public float DamageTimer = 1;
@@ -24,10 +24,7 @@ public class PlayerController : MonoBehaviour
     public float animationWalkSpeed = 2;
     public GameObject Arrows;
     private Vector3 MoveDir;
-    //public Slider healthBarSlider;
-    //public Slider manaBarSlider;
 
-    //public int maxHealth;
     //public int maxMana;
 
 
@@ -36,17 +33,17 @@ public class PlayerController : MonoBehaviour
         MoveDir = Vector3.zero;
         animations = Mesh.GetComponent<GameObject>().GetComponent<Animator>();
         Hitbox = GetComponent<Collider>();
+        maxHealth = health * 1.0f;
     }
 
     void Update()
     {
+        GetComponent<UI_Controller>().updateHealth(health, maxHealth);
         Weapon = GetComponent<IntController>().Weapon;
-
         if (animations == null)
         {
             animations = Mesh.GetComponent<Animator>();
         }
-
         Debug.Log(animations);
         rotation();// Player faces mouse DIR
         animationFunction();
@@ -55,15 +52,9 @@ public class PlayerController : MonoBehaviour
             attackFunction();
             CheckMove();
         }
-        //if (healthBarSlider.maxValue != maxHealth)
-            //healthBarSlider.maxValue = maxHealth;
-        //if (manaBarSlider.maxValue != maxMana)
-            //manaBarSlider.maxValue = maxMana;
-        //if (healthBarSlider.value != health)
-            //healthBarSlider.value = health;
-        //if (manaBarSlider.value != mana)
-            //manaBarSlider.value = mana;
     }
+
+    public void equip() { Weapon = GetComponent<IntController>().Weapon; }
 
     void attackFunction()
     {
@@ -179,21 +170,24 @@ public class PlayerController : MonoBehaviour
 
         if (IsAttacking) // does attacks depending on the players weapons using Weapon Controller
         {
-            if ( Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
+            if (Weapon != null)
             {
-                Weapon.GetComponent<WeaponController>().ActivateCollider();
-                animations.speed = 3;
-                animations.Play("Melee");
-            }
-            if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
-            {
-                animations.speed = 3;
-                animations.Play("Bow");
-            }
-            if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
-            {
-                animations.speed = 3;
-                animations.Play("Spell");
+                if (Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
+                {
+                    Weapon.GetComponent<WeaponController>().ActivateCollider();
+                    animations.speed = 3;
+                    animations.Play("Melee");
+                }
+                if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+                {
+                    animations.speed = 3;
+                    animations.Play("Bow");
+                }
+                if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
+                {
+                    animations.speed = 3;
+                    animations.Play("Spell");
+                }
             }
         }
 
@@ -266,12 +260,14 @@ public class PlayerController : MonoBehaviour
         IsAttacking = true; // do damage
         for (float f = 0.0f; f <= 0.5f; f += 0.1f)
         {
-
             if(f == 0.4f)
             {
-                if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+                if (Weapon != null)
                 {
-                    Instantiate(Arrows, gameObject.transform.position, gameObject.transform.rotation);
+                    if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+                    {
+                        Instantiate(Arrows, gameObject.transform.position, gameObject.transform.rotation);
+                    }
                 }
 
             }
@@ -298,13 +294,13 @@ public class PlayerController : MonoBehaviour
         if (!invincable)
         {
             health -= damage;
+            //GetComponent<UI_Controller>().updateHealth(health, maxHealth);
             StartCoroutine("Damage", DamageTimer);
         }
         else
         {
             return;
         }
-        GetComponent<UI_Controller>().updateHealth(health);
     }
 
     void rotation() // player faces mouse.
