@@ -1,0 +1,349 @@
+fileFormatVersion: 2
+guid: dc40b5b6ffbf2d9409580662459ef4f1
+timeCreated: 1460833752
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: body
+    100002: body 1
+    100004: bunny
+    100006: //RootNode
+    100008: head
+    100010: head 1
+    100012: joint_chest
+    100014: joint_head
+    100016: joint_leftArm
+    100018: joint_leftEarBase1
+    100020: joint_leftEarMid
+    100022: joint_leftEarTop
+    100024: joint_leftFoot
+    100026: joint_leftHand
+    100028: joint_leftKnee
+    100030: joint_leftLeg
+    100032: joint_leftShoulder
+    100034: joint_neck
+    100036: joint_rightArm
+    100038: joint_rightEarBase
+    100040: joint_rightEarMid
+    100042: joint_rightEarTop
+    100044: joint_rightFoot
+    100046: joint_rightHand
+    100048: joint_rightKnee
+    100050: joint_rightLeg
+    100052: joint_rightShoulder
+    100054: jointWaist
+    100056: leftArm
+    100058: leftArm 1
+    100060: leftEar
+    100062: leftEar 1
+    100064: leftEye
+    100066: leftEye 1
+    100068: leftLeg
+    100070: leftLeg 1
+    100072: polySurface1
+    100074: rightArm
+    100076: rightArm 1
+    100078: rightEar
+    100080: rightEar 1
+    100082: rightEye
+    100084: rightEye 1
+    100086: rightLeg
+    100088: rightLeg 1
+    100090: transform10
+    100092: transform11
+    100094: transform12
+    100096: transform13
+    100098: transform14
+    100100: transform15
+    100102: transform16
+    100104: transform17
+    100106: transform6
+    100108: transform7
+    100110: transform8
+    100112: transform9
+    400000: body
+    400002: body 1
+    400004: bunny
+    400006: //RootNode
+    400008: head
+    400010: head 1
+    400012: joint_chest
+    400014: joint_head
+    400016: joint_leftArm
+    400018: joint_leftEarBase1
+    400020: joint_leftEarMid
+    400022: joint_leftEarTop
+    400024: joint_leftFoot
+    400026: joint_leftHand
+    400028: joint_leftKnee
+    400030: joint_leftLeg
+    400032: joint_leftShoulder
+    400034: joint_neck
+    400036: joint_rightArm
+    400038: joint_rightEarBase
+    400040: joint_rightEarMid
+    400042: joint_rightEarTop
+    400044: joint_rightFoot
+    400046: joint_rightHand
+    400048: joint_rightKnee
+    400050: joint_rightLeg
+    400052: joint_rightShoulder
+    400054: jointWaist
+    400056: leftArm
+    400058: leftArm 1
+    400060: leftEar
+    400062: leftEar 1
+    400064: leftEye
+    400066: leftEye 1
+    400068: leftLeg
+    400070: leftLeg 1
+    400072: polySurface1
+    400074: rightArm
+    400076: rightArm 1
+    400078: rightEar
+    400080: rightEar 1
+    400082: rightEye
+    400084: rightEye 1
+    400086: rightLeg
+    400088: rightLeg 1
+    400090: transform10
+    400092: transform11
+    400094: transform12
+    400096: transform13
+    400098: transform14
+    400100: transform15
+    400102: transform16
+    400104: transform17
+    400106: transform6
+    400108: transform7
+    400110: transform8
+    400112: transform9
+    4300000: body
+    4300002: rightLeg
+    4300004: leftLeg
+    4300006: rightArm
+    4300008: leftArm
+    4300010: head
+    4300012: rightEye
+    4300014: leftEye
+    4300016: rightEar
+    4300018: leftEar
+    7400000: Walk
+    9500000: //RootNode
+    13700000: body 1
+    13700002: head 1
+    13700004: leftArm 1
+    13700006: leftEar 1
+    13700008: leftEye 1
+    13700010: leftLeg 1
+    13700012: rightArm 1
+    13700014: rightEar 1
+    13700016: rightEye 1
+    13700018: rightLeg 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 29
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bunny
+        weight: 1
+      - path: bunny/body
+        weight: 1
+      - path: bunny/body/body 1
+        weight: 1
+      - path: bunny/body/transform7
+        weight: 1
+      - path: bunny/head
+        weight: 1
+      - path: bunny/head/head 1
+        weight: 1
+      - path: bunny/head/transform12
+        weight: 1
+      - path: bunny/leftArm
+        weight: 1
+      - path: bunny/leftArm/leftArm 1
+        weight: 1
+      - path: bunny/leftArm/transform6
+        weight: 1
+      - path: bunny/leftEar
+        weight: 1
+      - path: bunny/leftEar/leftEar 1
+        weight: 1
+      - path: bunny/leftEar/transform10
+        weight: 1
+      - path: bunny/leftEye
+        weight: 1
+      - path: bunny/leftEye/leftEye 1
+        weight: 1
+      - path: bunny/leftEye/transform8
+        weight: 1
+      - path: bunny/leftLeg
+        weight: 1
+      - path: bunny/leftLeg/leftLeg 1
+        weight: 1
+      - path: bunny/leftLeg/transform15
+        weight: 1
+      - path: bunny/rightArm
+        weight: 1
+      - path: bunny/rightArm/rightArm 1
+        weight: 1
+      - path: bunny/rightArm/transform14
+        weight: 1
+      - path: bunny/rightEar
+        weight: 1
+      - path: bunny/rightEar/rightEar 1
+        weight: 1
+      - path: bunny/rightEar/transform11
+        weight: 1
+      - path: bunny/rightEye
+        weight: 1
+      - path: bunny/rightEye/rightEye 1
+        weight: 1
+      - path: bunny/rightEye/transform9
+        weight: 1
+      - path: bunny/rightLeg
+        weight: 1
+      - path: bunny/rightLeg/rightLeg 1
+        weight: 1
+      - path: bunny/rightLeg/transform16
+        weight: 1
+      - path: bunny/transform17
+        weight: 1
+      - path: jointWaist
+        weight: 1
+      - path: jointWaist/joint_chest
+        weight: 1
+      - path: jointWaist/joint_chest/joint_leftShoulder
+        weight: 1
+      - path: jointWaist/joint_chest/joint_leftShoulder/joint_leftArm
+        weight: 1
+      - path: jointWaist/joint_chest/joint_leftShoulder/joint_leftArm/joint_leftHand
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_leftEarBase1
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_leftEarBase1/joint_leftEarMid
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_leftEarBase1/joint_leftEarMid/joint_leftEarTop
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_rightEarBase
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_rightEarBase/joint_rightEarMid
+        weight: 1
+      - path: jointWaist/joint_chest/joint_neck/joint_head/joint_rightEarBase/joint_rightEarMid/joint_rightEarTop
+        weight: 1
+      - path: jointWaist/joint_chest/joint_rightShoulder
+        weight: 1
+      - path: jointWaist/joint_chest/joint_rightShoulder/joint_rightArm
+        weight: 1
+      - path: jointWaist/joint_chest/joint_rightShoulder/joint_rightArm/joint_rightHand
+        weight: 1
+      - path: jointWaist/joint_leftLeg
+        weight: 1
+      - path: jointWaist/joint_leftLeg/joint_leftKnee
+        weight: 1
+      - path: jointWaist/joint_leftLeg/joint_leftKnee/joint_leftFoot
+        weight: 1
+      - path: jointWaist/joint_rightLeg
+        weight: 1
+      - path: jointWaist/joint_rightLeg/joint_rightKnee
+        weight: 1
+      - path: jointWaist/joint_rightLeg/joint_rightKnee/joint_rightFoot
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      - path: polySurface1/transform13
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
