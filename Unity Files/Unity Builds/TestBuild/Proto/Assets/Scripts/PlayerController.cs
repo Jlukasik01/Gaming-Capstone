@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         {
             animations = Mesh.GetComponent<Animator>();
         }
-        Debug.Log(animations);
+        //Debug.Log(animations);
         rotation();// Player faces mouse DIR
         animationFunction();
         if (!IsAttacking)
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
             isMoving = true;
         }
         else isMoving = false;
-        Debug.Log(gameObject.transform.rotation.y);
+        //Debug.Log(gameObject.transform.rotation.y);
     }
 
     void animationFunction()
@@ -185,16 +185,17 @@ public class PlayerController : MonoBehaviour
                     animations.speed = 3;
                     animations.Play("Melee");
                 }
-                if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+                else if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
                 {
                     animations.speed = 3;
                     animations.Play("Bow");
                 }
-                if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
+                else if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
                 {
                     animations.speed = 3;
                     animations.Play("Spell");
                 }
+               
             }
         }
 

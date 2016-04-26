@@ -15,6 +15,7 @@ public class ItemController : MonoBehaviour
     public bool useable; // checks whether or not the item is a on use item (ex - health potion)
     public GameObject Player;
     public int count = 1;
+    public bool inInventory = false;
 
     void Start()
     {

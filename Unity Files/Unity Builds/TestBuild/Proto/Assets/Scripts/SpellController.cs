@@ -40,6 +40,7 @@ public class SpellController : MonoBehaviour
 
     public void CallFunction()
     {
+        Debug.Log("TRIED TO USE SPELL");
         //Health Modifying Potion
         if (GetComponent<ItemController>().type == "HealthPotion")
         {
@@ -54,11 +55,16 @@ public class SpellController : MonoBehaviour
         //Randomizes current inventory
         else if (GetComponent<ItemController>().type == "Dice")
         {
-            for (int x = 0; x < Player.GetComponent<IntController>().currentInventorySize; x++)
+            for (int x = 0; x < Player.GetComponent<IntController>().inventorySize; x++)
             {
-                Player.GetComponent<IntController>().inventory[x] = LootTable.GetComponent<LootController>().dropItem();
+                if(Player.GetComponent<IntController>().inventory[x] != null)
+                {
+                   
+                    Player.GetComponent<IntController>().inventory[x] = LootTable.GetComponent<LootController>().dropItem();
+                }
+                
             }
-            Destroy(gameObject);
+            
         }
     }
 }
