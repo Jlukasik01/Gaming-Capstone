@@ -25,10 +25,6 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    public void CallFunction() // each TYPE would have its own (IF)
-    {
-        //Moving most effects to spell controller script
-    }
 
     public bool Stack(GameObject other)
     {

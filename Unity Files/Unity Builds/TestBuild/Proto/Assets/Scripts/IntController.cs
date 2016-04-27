@@ -21,6 +21,7 @@ public class IntController : MonoBehaviour {
     void Update()
     {
         getPress();
+        Weapon = inventory[keyPress];
         //Debug.Log("Current Selected Inv Space: ");
         //Debug.Log(keyPress);
         if (Input.GetKeyDown(KeyCode.Q))
@@ -140,17 +141,22 @@ public class IntController : MonoBehaviour {
     {
         if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
         {
-            
-            Debug.Log(findEmptySpot());
-            if (findEmptySpot() != -1)
+
+            int emptySpot = findEmptySpot();
+            Debug.Log(emptySpot);
+            if (emptySpot != -1)
             {
                 Debug.Log("TRIED TO PICK UP");
-                inventory[findEmptySpot()] = other.gameObject;
-                Weapon = other.gameObject;
+                GameObject temp = new GameObject();
+                inventory[emptySpot] = temp;
+                inventory[emptySpot].GetComponent<ItemController>().inInventory = true;
+                Destroy(other.gameObject);
+                //Weapon = other.gameObject;
                 //Weapon.GetComponent<WeaponController>().inInventory = true;
-                other.GetComponent<ItemController>().inInventory = true; 
                 currentInventorySize++;
                 onLoot = false; //Used for testing purposes
+                Debug.Log("PICKED UP ITEM:::");
+                Debug.Log(inventory[emptySpot]);
             }
             else
             {

@@ -49,22 +49,23 @@ public class SpellController : MonoBehaviour
             if (Player.GetComponent<ItemController>().count == 0)
             {
                 Destroy(gameObject);
+                Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
             }
         }
+
 
         //Randomizes current inventory
         else if (GetComponent<ItemController>().type == "Dice")
         {
             for (int x = 0; x < Player.GetComponent<IntController>().inventorySize; x++)
             {
-                if(Player.GetComponent<IntController>().inventory[x] != null)
+                if (Player.GetComponent<IntController>().inventory[x] != null)
                 {
-                   
+
                     Player.GetComponent<IntController>().inventory[x] = LootTable.GetComponent<LootController>().dropItem();
                 }
-                
+
             }
-            
         }
-    }
+    }       
 }
