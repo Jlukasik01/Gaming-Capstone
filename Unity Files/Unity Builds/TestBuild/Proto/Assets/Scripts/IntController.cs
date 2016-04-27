@@ -8,6 +8,7 @@ public class IntController : MonoBehaviour {
     public int keyPress; //selected inventory spot
     public Transform weaponLoc;
     public GameObject Weapon;
+    public bool onLoot = false;
     
 	// Use this for initialization
 	void Start ()
@@ -19,14 +20,21 @@ public class IntController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         getPress();
-        Debug.Log("Current Selected Inv Space: ");
-        Debug.Log(keyPress);
+        //Debug.Log("Current Selected Inv Space: ");
+        //Debug.Log(keyPress);
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
         }
+
+        //Function for using useable items
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Debug.Log("PRESSING Y");
+            useItem();
+        }
+     
         if (inventory[keyPress] != null)
         {
             if (Weapon == null)
@@ -41,8 +49,9 @@ public class IntController : MonoBehaviour {
                 Weapon.name = inventory[keyPress].name;
             }
         }
-        else keyPress++;
-        if (keyPress > 9) { keyPress = 0; }
+        //else keyPress++;
+        //if (keyPress > 9) { keyPress = 0; }
+
         if ( Weapon != null)
         {
             Weapon.transform.position = weaponLoc.transform.position;
@@ -118,7 +127,8 @@ public class IntController : MonoBehaviour {
     {
         if(currentInventorySize > 0 && Weapon != null)
         {
-            Weapon.GetComponent<WeaponController>().inInventory = false;
+            //Weapon.GetComponent<WeaponController>().inInventory = false;
+            Weapon.GetComponent<ItemController>().inInventory = false; 
             Weapon = null;
             inventory[keyPress] = null;
             currentInventorySize--;
@@ -126,33 +136,69 @@ public class IntController : MonoBehaviour {
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void pickUpItem(Collider other)
     {
-        if(other.tag== "Loot")
+        if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
         {
-            Debug.Log("On Loot!!!!!");
-            if(Input.GetKey(KeyCode.E))
+            
+            Debug.Log(findEmptySpot());
+            if (findEmptySpot() != -1)
             {
-                if (findEmptySpot() != -1)
-                {
-                    keyPress = findEmptySpot();
-                    inventory[keyPress] = other.gameObject;
-                    Weapon = other.gameObject;
-                    Weapon.GetComponent<WeaponController>().inInventory = true;
-                    currentInventorySize++;
-                }
-                else
-                {
-                    //return error of no room in inventoryaw
-                }
-                
+                Debug.Log("TRIED TO PICK UP");
+                inventory[findEmptySpot()] = other.gameObject;
+                Weapon = other.gameObject;
+                //Weapon.GetComponent<WeaponController>().inInventory = true;
+                other.GetComponent<ItemController>().inInventory = true; 
+                currentInventorySize++;
+                onLoot = false; //Used for testing purposes
+            }
+            else
+            {
+                Debug.Log("FAILED TO PICK UP");
             }
         }
     }
-
-    int findEmptySpot()
+   
+    void useItem()
     {
-        if (currentInventorySize > 0)
+        Debug.Log("IN useItem()");
+        //Checks it the item is actually useable
+        if (inventory[keyPress] != null && inventory[keyPress].GetComponent<ItemController>().useable == true)
+        {
+            Debug.Log("TRYING TO CALL FUNCTION");
+            //If it is useable, then does function based on Type in item controller
+            inventory[keyPress].GetComponent<SpellController>().CallFunction();
+        }
+    }
+
+    
+    void OnTriggerStay(Collider other)
+    {
+        //used for testing purposes
+       if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
+       {
+           onLoot = true;
+       }
+     
+       if (Input.GetKeyDown(KeyCode.E))
+       {
+           pickUpItem(other);
+       }
+       
+    }
+
+    //Used for testing purposes
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Item" || other.tag == "Weapon")
+        {
+            onLoot = false;
+        }
+    }
+
+    public int findEmptySpot()
+    {
+        if (currentInventorySize < inventorySize)
         {
             for(int i = 0; i < inventorySize; i++)
             {
