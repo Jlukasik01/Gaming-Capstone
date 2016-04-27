@@ -3,15 +3,15 @@ using System.Collections;
 
 public class IntController : MonoBehaviour {
     public int inventorySize = 10; //max size of invetory
-    public GameObject[] inventory = new GameObject[10]; 
+    public GameObject[] inventory = new GameObject[10];
     public int currentInventorySize = 0; //how big current inventory is
     public int keyPress; //selected inventory spot
     public Transform weaponLoc;
     public GameObject Weapon;
     public bool onLoot = false;
-    
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start()
     {
         keyPress = 1;
         Weapon = Instantiate(inventory[keyPress] as GameObject);
@@ -35,7 +35,7 @@ public class IntController : MonoBehaviour {
             Debug.Log("PRESSING Y");
             useItem();
         }
-     
+
         if (inventory[keyPress] != null)
         {
             if (Weapon == null)
@@ -53,13 +53,13 @@ public class IntController : MonoBehaviour {
         //else keyPress++;
         //if (keyPress > 9) { keyPress = 0; }
 
-        if ( Weapon != null)
+        if (Weapon != null)
         {
             Weapon.transform.position = weaponLoc.transform.position;
             Weapon.transform.rotation = weaponLoc.transform.rotation;
         }
-        
-	}
+
+    }
 
     public void changeUIcolor(int j, int k)
     {
@@ -75,7 +75,7 @@ public class IntController : MonoBehaviour {
         {
             changeUIcolor(1, keyPress);
             keyPress = 1;
-            
+
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -126,10 +126,10 @@ public class IntController : MonoBehaviour {
 
     void dropItem()
     {
-        if(currentInventorySize > 0 && Weapon != null)
+        if (currentInventorySize > 0 && Weapon != null)
         {
             //Weapon.GetComponent<WeaponController>().inInventory = false;
-            Weapon.GetComponent<ItemController>().inInventory = false; 
+            Weapon.GetComponent<ItemController>().inInventory = false;
             Weapon = null;
             inventory[keyPress] = null;
             currentInventorySize--;
@@ -147,10 +147,13 @@ public class IntController : MonoBehaviour {
             if (emptySpot != -1)
             {
                 Debug.Log("TRIED TO PICK UP");
-                GameObject temp = new GameObject();
-                inventory[emptySpot] = temp;
+
+                
+                inventory[emptySpot] = other.gameObject;
+               
                 inventory[emptySpot].GetComponent<ItemController>().inInventory = true;
                 Destroy(other.gameObject);
+                
                 //Weapon = other.gameObject;
                 //Weapon.GetComponent<WeaponController>().inInventory = true;
                 currentInventorySize++;
