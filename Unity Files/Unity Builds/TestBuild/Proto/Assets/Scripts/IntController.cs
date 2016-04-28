@@ -37,7 +37,6 @@ public class IntController : MonoBehaviour {
             if (Weapon == null)
             {
                 Weapon = Instantiate(inventory[keyPress] as GameObject);
-                changeUIcolor(keyPress, keyPress);
             }
             if (Weapon.name != inventory[keyPress].name)
             {
@@ -55,65 +54,46 @@ public class IntController : MonoBehaviour {
 
     }
 
-    public void changeUIcolor(int j, int k)
-    {
-        if (k != -1)
-            GetComponent<UI_Controller>().items[k].color = Color.gray;
-        if (inventory[j] != null)
-            GetComponent<UI_Controller>().items[j].color = Color.yellow;
-    }
-
     void getPress()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            changeUIcolor(1, keyPress);
             keyPress = 1;
-
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            changeUIcolor(2, keyPress);
             keyPress = 2;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            changeUIcolor(3, keyPress);
             keyPress = 3;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            changeUIcolor(4, keyPress);
             keyPress = 4;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            changeUIcolor(5, keyPress);
             keyPress = 5;
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            changeUIcolor(6, keyPress);
             keyPress = 6;
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            changeUIcolor(7, keyPress);
             keyPress = 7;
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            changeUIcolor(8, keyPress);
             keyPress = 8;
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            changeUIcolor(9, keyPress);
             keyPress = 9;
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            changeUIcolor(0, keyPress);
             keyPress = 0;
         }
     }
@@ -122,11 +102,14 @@ public class IntController : MonoBehaviour {
     {
         if (currentInventorySize > 0)
         {
-            Instantiate(inventory[keyPress], transform.position, transform.rotation);
-            inventory[keyPress] = null;
-            Weapon = null;
-            currentInventorySize--;
-            GetComponent<PlayerController>().equip();
+            if (inventory[keyPress] != null)
+            {
+                Instantiate(inventory[keyPress], transform.position, transform.rotation);
+                inventory[keyPress] = null;
+                Weapon = null;
+                currentInventorySize--;
+                GetComponent<PlayerController>().equip();
+            }
         }
     }
 

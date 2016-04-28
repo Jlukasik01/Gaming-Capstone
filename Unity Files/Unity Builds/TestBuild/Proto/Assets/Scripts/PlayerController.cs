@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        GetComponent<UI_Controller>().updateHealth(health, maxHealth);
         Weapon = GetComponent<IntController>().Weapon;
         if (animations == null)
         {
