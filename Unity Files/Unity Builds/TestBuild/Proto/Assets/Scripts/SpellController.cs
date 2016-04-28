@@ -64,13 +64,13 @@ public class SpellController : MonoBehaviour
             {
                 if (Player.GetComponent<IntController>().inventory[x] != null)
                 {
-
                     Player.GetComponent<IntController>().inventory[x] = LootTable.GetComponent<LootController>().dropItem();
                 }
 
             }
         }
     }
+
     IEnumerator Timer() // Take Damage make invinvible
     {
         canUse = false;

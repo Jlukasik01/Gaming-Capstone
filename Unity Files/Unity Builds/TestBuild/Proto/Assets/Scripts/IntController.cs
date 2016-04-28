@@ -136,9 +136,10 @@ public class IntController : MonoBehaviour {
         {
             if (other.tag == "Weapon")
             {
-                keyPress = findEmptySpot();
-                inventory[keyPress] = other.gameObject;
+                //keyPress = findEmptySpot();
+                inventory[findEmptySpot()] = other.gameObject;
                 other.gameObject.SetActive(false);
+                currentInventorySize += 1;
             }
             if (other.tag == "Item")
             {
@@ -150,25 +151,27 @@ public class IntController : MonoBehaviour {
                         Destroy(other.gameObject); //stack count went up delete new one
                       
                     }
-         
-                    else{ // stackable but doesnt already exist in inventory
-                        keyPress = findEmptySpot();
-                        inventory[keyPress] = other.gameObject;
+                    else
+                    { // stackable but doesnt already exist in inventory
+                        //keyPress = findEmptySpot();
+                        inventory[findEmptySpot()] = other.gameObject;
                         other.gameObject.SetActive(false);
+                        currentInventorySize += 1;
                     }
 
-                    }
+               }
                 else // non-stackable add to inv
                 {
-
-                    keyPress = findEmptySpot();
-                    inventory[keyPress] = other.gameObject;
+                    //keyPress = findEmptySpot();
+                    inventory[findEmptySpot()] = other.gameObject;
                     other.gameObject.SetActive(false);
+                    currentInventorySize += 1;
 
                 }
             }
         }
     }
+
     bool ItemCheckStack(GameObject other)
     {
         for (int i = 0; i < inventorySize; i++)
@@ -184,6 +187,7 @@ public class IntController : MonoBehaviour {
         }
         return false;
     }
+
     public void useItem()
     {
         Debug.Log("IN useItem()");
