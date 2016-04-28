@@ -69,8 +69,15 @@ public class PlayerController : MonoBehaviour
         {
             if (IsAttacking == false)
             {
-                IsAttacking = true;
-                StartCoroutine("Attack", attackTime);
+                if (Weapon.tag == "Weapon")
+                {
+                    IsAttacking = true;
+                    StartCoroutine("Attack", attackTime);
+                }
+                if(Weapon.tag == "Item")
+                {
+                    GetComponent<IntController>().useItem();
+                }
             }
         }
     }
@@ -177,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
         if (IsAttacking) // does attacks depending on the players weapons using Weapon Controller
         {
-            if (Weapon != null)
+            if (Weapon != null && Weapon.tag == "Weapon")
             {
                 if (Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
                 {

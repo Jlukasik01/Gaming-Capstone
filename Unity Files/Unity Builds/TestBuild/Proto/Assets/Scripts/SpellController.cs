@@ -14,6 +14,7 @@ public class SpellController : MonoBehaviour
     public int damageValue; //how hard the spell hits
     public int attackModifier; //General modifier for damage player deals
     public int defenseModifier; //General modifier for damage player takes
+    public bool canUse;
     public GameObject Player;
     public GameObject LootTable;
 
@@ -21,6 +22,7 @@ public class SpellController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        canUse = true;
         if (Player == null)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -45,8 +47,9 @@ public class SpellController : MonoBehaviour
         if (GetComponent<ItemController>().type == "HealthPotion")
         {
             Player.GetComponent<PlayerController>().health += healthModifier;
-            Player.GetComponent<ItemController>().count--;
-            if (Player.GetComponent<ItemController>().count == 0)
+            GetComponent<ItemController>().count--;
+            StartCoroutine("Timer");
+            if (GetComponent<ItemController>().count == 0)
             {
                 Destroy(gameObject);
                 Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
@@ -67,5 +70,16 @@ public class SpellController : MonoBehaviour
 
             }
         }
-    }       
+    }
+    IEnumerator Timer() // Take Damage make invinvible
+    {
+        canUse = false;
+        for (float f = 0f; f <= 1; f += 0.1f)
+        {
+
+            yield return new WaitForSeconds(1f); // can't take damage until timer ends
+        }
+
+        canUse = true;
+    }
 }

@@ -13,22 +13,18 @@ public class IntController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        keyPress = 1;
-        Weapon = Instantiate(inventory[keyPress] as GameObject);
+        keyPress = 1 ;
+        Weapon = Instantiate(inventory[1]) as GameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
         getPress();
-        Weapon = inventory[keyPress];
-        //Debug.Log("Current Selected Inv Space: ");
-        //Debug.Log(keyPress);
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
         }
-
         //Function for using useable items
         if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -45,14 +41,12 @@ public class IntController : MonoBehaviour {
             }
             if (Weapon.name != inventory[keyPress].name)
             {
-                Destroy(Weapon);
-                Weapon = Instantiate(inventory[keyPress]);
+                Weapon.SetActive(false);
+                Weapon = Instantiate(inventory[keyPress] as GameObject);
                 Weapon.name = inventory[keyPress].name;
+                Weapon.SetActive(true);
             }
         }
-        //else keyPress++;
-        //if (keyPress > 9) { keyPress = 0; }
-
         if (Weapon != null)
         {
             Weapon.transform.position = weaponLoc.transform.position;
@@ -126,12 +120,11 @@ public class IntController : MonoBehaviour {
 
     void dropItem()
     {
-        if (currentInventorySize > 0 && Weapon != null)
+        if (currentInventorySize > 0)
         {
-            //Weapon.GetComponent<WeaponController>().inInventory = false;
-            Weapon.GetComponent<ItemController>().inInventory = false;
-            Weapon = null;
+            Instantiate(inventory[keyPress], transform.position, transform.rotation);
             inventory[keyPress] = null;
+            Weapon = null;
             currentInventorySize--;
             GetComponent<PlayerController>().equip();
         }
@@ -141,34 +134,57 @@ public class IntController : MonoBehaviour {
     {
         if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
         {
-
-            int emptySpot = findEmptySpot();
-            Debug.Log(emptySpot);
-            if (emptySpot != -1)
+            if (other.tag == "Weapon")
             {
-                Debug.Log("TRIED TO PICK UP");
-
-                
-                inventory[emptySpot] = other.gameObject;
-               
-                inventory[emptySpot].GetComponent<ItemController>().inInventory = true;
-                Destroy(other.gameObject);
-                
-                //Weapon = other.gameObject;
-                //Weapon.GetComponent<WeaponController>().inInventory = true;
-                currentInventorySize++;
-                onLoot = false; //Used for testing purposes
-                Debug.Log("PICKED UP ITEM:::");
-                Debug.Log(inventory[emptySpot]);
+                keyPress = findEmptySpot();
+                inventory[keyPress] = other.gameObject;
+                other.gameObject.SetActive(false);
             }
-            else
+            if (other.tag == "Item")
             {
-                Debug.Log("FAILED TO PICK UP");
+                if(other.gameObject.GetComponent<ItemController>().stackable)
+                {
+                    Debug.Log("StackCheck");
+                    if (ItemCheckStack(other.gameObject)) //check to see if this is already in stock
+                    {
+                        Destroy(other.gameObject); //stack count went up delete new one
+                      
+                    }
+         
+                    else{ // stackable but doesnt already exist in inventory
+                        keyPress = findEmptySpot();
+                        inventory[keyPress] = other.gameObject;
+                        other.gameObject.SetActive(false);
+                    }
+
+                    }
+                else // non-stackable add to inv
+                {
+
+                    keyPress = findEmptySpot();
+                    inventory[keyPress] = other.gameObject;
+                    other.gameObject.SetActive(false);
+
+                }
             }
         }
     }
-   
-    void useItem()
+    bool ItemCheckStack(GameObject other)
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (inventory[i] != null)
+            {
+                if (inventory[i].tag == "Item")
+                {
+                    if (inventory[i].GetComponent<ItemController>().Stack(other))
+                    { return true; }
+                }
+            }
+        }
+        return false;
+    }
+    public void useItem()
     {
         Debug.Log("IN useItem()");
         //Checks it the item is actually useable
@@ -207,7 +223,7 @@ public class IntController : MonoBehaviour {
 
     public int findEmptySpot()
     {
-        if (currentInventorySize < inventorySize)
+        if (0 < inventorySize)
         {
             for(int i = 0; i < inventorySize; i++)
             {

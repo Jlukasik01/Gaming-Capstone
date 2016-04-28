@@ -43,8 +43,8 @@ public class UI_buttonBehavior : MonoBehaviour {
     void Update ()
     {
         if (player.GetComponent<IntController>().inventory[invSlot] != null)
-            GetComponent<Image>().sprite = player.GetComponent<IntController>().inventory[invSlot].GetComponent<WeaponController>().ImageUI;
-        
+        {   //GetComponent<Image>().sprite = player.GetComponent<IntController>().inventory[invSlot].GetComponent<WeaponController>().ImageUI;
+        }
         else
         {
             GetComponent<Image>().sprite = def;
