@@ -56,10 +56,11 @@ public class SpellController : MonoBehaviour
                 Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
             }
         }
+
 		//Mana Modifying Potion
 		if (GetComponent<ItemController>().type == "ManaPotion")
 		{
-			Player.GetComponent<PlayerController>().mana += manaRegenRate;
+			Player.GetComponent<PlayerController>().mana += manaRegenModifier;
 			GetComponent<ItemController>().count--;
 			StartCoroutine("Timer");
 			if (GetComponent<ItemController>().count == 0)
@@ -68,6 +69,7 @@ public class SpellController : MonoBehaviour
 				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
 			}
 		}
+
 		//Defense Modifying Potion
 		if (GetComponent<ItemController>().type == "DefensePotion")
 		{
@@ -80,6 +82,7 @@ public class SpellController : MonoBehaviour
 				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
 			}
 		}
+
 		//Damage Modifying Potion
 		if (GetComponent<ItemController>().type == "DamagePotion")
 		{
@@ -92,6 +95,7 @@ public class SpellController : MonoBehaviour
 				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
 			}
 		}
+
 		//Speed Modifying Potion
 		if (GetComponent<ItemController>().type == "SpeedPotion")
 		{
@@ -104,6 +108,7 @@ public class SpellController : MonoBehaviour
 				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
 			}
 		}
+
 		//Health and Mana Modifying Potion
 		if (GetComponent<ItemController>().type == "ElixirPotion")
 		{
