@@ -46,12 +46,22 @@ public class IntController : MonoBehaviour {
                 Weapon.SetActive(true);
             }
         }
+
         if (Weapon != null)
         {
             Weapon.transform.position = weaponLoc.transform.position;
             Weapon.transform.rotation = weaponLoc.transform.rotation;
         }
 
+        
+        for(int i = 0; i < inventorySize; i++)
+        {
+            if(inventory[i] != null && inventory[i].GetComponent<ItemController>().inInventory == false)
+            {
+                inventory[i].GetComponent<ItemController>().inInventory = true;
+            }
+        }
+        
     }
 
     void getPress()
@@ -100,16 +110,14 @@ public class IntController : MonoBehaviour {
 
     void dropItem()
     {
-        if (currentInventorySize > 0)
+        if (currentInventorySize > 0 && inventory[keyPress] != null)
         {
-            if (inventory[keyPress] != null)
-            {
-                Instantiate(inventory[keyPress], transform.position, transform.rotation);
-                inventory[keyPress] = null;
-                Weapon = null;
-                currentInventorySize--;
-                GetComponent<PlayerController>().equip();
-            }
+           inventory[keyPress].GetComponent<ItemController>().inInventory = false;
+           Instantiate(inventory[keyPress], transform.position, transform.rotation);
+           inventory[keyPress] = null;
+           Weapon = null;
+           currentInventorySize--;
+           //GetComponent<PlayerController>().equip();
         }
     }
 
@@ -117,31 +125,29 @@ public class IntController : MonoBehaviour {
     {
         if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
         {
+            other.gameObject.GetComponent<ItemController>().inInventory = true;
             if (other.tag == "Weapon")
             {
-                //keyPress = findEmptySpot();
                 inventory[findEmptySpot()] = other.gameObject;
                 other.gameObject.SetActive(false);
                 currentInventorySize += 1;
+                
             }
             if (other.tag == "Item")
-            {
-                if(other.gameObject.GetComponent<ItemController>().stackable)
+            { 
+                if (other.gameObject.GetComponent<ItemController>().stackable)
                 {
                     Debug.Log("StackCheck");
                     if (ItemCheckStack(other.gameObject)) //check to see if this is already in stock
                     {
-                        Destroy(other.gameObject); //stack count went up delete new one
-                      
+                        Destroy(other.gameObject); //stack count went up delete new one 
                     }
                     else
                     { // stackable but doesnt already exist in inventory
-                        //keyPress = findEmptySpot();
                         inventory[findEmptySpot()] = other.gameObject;
                         other.gameObject.SetActive(false);
                         currentInventorySize += 1;
                     }
-
                }
                 else // non-stackable add to inv
                 {

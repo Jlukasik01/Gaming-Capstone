@@ -73,9 +73,14 @@ public class PlayerController : MonoBehaviour
                     IsAttacking = true;
                     StartCoroutine("Attack", attackTime);
                 }
-                if(Weapon.tag == "Item")
+                else if(Weapon.tag == "Item")
                 {
                     GetComponent<IntController>().useItem();
+                }
+                else
+                {
+                    IsAttacking = true;
+                    StartCoroutine("Attack", attackTime);
                 }
             }
         }
