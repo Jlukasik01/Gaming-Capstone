@@ -14,7 +14,7 @@ public class IntController : MonoBehaviour {
     void Start()
     {
         keyPress = 1 ;
-        Weapon = Instantiate(inventory[1]) as GameObject;
+        Weapon = inventory[1];
     }
 
     // Update is called once per frame
@@ -36,12 +36,13 @@ public class IntController : MonoBehaviour {
         {
             if (Weapon == null)
             {
-                Weapon = Instantiate(inventory[keyPress] as GameObject);
+                Weapon = inventory[keyPress];
+                Weapon.SetActive(true);
             }
             if (Weapon.name != inventory[keyPress].name)
             {
                 Weapon.SetActive(false);
-                Weapon = Instantiate(inventory[keyPress] as GameObject);
+                Weapon = inventory[keyPress];
                 Weapon.name = inventory[keyPress].name;
                 Weapon.SetActive(true);
             }
@@ -113,7 +114,6 @@ public class IntController : MonoBehaviour {
         if (currentInventorySize > 0 && inventory[keyPress] != null)
         {
            inventory[keyPress].GetComponent<ItemController>().inInventory = false;
-           Instantiate(inventory[keyPress], transform.position, transform.rotation);
            inventory[keyPress] = null;
            Weapon = null;
            currentInventorySize--;
