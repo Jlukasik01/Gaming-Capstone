@@ -8,13 +8,12 @@ public class IntController : MonoBehaviour {
     public int keyPress; //selected inventory spot
     public Transform weaponLoc;
     public GameObject Weapon;
-    public bool onLoot = false;
 
     // Use this for initialization
     void Start()
     {
-        keyPress = 1 ;
-        Weapon = inventory[1];
+        keyPress = 1;
+        Weapon = inventory[keyPress];
     }
 
     // Update is called once per frame
@@ -25,6 +24,7 @@ public class IntController : MonoBehaviour {
         {
             dropItem();
         }
+
         //Function for using useable items
         if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -114,6 +114,7 @@ public class IntController : MonoBehaviour {
         if (currentInventorySize > 0 && inventory[keyPress] != null)
         {
            inventory[keyPress].GetComponent<ItemController>().inInventory = false;
+           Weapon.GetComponent<ItemController>().inInventory = false;
            inventory[keyPress] = null;
            Weapon = null;
            currentInventorySize--;
@@ -124,8 +125,7 @@ public class IntController : MonoBehaviour {
     void pickUpItem(Collider other)
     {
         if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
-        {
-            other.gameObject.GetComponent<ItemController>().inInventory = true;
+        {         
             if (other.tag == "Weapon")
             {
                 inventory[findEmptySpot()] = other.gameObject;
@@ -133,7 +133,7 @@ public class IntController : MonoBehaviour {
                 currentInventorySize += 1;
                 
             }
-            if (other.tag == "Item")
+            else if (other.tag == "Item")
             { 
                 if (other.gameObject.GetComponent<ItemController>().stackable)
                 {
@@ -155,9 +155,9 @@ public class IntController : MonoBehaviour {
                     inventory[findEmptySpot()] = other.gameObject;
                     other.gameObject.SetActive(false);
                     currentInventorySize += 1;
-
                 }
             }
+            other.GetComponent<ItemController>().inInventory = true;
         }
     }
 
@@ -191,27 +191,11 @@ public class IntController : MonoBehaviour {
 
     
     void OnTriggerStay(Collider other)
-    {
-        //used for testing purposes
-       if ((other.tag == "Item" || other.tag == "Weapon") && other.GetComponent<ItemController>().inInventory == false)
-       {
-           onLoot = true;
-       }
-     
+    {     
        if (Input.GetKeyDown(KeyCode.E))
        {
            pickUpItem(other);
        }
-       
-    }
-
-    //Used for testing purposes
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Item" || other.tag == "Weapon")
-        {
-            onLoot = false;
-        }
     }
 
     public int findEmptySpot()
