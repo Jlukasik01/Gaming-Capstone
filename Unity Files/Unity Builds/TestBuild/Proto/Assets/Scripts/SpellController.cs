@@ -14,6 +14,7 @@ public class SpellController : MonoBehaviour
     public int damageValue; //how hard the spell hits
     public int attackModifier; //General modifier for damage player deals
     public int defenseModifier; //General modifier for damage player takes
+	public int speedModifier; //General modifier for player speed
     public bool canUse;
     public GameObject Player;
     public GameObject LootTable;
@@ -55,7 +56,67 @@ public class SpellController : MonoBehaviour
                 Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
             }
         }
-
+		//Mana Modifying Potion
+		if (GetComponent<ItemController>().type == "ManaPotion")
+		{
+			Player.GetComponent<PlayerController>().mana += manaRegenRate;
+			GetComponent<ItemController>().count--;
+			StartCoroutine("Timer");
+			if (GetComponent<ItemController>().count == 0)
+			{
+				Destroy(gameObject);
+				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+			}
+		}
+		//Defense Modifying Potion
+		if (GetComponent<ItemController>().type == "DefensePotion")
+		{
+			Player.GetComponent<PlayerController>().defense += defenseModifier;
+			GetComponent<ItemController>().count--;
+			StartCoroutine("Timer");
+			if (GetComponent<ItemController>().count == 0)
+			{
+				Destroy(gameObject);
+				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+			}
+		}
+		//Damage Modifying Potion
+		if (GetComponent<ItemController>().type == "DamagePotion")
+		{
+			Player.GetComponent<PlayerController>().weaponDamageModifier += attackModifier;
+			GetComponent<ItemController>().count--;
+			StartCoroutine("Timer");
+			if (GetComponent<ItemController>().count == 0)
+			{
+				Destroy(gameObject);
+				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+			}
+		}
+		//Speed Modifying Potion
+		if (GetComponent<ItemController>().type == "SpeedPotion")
+		{
+			Player.GetComponent<PlayerController>().moveSpeed += speedModifier;
+			GetComponent<ItemController>().count--;
+			StartCoroutine("Timer");
+			if (GetComponent<ItemController>().count == 0)
+			{
+				Destroy(gameObject);
+				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+			}
+		}
+		//Health and Mana Modifying Potion
+		if (GetComponent<ItemController>().type == "ElixirPotion")
+		{
+			Player.GetComponent<PlayerController>().health += healthModifier;
+			Player.GetComponent<PlayerController>().mana += manaRegenModifier;
+			GetComponent<ItemController>().count--;
+			StartCoroutine("Timer");
+			if (GetComponent<ItemController>().count == 0)
+			{
+				Destroy(gameObject);
+				Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+			}
+		}
 
         //Randomizes current inventory
         else if (GetComponent<ItemController>().type == "Dice")
