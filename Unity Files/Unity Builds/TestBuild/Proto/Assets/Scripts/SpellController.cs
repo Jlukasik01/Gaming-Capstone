@@ -135,6 +135,18 @@ public class SpellController : MonoBehaviour
 
             }
         }
+
+        if(GetComponent<ItemController>().type == "Teleport") // Teleport for store
+        {
+            if (GameObject.FindGameObjectWithTag("StoreExit").GetComponent<StoreExitController>().inStore == false) //sets players teleport back positions
+            {
+                GameObject.FindGameObjectWithTag("StoreExit").GetComponent<StoreExitController>().ExitTeleportPosition = Player.transform.position;
+                GameObject.FindGameObjectWithTag("StoreExit").GetComponent<StoreExitController>().inStore = true;
+            }
+            Player.transform.position = GameObject.FindGameObjectWithTag("StoreTeleport").transform.position;
+            Destroy(gameObject);
+
+        }
     }
 
     IEnumerator Timer() // Take Damage make invinvible

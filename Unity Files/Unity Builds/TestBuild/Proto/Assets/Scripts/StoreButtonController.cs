@@ -5,11 +5,12 @@ public class StoreButtonController : MonoBehaviour {
     public GameObject Item;
     public int Cost;
     public string discription;
-    public Transform spawnLoc;
+    public Transform spawnLoc; // in store
     public GameObject Player;
 	// Use this for initialization
 	void Start () {
         GetComponent<Button>().onClick.AddListener(OnClick);  
+        
 	}
 
 	// Update is called once per frame

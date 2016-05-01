@@ -15,11 +15,11 @@ public class WeaponController : MonoBehaviour {
         body = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
 	}
-	/*
+	
 	void Update()
     {
         
-    }*/
+    }
 
     public void ActivateCollider()
     {

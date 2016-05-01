@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Mesh;
     Animator animations;
     public int health;
-    public float maxHealth;
+    public int maxHealth;
     public int damaged;
     public int mana;
     public int stamina;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         MoveDir = Vector3.zero;
         animations = Mesh.GetComponent<GameObject>().GetComponent<Animator>();
         Hitbox = GetComponent<Collider>();
-        maxHealth = health * 1.0f;
+        maxHealth = health;
     }
 
     void Update()
@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
         {
             attackFunction();
             CheckMove();
+        }
+        if(health > maxHealth)
+        {
+            health = maxHealth;
         }
     }
 

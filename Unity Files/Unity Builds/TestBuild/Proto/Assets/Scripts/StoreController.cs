@@ -36,10 +36,21 @@ public class StoreController : MonoBehaviour {
     {
         if(playerInCollider)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E)) // Open Store if not Open
             {
                 if (!storeIsActive) { storeIsActive = true; }
                 else if(storeIsActive) { storeIsActive = false; }
+            }
+            if (Input.GetKeyDown(KeyCode.F)) //Sell Current Item In player inventory
+            {
+                if (!storeIsActive) {
+                    if(player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress] != null) // check to make sure player is holding something
+                    {
+                        player.GetComponent<PlayerController>().souls += player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().value; // get Item Value
+                        player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress] = null;
+                        Destroy(player.GetComponent<IntController>().Weapon);
+                    }
+                }
             }
         }
 

@@ -24,7 +24,15 @@ public class ItemController : MonoBehaviour
             Player = GameObject.FindGameObjectWithTag("Player");
         }
     }
-
+    void Update()
+    {
+        if (Player.GetComponent<IntController>().Weapon == gameObject && gameObject.tag != "Weapon")
+        {
+            GetComponent<Collider>().isTrigger = true;
+            GetComponent<Rigidbody>().useGravity = false;
+        }
+        else if(Player.GetComponent<IntController>().Weapon != gameObject && gameObject.tag != "Weapon") { GetComponent<Collider>().isTrigger = false; GetComponent<Rigidbody>().useGravity = true; }
+    }
 
     public bool Stack(GameObject other)
     {
@@ -35,6 +43,7 @@ public class ItemController : MonoBehaviour
                 count += 1;
                 return true; // true, this is same type as new item, so this would return true and inventory would delete the new one.
             }
+         
         }
         return false; // says this inventory slot is not of same type, so inventory will check other spots
     }

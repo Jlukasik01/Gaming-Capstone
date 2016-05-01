@@ -7,6 +7,7 @@ public class UI_Controller : MonoBehaviour
 
     public Slider healthSlider;
     //public Slider manaBarSlider;
+    public Text SoulsCounter;
     public Image[] items;
     public int highlighted;
 
@@ -23,6 +24,9 @@ public class UI_Controller : MonoBehaviour
             highlight(highlighted, -1);
             highlight(GetComponent<IntController>().keyPress, 1);
         }
+        healthSlider.maxValue = GetComponent<PlayerController>().maxHealth;
+        healthSlider.value = GetComponent<PlayerController>().health;
+        SoulsCounter.text = "Souls: " + GetComponent<PlayerController>().souls;
     }
 
     public void highlight(int a, int b)
