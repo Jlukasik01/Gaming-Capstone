@@ -8,7 +8,7 @@ public class SpellController : MonoBehaviour
     public string description; //What it does
     public int manaCost; //Mana cost of spell
     public int staminaCost; //Stamina cost of spell
-    public bool canUse;
+    bool canUse;
 
     //Permanent modifiers
     public int healthModifier; //Used for damaging or healing the player
@@ -61,23 +61,24 @@ public class SpellController : MonoBehaviour
             Player.GetComponent<PlayerController>().mana += manaModifier;
             Player.GetComponent<PlayerController>().stamina += staminaModifier;
             modifyingStats = true;
-            GetComponent<ItemController>().count--;
-            StartCoroutine("Timer");
-            if (GetComponent<ItemController>().count == 0)
+            
+            if (modifyingStats == true && GetComponent<ItemController>().count > 0)
             {
-                Destroy(gameObject);
-                Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
-            }
-
-            if (modifyingStats == true)
-            {
+                GetComponent<ItemController>().count--;
                 Player.GetComponent<PlayerController>().manaRegenRate += manaRegenModifier;
                 Player.GetComponent<PlayerController>().staminaRegenRate += staminaRegenModifier;
-                Player.GetComponent<PlayerController>().spellDamageModifier += spellDamageModifier;
-                Player.GetComponent<PlayerController>().weaponDamageModifier += weaponDamageModifier;
+                Player.GetComponent<PlayerController>().spellDamage += spellDamageModifier;
+                Player.GetComponent<PlayerController>().weaponDamage += weaponDamageModifier;
                 Player.GetComponent<PlayerController>().defense += defenseModifier;
                 Player.GetComponent<PlayerController>().moveSpeed += speedModifier;
                 StartCoroutine("modifyTimer");
+                StartCoroutine("Timer");
+            }
+            if(GetComponent<ItemController>().count <= 0)
+            {
+                Player.GetComponent<IntController>().Weapon = null;
+                Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+                gameObject.transform.position = new Vector3(0, -5000, 0);
             }
         }
 
@@ -121,13 +122,18 @@ public class SpellController : MonoBehaviour
     //modifies players stats for regenTime then sets back to normal
     IEnumerator modifyTimer()
     { 
-        yield return new WaitForSeconds(modifyTime);
-        Player.GetComponent<PlayerController>().manaRegenRate -= manaRegenModifier;
-        Player.GetComponent<PlayerController>().staminaRegenRate -= staminaRegenModifier;
-        Player.GetComponent<PlayerController>().spellDamageModifier -= spellDamageModifier;
-        Player.GetComponent<PlayerController>().weaponDamageModifier -= weaponDamageModifier;
-        Player.GetComponent<PlayerController>().defense -= defenseModifier;
-        Player.GetComponent<PlayerController>().moveSpeed -= speedModifier;
-        modifyingStats = false;
+            yield return new WaitForSeconds(modifyTime);
+            Player.GetComponent<PlayerController>().manaRegenRate -= manaRegenModifier;
+            Player.GetComponent<PlayerController>().staminaRegenRate -= staminaRegenModifier;
+            Player.GetComponent<PlayerController>().spellDamage -= spellDamageModifier;
+            Player.GetComponent<PlayerController>().weaponDamage -= weaponDamageModifier;
+            Player.GetComponent<PlayerController>().defense -= defenseModifier;
+            Player.GetComponent<PlayerController>().moveSpeed -= speedModifier;
+            modifyingStats = false;
+            if (GetComponent<ItemController>().count <= 0)
+            {
+                Destroy(gameObject);
+            }
+        
     }
 }

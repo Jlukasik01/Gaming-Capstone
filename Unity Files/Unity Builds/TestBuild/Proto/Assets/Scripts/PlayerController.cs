@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     public int stamina;
     public int maxStamina;
     public int defense; //how much extra/less the player takes when hit
-    public int spellDamageModifier; //how much extra the player's spells hit
-    public int weaponDamageModifier; //how much extra the player's weapons hit
+    public int spellDamage; //how much extra the player's spells hit
+    public int weaponDamage; //how much extra the player's weapons hit
     public int manaRegenRate; //how fast the player's mana regenerates
     public int staminaRegenRate; //how fast the player's stamina regenerates every .1 seconds
     public bool regeneratingManaStamina;
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (IsAttacking == false)
+            if (IsAttacking == false && Weapon != null)
             {
                 if (Weapon.tag == "Weapon")
                 {

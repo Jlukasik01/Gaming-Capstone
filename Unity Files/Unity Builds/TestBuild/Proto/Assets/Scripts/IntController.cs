@@ -159,7 +159,7 @@ public class IntController : MonoBehaviour {
                }
             }
             other.GetComponent<ItemController>().inInventory = true;
-            inventory[keyPress].GetComponent<ItemController>().getItemModifiers();
+            other.GetComponent<ItemController>().getItemModifiers();
         }
     }
 

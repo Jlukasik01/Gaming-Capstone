@@ -17,8 +17,8 @@ public class ItemController : MonoBehaviour
     public bool stackable; // checks if you can stack
     public bool useable; // checks whether or not the item is a on use item (ex - health potion)
     public GameObject Player;
-    public int count = 1;
-    public bool inInventory = false;
+    public int count = 1; //How many there are, mainly used for potions
+    public bool inInventory = false; //Set to TRUE if the player starts with this item in the inventory, otherwise set false
 
     void Start()
     {
@@ -58,8 +58,8 @@ public class ItemController : MonoBehaviour
         Player.GetComponent<PlayerController>().maxMana += maxManaModifier;
         Player.GetComponent<PlayerController>().maxStamina += maxStaminaModifier;
         Player.GetComponent<PlayerController>().defense += defenseModifier;
-        Player.GetComponent<PlayerController>().spellDamageModifier += spellDamageModifier;
-        Player.GetComponent<PlayerController>().weaponDamageModifier += weaponDamageModifier;
+        Player.GetComponent<PlayerController>().spellDamage += spellDamageModifier;
+        Player.GetComponent<PlayerController>().weaponDamage += weaponDamageModifier;
         Player.GetComponent<PlayerController>().moveSpeed += speedModifier;
     }
 
@@ -70,8 +70,8 @@ public class ItemController : MonoBehaviour
         Player.GetComponent<PlayerController>().maxMana -= maxManaModifier;
         Player.GetComponent<PlayerController>().maxStamina -= maxStaminaModifier;
         Player.GetComponent<PlayerController>().defense -= defenseModifier;
-        Player.GetComponent<PlayerController>().spellDamageModifier -= spellDamageModifier;
-        Player.GetComponent<PlayerController>().weaponDamageModifier -= weaponDamageModifier;
+        Player.GetComponent<PlayerController>().spellDamage -= spellDamageModifier;
+        Player.GetComponent<PlayerController>().weaponDamage -= weaponDamageModifier;
         Player.GetComponent<PlayerController>().moveSpeed -= speedModifier;
     }
 
