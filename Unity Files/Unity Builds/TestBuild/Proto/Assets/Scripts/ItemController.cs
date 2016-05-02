@@ -7,10 +7,13 @@ public class ItemController : MonoBehaviour
     public string type; //potion, spell, booster
     public string description; // description
     public int value; // how much item is worth
-    public int healthModifier; // Permanent modifier to player's max health as long as item is in inventory
+    public int maxHealthModifier; // Permanent modifier to player's max health as long as item is in inventory
+    public int maxManaModifier; //Permanend modifier to player's man mana as long as item is in inventory
+    public int maxStaminaModifier; //Permanent modifier to player's max stamina as long as item is in inventory
     public int weaponDamageModifier; // Permanent modifier to player's weapon damage as long as item is in inventory
     public int spellDamageModifier; // Permanent modifier to player's spell damage as long as item is in inventory
     public int defenseModifier; // Permanent modifier to player's defense as long as item is in inventory
+    public int speedModifier; //Permanent modifier to player's speed as long as item is in inventory
     public bool stackable; // checks if you can stack
     public bool useable; // checks whether or not the item is a on use item (ex - health potion)
     public GameObject Player;
@@ -51,19 +54,25 @@ public class ItemController : MonoBehaviour
     //Adds item's modifiers to player's stats, use when picking up or gaining an item
     public void getItemModifiers()
     {
-        Player.GetComponent<PlayerController>().health += healthModifier;
+        Player.GetComponent<PlayerController>().maxHealth += maxHealthModifier;
+        Player.GetComponent<PlayerController>().maxMana += maxManaModifier;
+        Player.GetComponent<PlayerController>().maxStamina += maxStaminaModifier;
         Player.GetComponent<PlayerController>().defense += defenseModifier;
         Player.GetComponent<PlayerController>().spellDamageModifier += spellDamageModifier;
         Player.GetComponent<PlayerController>().weaponDamageModifier += weaponDamageModifier;
+        Player.GetComponent<PlayerController>().moveSpeed += speedModifier;
     }
 
     //Subtracts item's modifiers to player's stats, use when dropping or losing an item
     public void loseItemModifiers()
     {
-        Player.GetComponent<PlayerController>().health -= healthModifier;
+        Player.GetComponent<PlayerController>().maxHealth -= maxHealthModifier;
+        Player.GetComponent<PlayerController>().maxMana -= maxManaModifier;
+        Player.GetComponent<PlayerController>().maxStamina -= maxStaminaModifier;
         Player.GetComponent<PlayerController>().defense -= defenseModifier;
         Player.GetComponent<PlayerController>().spellDamageModifier -= spellDamageModifier;
         Player.GetComponent<PlayerController>().weaponDamageModifier -= weaponDamageModifier;
+        Player.GetComponent<PlayerController>().moveSpeed -= speedModifier;
     }
 
 }

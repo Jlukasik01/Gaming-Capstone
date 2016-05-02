@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour
     public int maxHealth;
     public int damaged;
     public int mana;
+    public int maxMana;
     public int stamina;
+    public int maxStamina;
     public int defense; //how much extra/less the player takes when hit
     public int spellDamageModifier; //how much extra the player's spells hit
     public int weaponDamageModifier; //how much extra the player's weapons hit
     public int manaRegenRate; //how fast the player's mana regenerates
-    public int staminaRegenRate; //how fast the player's stamina regenerates
+    public int staminaRegenRate; //how fast the player's stamina regenerates every .1 seconds
+    public bool regeneratingManaStamina;
     public float moveSpeed = 1;
     public float attackTime = 1;
     public float DamageTimer = 1;
@@ -31,9 +34,7 @@ public class PlayerController : MonoBehaviour
     public float animationWalkSpeed = 2;
     public GameObject Arrows;
     private Vector3 MoveDir;
-
-    //public int maxMana;
-
+    
 
     void OnStart()
     {
@@ -58,10 +59,27 @@ public class PlayerController : MonoBehaviour
             attackFunction();
             CheckMove();
         }
-        if(health > maxHealth)
+
+        if (health > maxHealth)
         {
             health = maxHealth;
         }
+
+        if (regeneratingManaStamina == true)
+        {
+            mana += manaRegenRate;
+            stamina += staminaRegenRate;
+            if (mana > maxMana)
+            {
+                mana = maxMana;
+            }
+            if(stamina > maxStamina)
+            {
+                stamina = maxStamina;
+            }
+            StartCoroutine("Regen");
+        }
+
     }
 
     public void equip() { Weapon = GetComponent<IntController>().Weapon; }
@@ -77,7 +95,7 @@ public class PlayerController : MonoBehaviour
                     IsAttacking = true;
                     StartCoroutine("Attack", attackTime);
                 }
-                else if(Weapon.tag == "Item")
+                else if (Weapon.tag == "Item")
                 {
                     GetComponent<IntController>().useItem();
                 }
@@ -210,7 +228,7 @@ public class PlayerController : MonoBehaviour
                     animations.speed = 3;
                     animations.Play("Spell");
                 }
-               
+
             }
         }
 
@@ -283,7 +301,7 @@ public class PlayerController : MonoBehaviour
         IsAttacking = true; // do damage
         for (float f = 0.0f; f <= 0.5f; f += 0.1f)
         {
-            if(f == 0.4f)
+            if (f == 0.4f)
             {
                 if (Weapon != null)
                 {
@@ -296,7 +314,7 @@ public class PlayerController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
         }
-    
+
         IsAttacking = false;
     }
 
@@ -310,6 +328,14 @@ public class PlayerController : MonoBehaviour
         }
 
         invincable = false;
+    }
+
+    //Timer for regenerating mana and stamina
+    IEnumerator Regen()
+    {
+        regeneratingManaStamina = false;
+        yield return new WaitForSeconds(0.1f);
+        regeneratingManaStamina = true;
     }
 
     public void TakeDamage(int damage)

@@ -113,6 +113,7 @@ public class IntController : MonoBehaviour {
     {
         if (currentInventorySize > 0 && inventory[keyPress] != null)
         {
+           inventory[keyPress].GetComponent<ItemController>().loseItemModifiers();
            inventory[keyPress].GetComponent<ItemController>().inInventory = false;
            Weapon.GetComponent<ItemController>().inInventory = false;
            inventory[keyPress] = null;
@@ -149,15 +150,16 @@ public class IntController : MonoBehaviour {
                         currentInventorySize += 1;
                     }
                }
-                else // non-stackable add to inv
-                {
+               else // non-stackable add to inv
+               {
                     //keyPress = findEmptySpot();
                     inventory[findEmptySpot()] = other.gameObject;
                     other.gameObject.SetActive(false);
                     currentInventorySize += 1;
-                }
+               }
             }
             other.GetComponent<ItemController>().inInventory = true;
+            inventory[keyPress].GetComponent<ItemController>().getItemModifiers();
         }
     }
 
@@ -189,7 +191,6 @@ public class IntController : MonoBehaviour {
         }
     }
 
-    
     void OnTriggerStay(Collider other)
     {     
        if (Input.GetKeyDown(KeyCode.E))
