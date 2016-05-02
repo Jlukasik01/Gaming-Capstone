@@ -41,7 +41,7 @@ public class ItemController : MonoBehaviour
     {
         if (other.tag == "Item")
         {
-            if (other.GetComponent<ItemController>().type == type)
+            if (other.GetComponent<ItemController>().itemName == itemName)
             {
                 count += 1;
                 return true; // true, this is same type as new item, so this would return true and inventory would delete the new one.

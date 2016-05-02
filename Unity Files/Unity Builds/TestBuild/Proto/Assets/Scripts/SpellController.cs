@@ -90,10 +90,22 @@ public class SpellController : MonoBehaviour
                 if (Player.GetComponent<IntController>().inventory[x] != null)
                 {
                     Player.GetComponent<IntController>().inventory[x] = LootTable.GetComponent<LootController>().dropItem();
+                    if (Player.GetComponent<IntController>().inventory[x].GetComponent<ItemController>().Player == null)
+                    {
+                        Player.GetComponent<IntController>().inventory[x].GetComponent<ItemController>().Player = Player;
+                    }
+                    if(Player.GetComponent<IntController>().inventory[x].tag == "Item")
+                    {
+                        if (Player.GetComponent<IntController>().inventory[x].GetComponent<SpellController>().Player == null)
+                        {
+                            Player.GetComponent<IntController>().inventory[x].GetComponent<SpellController>().Player = Player;
+                        }
+                    }
                 }
             }
-            Destroy(gameObject);
             Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+            Player.GetComponent<IntController>().Weapon = null;
+            Destroy(gameObject);  
         }
 
         else if(GetComponent<ItemController>().type == "Teleport") // Teleport for store
@@ -106,6 +118,7 @@ public class SpellController : MonoBehaviour
             Player.transform.position = GameObject.FindGameObjectWithTag("StoreTeleport").transform.position;
             Destroy(gameObject);
             Player.GetComponent<IntController>().inventory[Player.GetComponent<IntController>().keyPress] = null;
+            Player.GetComponent<IntController>().Weapon = null;
         }
     }
 
