@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\SeeThrough\STS_TransMask_For_Renderer.cs" />
     <Compile Include="Assets\Scripts\SeeThrough\STS_TransMask_Global.cs" />
     <Compile Include="Assets\Scripts\SeeThrough\SeeThroughSystem.cs" />
+    <Compile Include="Assets\Scripts\SmashController.cs" />
     <Compile Include="Assets\Scripts\SpellController.cs" />
     <Compile Include="Assets\Scripts\StoreButtonController.cs" />
     <Compile Include="Assets\Scripts\StoreController.cs" />

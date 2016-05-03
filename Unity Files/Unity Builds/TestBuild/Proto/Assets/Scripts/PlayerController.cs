@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public bool IsAttacking;
     public bool IsIdle;
     public bool isMoving = true;
+    public bool isSprinting;
     public bool invincable;
     public GameObject Weapon;
     public GameObject Mesh;
@@ -16,8 +17,8 @@ public class PlayerController : MonoBehaviour
     public int damaged;
     public int mana;
     public int maxMana;
-    public int stamina;
-    public int maxStamina;
+    public float stamina;
+    public float maxStamina;
     public int defense; //how much extra/less the player takes when hit
     public int spellDamage; //how much extra the player's spells hit
     public int weaponDamage; //how much extra the player's weapons hit
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public int staminaRegenRate; //how fast the player's stamina regenerates every .1 seconds
     public bool regeneratingManaStamina;
     public float moveSpeed = 1;
+    public float sprintSpeedMultiplier = 2;
     public float attackTime = 1;
     public float DamageTimer = 1;
     public int souls;
@@ -80,10 +82,37 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("Regen");
         }
 
+        sprintFunction();
     }
 
     public void equip() { Weapon = GetComponent<IntController>().Weapon; }
 
+    void sprintFunction()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina > 0)
+        {
+            isSprinting = true;
+            moveSpeed = moveSpeed * sprintSpeedMultiplier;
+            animationWalkSpeed = animationWalkSpeed * sprintSpeedMultiplier;
+        }
+        if ((Input.GetKeyUp(KeyCode.LeftShift) && isSprinting) || (stamina <= 0 && isSprinting))
+        {
+            isSprinting = false;
+            moveSpeed = moveSpeed / sprintSpeedMultiplier;
+            animationWalkSpeed = animationWalkSpeed / sprintSpeedMultiplier;
+        }
+        if (isSprinting)
+        {
+            stamina -= Time.deltaTime * 0.5f;
+        }
+        else
+        { stamina += Time.deltaTime * 0.2f; }
+        if(stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+
+    }
     void attackFunction()
     {
         if (Input.GetMouseButton(0))
@@ -321,7 +350,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Damage(float DamageTimer) // Take Damage make invinvible
     {
         invincable = true;
-        for (float f = 0f; f <= DamageTimer; f -= 0.1f)
+        for (float f = 0f; f <= DamageTimer; f += 0.1f)
         {
 
             yield return new WaitForSeconds(0.1f); // can't take damage until timer ends
@@ -343,13 +372,9 @@ public class PlayerController : MonoBehaviour
         if (!invincable)
         {
             health -= damage;
-            //GetComponent<UI_Controller>().updateHealth(health, maxHealth);
             StartCoroutine("Damage", DamageTimer);
         }
-        else
-        {
-            return;
-        }
+
     }
 
     void rotation() // player faces mouse.
