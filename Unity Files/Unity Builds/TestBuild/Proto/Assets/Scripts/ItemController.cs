@@ -19,7 +19,7 @@ public class ItemController : MonoBehaviour
     public GameObject Player;
     public int count = 1; //How many there are, mainly used for potions
     public bool inInventory = false; //Set to TRUE if the player starts with this item in the inventory, otherwise set false
-
+    public Sprite UIImage; // For UI draw
     void Start()
     {
         if (Player == null)

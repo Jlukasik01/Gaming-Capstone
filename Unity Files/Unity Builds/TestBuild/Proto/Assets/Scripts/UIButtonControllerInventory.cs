@@ -19,9 +19,11 @@ public class UIButtonControllerInventory : MonoBehaviour {
     }
     void Update()
     {
-        //InventoryObject = player.GetComponent<IntController>().inventory[inventoryNumber];
-        //UIImage = player.GetComponent<IntController>().inventory[inventoryNumber].GetComponent<ItemController>().UIImage;
-        //invImage.image.sprite = UIImage;
+        InventoryObject = player.GetComponent<IntController>().inventory[inventoryNumber];
+        UIImage = player.GetComponent<IntController>().inventory[inventoryNumber].GetComponent<ItemController>().UIImage;
+        if (UIImage != null) { invImage.image.sprite = UIImage; }
+        else { }
+
         if (player.GetComponent<IntController>().keyPress == inventoryNumber)
         {
             image.color = Color.yellow;
