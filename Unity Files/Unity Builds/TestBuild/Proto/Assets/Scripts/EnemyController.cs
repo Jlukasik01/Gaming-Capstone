@@ -18,11 +18,13 @@ public class EnemyController : MonoBehaviour {
     public GameObject Gore;
     public GameObject Ragdoll;
     public float distance;
+    private GameObject lootTable;
 
 	// Use this for initialization
 	void Start () {
         Player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponentInChildren<Animator>();
+        lootTable = GameObject.FindGameObjectWithTag("LootTable");
 	}
 	
 	// Update is called once per frame
@@ -35,6 +37,7 @@ public class EnemyController : MonoBehaviour {
         {
             Instantiate(Gore, gameObject.transform.position, Gore.transform.rotation);
             Instantiate(Ragdoll, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(lootTable.GetComponent<LootController>().dropItem(), transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -46,7 +49,10 @@ public class EnemyController : MonoBehaviour {
             health -= 1;
         }
     }
-
+    void takeDamage(int damage)
+    {
+        health -= damage;
+    }
     void DetectAndChase()
     {
         if(distance < detectionDistance)

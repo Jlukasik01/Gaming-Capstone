@@ -32,7 +32,7 @@ public class KittenSpellController : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Object")
+        if (other.gameObject.tag != "Enemy")
         {
             Destroy(gameObject);
         }
