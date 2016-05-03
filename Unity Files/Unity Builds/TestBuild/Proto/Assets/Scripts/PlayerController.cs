@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     public Collider AttackBox;
     public GameObject[] Spells = new GameObject[4]; // store spell game objects here 
     public float animationWalkSpeed = 2;
-    public GameObject Arrows;
     private Vector3 MoveDir;
     
 
@@ -336,7 +335,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
                     {
-                        Instantiate(Arrows, gameObject.transform.position, gameObject.transform.rotation);
+                        Instantiate(Weapon.GetComponent<WeaponController>().projectile, Weapon.transform.position, gameObject.transform.rotation);
                     }
                 }
 

@@ -35,7 +35,7 @@ public class ArrowController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Object" || other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag != "Player")
         {
             if (other.gameObject.tag == "Enemy" && isActive)
             {

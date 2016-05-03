@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour {
     public int damage; 
     public Sprite ImageUI;
     public bool inInventory;
+    public GameObject projectile;
     Rigidbody body;
     Collider coll;
 
@@ -18,7 +19,16 @@ public class WeaponController : MonoBehaviour {
 	
 	void Update()
     {
-        
+        if (GetComponent<ItemController>().inInventory == false)
+        {
+            body.useGravity = true;
+            coll.isTrigger = false;
+        }
+        if(GetComponent<ItemController>().inInventory == true && WeaponType == "Bow")
+        {
+            coll.isTrigger = true;
+            body.useGravity = false;
+        }
     }
 
     public void ActivateCollider()
