@@ -20,7 +20,7 @@ public class BloodSplatterController : MonoBehaviour {
         for (float f = 0f; f <= spawnTime; f += 
             1)
         {
-            Instantiate(bloodSplatter[1], new Vector3(gameObject.transform.position.x, 0.2f, gameObject.transform.position.z), new Quaternion(0,0,0,0));
+            Instantiate(bloodSplatter[1], new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+0.1f, gameObject.transform.position.z), new Quaternion(0,0,0,0));
             yield return new WaitForSeconds(1f); // can't take damage until timer ends
         }
 

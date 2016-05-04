@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour {
     public int damage;
     public int health;
     public float Speed;
+    public int soulValue = 100;
     public Animator anim;
     public Transform SpellLocation;
     public GameObject Spell;
@@ -38,6 +39,7 @@ public class EnemyController : MonoBehaviour {
             Instantiate(Gore, gameObject.transform.position, Gore.transform.rotation);
             Instantiate(Ragdoll, gameObject.transform.position, gameObject.transform.rotation);
             Instantiate(lootTable.GetComponent<LootController>().dropItem(), transform.position, transform.rotation);
+            Player.GetComponent<PlayerController>().souls += soulValue; 
             Destroy(gameObject);
         }
     }
