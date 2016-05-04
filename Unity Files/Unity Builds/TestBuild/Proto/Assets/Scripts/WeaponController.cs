@@ -13,18 +13,19 @@ public class WeaponController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        gameObject.GetComponent<ItemController>().inInventory = false;
         body = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
 	}
 	
 	void Update()
     {
-        if (GetComponent<ItemController>().inInventory == false)
+        if (!gameObject.GetComponent<ItemController>().inInventory)
         {
             body.useGravity = true;
             coll.isTrigger = false;
         }
-        if(GetComponent<ItemController>().inInventory == true && WeaponType == "Bow")
+        if(gameObject.GetComponent<ItemController>().inInventory && WeaponType == "Bow")
         {
             coll.isTrigger = true;
             body.useGravity = false;
