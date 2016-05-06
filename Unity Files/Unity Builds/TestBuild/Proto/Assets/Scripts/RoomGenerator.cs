@@ -5,7 +5,7 @@ using System.Linq;
 public class RoomGenerator : MonoBehaviour
 {
 
-    public GameObject[,] referenceLevel;
+    public GameObject[,] referenceLevel;               //************why have a reference lvl?
     public GameObject[,] generatedLevel;
     public GameObject roomSpawner;
     public GameObject[] rooms;
@@ -19,7 +19,7 @@ public class RoomGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rooms = Resources.LoadAll<GameObject>("RoomsToLoad");
+        rooms = Resources.LoadAll<GameObject>("RoomsToLoad"); //**********Good Idea
         Debug.Log(Resources.LoadAll<GameObject>("RoomsToLoad"));
         GenerateLevel();
 
@@ -41,7 +41,7 @@ public class RoomGenerator : MonoBehaviour
             width = Mathf.RoundToInt(Mathf.Sqrt(averageNumRooms));
             referenceLevel = new GameObject[length, width];
             generatedLevel = new GameObject[length, width];
-            roomSpawner = GameObject.FindGameObjectWithTag("RoomSpawner");
+            roomSpawner = GameObject.FindGameObjectWithTag("RoomSpawner");    //**************** if your spawning these down below, just use a prefab to spawn all of them, not one in the scene
 
             //Generates empty objects to reference for rooms
             for (int x = 0; x < length; x++)
@@ -87,6 +87,12 @@ public class RoomGenerator : MonoBehaviour
                     {
                         doorCounter++;
                     }
+
+
+                    //**********************My suggetion would be to not rotate rooms on the fly, instead have versions of each room already in the resources rotated
+                    // and just redo the bools for the doors for each rotated prefab. The code could just find random rooms to place next to already existing rooms with doors, 
+                    //EI this room as a east room place a random room to the east with a west door
+
                     switch (doorCounter)
                     {
                         case 0:
