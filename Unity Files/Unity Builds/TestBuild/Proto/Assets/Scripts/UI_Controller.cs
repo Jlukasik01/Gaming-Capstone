@@ -9,7 +9,7 @@ public class UI_Controller : MonoBehaviour
     public Slider StanimaSlider;
     //public Slider manaBarSlider;
     public Text SoulsCounter;
-    public Image[] items;
+    //public Image[] items;
     
 
     void Start()
@@ -20,19 +20,24 @@ public class UI_Controller : MonoBehaviour
 
     void Update()
     {
-     
-        healthSlider.maxValue = GetComponent<PlayerController>().maxHealth;
-        healthSlider.value = GetComponent<PlayerController>().health;
-        StanimaSlider.maxValue = GetComponent<PlayerController>().maxStamina;
-        StanimaSlider.value = GetComponent<PlayerController>().stamina;
-        SoulsCounter.text = "Souls: " + GetComponent<PlayerController>().souls;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = GetComponent<PlayerController>().maxHealth;
+            healthSlider.value = GetComponent<PlayerController>().health;
+            StanimaSlider.maxValue = GetComponent<PlayerController>().maxStamina;
+            StanimaSlider.value = GetComponent<PlayerController>().stamina;
+            //SoulsCounter.text = "Souls: " + GetComponent<PlayerController>().souls;
+        }
     }
 
 
 
     public void updateHealth()
     {
-        healthSlider.maxValue = GetComponent<PlayerController>().maxHealth;
-        healthSlider.value = GetComponent<PlayerController>().health;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = GetComponent<PlayerController>().maxHealth;
+            healthSlider.value = GetComponent<PlayerController>().health;
+        }
     }
 }

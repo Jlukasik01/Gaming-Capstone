@@ -203,12 +203,19 @@ public class IntController : MonoBehaviour {
     {
         if (0 < inventorySize)
         {
-            for(int i = 0; i < inventorySize; i++)
+            if (inventory[keyPress] == null)
             {
-                if(inventory[i] == null)
+                return keyPress;
+            }
+            int j = keyPress;
+            for (int i = 0; i < inventorySize; i++)
+            {
+                if (j > 9) j = 0;
+                if (inventory[j] == null)
                 {
-                    return i;
+                    return j;
                 }
+                j++;
             }
         }
         return -1;
