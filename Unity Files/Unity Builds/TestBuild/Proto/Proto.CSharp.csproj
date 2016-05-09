@@ -177,6 +177,11 @@
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
     <None Include="Assets\Prefabs\Elven_Sword\ReadMe.txt" />
+    <None Include="Assets\Resources\RoomsToLoad\Corner\Blank file so github will push this empty folder.txt" />
+    <None Include="Assets\Resources\RoomsToLoad\FourDoor\Blank file so github will push this empty folder.txt" />
+    <None Include="Assets\Resources\RoomsToLoad\OneDoor\Blank file so github will push this empty folder.txt" />
+    <None Include="Assets\Resources\RoomsToLoad\ThreeDoor\Blank file so github will push this empty folder.txt" />
+    <None Include="Assets\Resources\RoomsToLoad\TwoDoor\Blank file so github will push this empty folder.txt" />
     <None Include="Assets\Scripts\SeeThrough\Manual\changelog.txt" />
     <None Include="Assets\Scripts\SeeThrough\Resources\STS_FastBlur.shader" />
     <None Include="Assets\Scripts\SeeThrough\Resources\STS_alpha_hologram.shader" />
