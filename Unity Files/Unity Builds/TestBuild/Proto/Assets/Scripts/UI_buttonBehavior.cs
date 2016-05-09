@@ -18,7 +18,9 @@ public class UI_buttonBehavior : MonoBehaviour
     }
     public void changeKey(int a)
     {
-        player.GetComponent<IntController>().keyPress = a;
+
+            player.GetComponent<IntController>().keyPress = a;
+        
     }
 
     void Update()
