@@ -25,9 +25,9 @@ public class UIButtonControllerInventory : MonoBehaviour {
         {
             if (player.GetComponent<IntController>().inventory[inventoryNumber].GetComponent<ItemController>().UIImage != null)
             { UIImage = player.GetComponent<IntController>().inventory[inventoryNumber].GetComponent<ItemController>().UIImage; }
+            if (UIImage != null) { invImage.image.sprite = UIImage; }
+            else { invImage.image.sprite = defualtSprite; }
         }
-        if (UIImage != null) { invImage.image.sprite = UIImage; }
-        else { invImage.image.sprite = defualtSprite; }
 
 
         if (player.GetComponent<IntController>().keyPress == inventoryNumber)
