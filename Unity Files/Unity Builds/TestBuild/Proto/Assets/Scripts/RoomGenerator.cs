@@ -16,6 +16,7 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[] roomsStartingRoom;
     public GameObject currentRoom; //current room being used as origin
     public GameObject generatedRoom; //room that is being created and placed
+    public GameObject player;
     public int currentLevel; //What level player is currently on
     public int completedLevels; // How many levels have been completed
     public int averageNumRooms; //Set for number of rooms to spawn
@@ -24,16 +25,13 @@ public class RoomGenerator : MonoBehaviour
     public int width;
     public int requiredDoorCounter;
     public int optionalDoorCounter;
-    public int currentY;
+    public int currentZ;
     public int currentX;
     public int levelsCreated;
-
+   
     // Use this for initialization
     void Start()
     {
-        //rooms = Resources.LoadAll<GameObject>("RoomsToLoad");
-        // Debug.Log(Resources.LoadAll<GameObject>("RoomsToLoad"));
-        //GenerateLevel();
         levelsCreated = 0;
         roomsOneDoor = Resources.LoadAll<GameObject>("RoomsToLoad/OneDoor");
         roomsCorner = Resources.LoadAll<GameObject>("RoomsToLoad/Corner");
@@ -41,6 +39,10 @@ public class RoomGenerator : MonoBehaviour
         roomsThreeDoor = Resources.LoadAll<GameObject>("RoomsToLoad/ThreeDoor");
         roomsFourDoor = Resources.LoadAll<GameObject>("RoomsToLoad/Fourdoor");
         roomsStartingRoom = Resources.LoadAll<GameObject>("RoomsToLoad/StartingRoom");
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         newLevel();
     }
 
@@ -57,11 +59,11 @@ public class RoomGenerator : MonoBehaviour
             //Generates empty objects to reference for rooms
             for (int x = 0; x < length; x++)
             {
-                for (int y = 0; y < width; y++)
+                for (int z = 0; z < width; z++)
                 {
-                    Vector3 pos = new Vector3(x * roomSize, 0, y * roomSize);
-                    referenceLevel[x, y] = (GameObject)Instantiate(roomSpawner, pos, Quaternion.identity);
-                    referenceLevel[x, y].gameObject.GetComponent<RoomSpawnerController>().pos = pos;
+                    Vector3 pos = new Vector3(x * roomSize, 0, z * roomSize);
+                    referenceLevel[x, z] = (GameObject)Instantiate(roomSpawner, pos, Quaternion.identity);
+                    referenceLevel[x, z].gameObject.GetComponent<RoomSpawnerController>().pos = pos;
                     Debug.Log("GENERATING SPAWNER");
                 }
             }
@@ -72,9 +74,9 @@ public class RoomGenerator : MonoBehaviour
     {
         for (int x = 0; x < length; x++)
         {
-            for (int y = 0; y < width; y++)
+            for (int z = 0; z < width; z++)
             {
-                Destroy(generatedLevel[x, y]);
+                Destroy(generatedLevel[x, z]);
             }
         }
     }
@@ -83,14 +85,14 @@ public class RoomGenerator : MonoBehaviour
     {
         for (int x = 0; x < length; x++)
         {
-            for (int y = 0; y < width; y++)
+            for (int z = 0; z < width; z++)
             {
-                Destroy(referenceLevel[x, y]);
+                Destroy(referenceLevel[x, z]);
             }
         }
     }
 
-    //destorys old level and creates a new one;
+    //destorzs old level and creates a new one;
     void newLevel()
     {
         if(levelsCreated > 0)
@@ -101,10 +103,12 @@ public class RoomGenerator : MonoBehaviour
         generateReferenceLevel();
         generatedLevel = new GameObject[length, width];
         currentX = Random.Range(1, length - 1);
-        currentY = Random.Range(1, width - 1);
-        generatedLevel[currentX, currentY] = (GameObject)Instantiate(roomsStartingRoom[0], referenceLevel[currentX, currentY].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-        referenceLevel[currentX, currentY].GetComponent<RoomSpawnerController>().hasRoom = true;
-        currentRoom = generatedLevel[currentX, currentY];
+        currentZ = Random.Range(1, width - 1);
+        generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsStartingRoom[0], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+        referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
+        currentRoom = generatedLevel[currentX, currentZ];
+        generatedRoom = currentRoom;
+        player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
         generateLevel();
         levelsCreated++;
     }
@@ -112,7 +116,7 @@ public class RoomGenerator : MonoBehaviour
     //Fills referenceLevel with rooms, must be called before generateLevel()
     void generateLevel()
     {
-        Debug.Log("generateLevel()");
+        
         if (currentRoom == null)
         {
             Debug.Log("Done generating level");
@@ -128,1008 +132,361 @@ public class RoomGenerator : MonoBehaviour
     void generateRooms()
     {
         //generate a room in each direction
-        for (int i = 0; i < 4; i++)
+        if (currentZ > 0 && referenceLevel[currentX, currentZ - 1].GetComponent<RoomSpawnerController>().hasRoom == false)
         {
-
-            if(i == 0)
-            {
-                Debug.Log("generateRoom(), checking north for room");
-                if (currentY > 0 && referenceLevel[currentX, currentY - 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    generateIndividualRoom(currentX, currentY - 1);
-                   
-                }
-                i++;
-            }
-            if(i == 1)
-            {
-                Debug.Log("generateRoom(), checking west for room");
-                if (currentX > 0 && referenceLevel[currentX - 1, currentY].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    generateIndividualRoom(currentX - 1, currentY);
-                }
-                i++;
-            }
-            if(i == 2)
-            {
-                Debug.Log("generateRoom(), checking south for room");
-                if (currentY < width - 1 && referenceLevel[currentX, currentY + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    generateIndividualRoom(currentX, currentY + 1);
-                }
-                i++;
-            }
-
-            if(i == 3)
-            {
-                Debug.Log("generateRoom(), checking east for room");
-                if (currentX < length - 1&& referenceLevel[currentX + 1, currentY].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    generateIndividualRoom(currentX + 1, currentY);
-                }
-                i++;
-            }
+            generateIndividualRoom(currentX, currentZ - 1);
         }
-        Debug.Log("generateRoom(), setting currentRoom");
-    currentRoom = findUseableRoom();
-        Debug.Log("generateRoom(), current room =");
-        Debug.Log(currentRoom);
+        if (currentX > 0 && referenceLevel[currentX - 1, currentZ].GetComponent<RoomSpawnerController>().hasRoom == false)
+        {
+            generateIndividualRoom(currentX - 1, currentZ);
+        }
+        if (currentZ < width - 1 && referenceLevel[currentX, currentZ + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
+        {
+            generateIndividualRoom(currentX, currentZ + 1);
+        }
+        if (currentX < length - 1 && referenceLevel[currentX + 1, currentZ].GetComponent<RoomSpawnerController>().hasRoom == false)
+        {
+            generateIndividualRoom(currentX + 1, currentZ);
+        }
+
+        currentRoom = findUseableRoom();
+      
     }
        
-    //Generates a room based on adjacent doors or empty space at X,Y
-    void generateIndividualRoom(int x, int y)
+    //Generates a room based on adjacent doors or emptz space at x,z
+    void generateIndividualRoom(int x, int z)
     {
         bool usingNorthDoor = false;
         bool usingSouthDoor = false;
         bool usingEastDoor = false;
         bool usingWestDoor = false;
 
-        requiredDoorCounter = 0;
-        optionalDoorCounter = 0;
+        int usingDoors = 0; //counter for how manz door room to spawn
+        int extraDoorsWeight = 75; //weight from 0 (never) to 100 (always) to use optional doors on blank rooms, setting to lower results in unaccessible areas and null errors
+        int roomToPick;
 
-        //if on north border, check south, east, west
-        if (y == 0)
+        if(z > 0)
         {
-            //In north west corner, check south, east
-            if (x == 0)
+            //checking South
+            if (referenceLevel[x, z - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
             {
-                //checking south
-                if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+                if (generatedLevel[x, z - 1].GetComponent<RoomController>().hasNorthDoor == true)
                 {
-                    if(generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if(referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking east
-                if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-            // in north east corner, check south, west
-            else if (x == length - 1)
-            {
-
-                //checking south
-                if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking west
-                if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if(referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-            //not on corner, check south, east, west
-            else
-            {
-                //checking south
-                if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking east
-                if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking west
-                if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-        }
-        //if on south border, check north, east, west
-        else if (y == width - 1)
-        {
-            
-            //on south west corner, check north, east
-            if (x == 0)
-            {
-                //checking north
-                if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if(referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking east
-                if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-
-            //on south east corner, check north, west
-            else if (x == length - 1)
-            {
-
-                //checking north
-                if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking west
-                if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-
-            //not on corner, check north, east, west
-            else
-            {
-                //checking north
-                if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    optionalDoorCounter++;
-                }
-
-                //checking west
-                if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-                //checking east
-                if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            }
-        }
-
-        //if on east border, check north, south, west, already checked for corner
-        else if (x == length - 1)
-        {
-
-            //checking north
-            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking south
-            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking west
-            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-
-        }
-
-        //if on west border, check north, south, east, already checked for corner
-        else if (x == 0)
-        {
-
-            //checking north
-            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking south
-            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking east
-            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-        }
-
-        //else in center, check north, south, east, west
-        else
-        {
-            //checking north
-            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasWestDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking south
-            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-
-            //checking east
-            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
-                    {
-                        requiredDoorCounter++;
-                    }
-                }
-                else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-                {
-                    optionalDoorCounter++;
-                }
-            //checking west
-            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
-                {
-                    requiredDoorCounter++;
-                }
-            }
-            else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-        /*
-        //Checking for north adjacent
-        if (y > 0)
-        {
-            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-                usingNorthDoor = true;
-            }
-            else if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y - 1].GetComponent<RoomController>().hasSouthDoor == true)
-                {
-                    requiredDoorCounter++;
-                    usingNorthDoor = true;
-                }
-            }
-        }
-        
-
-        //checking for south adjacent
-        if(y < width - 1)
-        {
-            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
-            {
-                optionalDoorCounter++;
-                usingSouthDoor = true;
-            }
-            else if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor == true)
-                {
-                    requiredDoorCounter++;
                     usingSouthDoor = true;
+                    usingDoors++;
+                }
+            }
+            else if (referenceLevel[x, z - 1].GetComponent<RoomSpawnerController>().hasRoom == false)
+            {
+                if (Random.Range(1, 100) < extraDoorsWeight)
+                {
+                    usingSouthDoor = true;
+                    usingDoors++;
                 }
             }
         }
-       
-
-        //checking for west adjacent
+        if(z < width - 1)
+        {
+            //checking north
+            if (referenceLevel[x, z + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                if (generatedLevel[x, z + 1].GetComponent<RoomController>().hasSouthDoor == true)
+                {
+                    usingNorthDoor = true;
+                    usingDoors++;
+                }
+            }
+            else if (referenceLevel[x, z + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
+            {
+                if (Random.Range(1, 100) < extraDoorsWeight)
+                {
+                    usingNorthDoor = true;
+                    usingDoors++;
+                }
+            }
+        }
         if(x > 0)
         {
-            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
+            //checking west
+            if (referenceLevel[x - 1, z].GetComponent<RoomSpawnerController>().hasRoom == true)
             {
-                optionalDoorCounter++;
-                usingWestDoor = true;
-            }
-            else if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor == true)
+                if (generatedLevel[x - 1, z].GetComponent<RoomController>().hasEastDoor == true)
                 {
-                    requiredDoorCounter++;
                     usingWestDoor = true;
+                    usingDoors++;
+                }
+            }
+            else if (referenceLevel[x - 1, z].GetComponent<RoomSpawnerController>().hasRoom == false)
+            {
+                if (Random.Range(1, 100) < extraDoorsWeight)
+                {
+                    usingWestDoor = true;
+                    usingDoors++;
                 }
             }
         }
-        
-
-        //checking for east adjacent
         if(x < length - 1)
         {
-            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == false)
+            //checking east
+            if (referenceLevel[x + 1, z].GetComponent<RoomSpawnerController>().hasRoom == true)
             {
-                optionalDoorCounter++;
-                usingEastDoor = true;
-            }
-            else if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-            {
-                if (generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor == true)
+                if (generatedLevel[x + 1, z].GetComponent<RoomController>().hasWestDoor == true)
                 {
-                    requiredDoorCounter++;
                     usingEastDoor = true;
+                    usingDoors++;
+                }
+            }
+            else if (referenceLevel[x + 1, z].GetComponent<RoomSpawnerController>().hasRoom == false)
+            {
+                if (Random.Range(1, 100) < extraDoorsWeight)
+                {
+                    usingEastDoor = true;
+                    usingDoors++;
                 }
             }
         }
-        */
 
-        //create proper room
-        int roomToPick;
-        switch (requiredDoorCounter)
+        switch (usingDoors)
         {
             case 0:
-                Debug.Log("No required doors");
-                //generate a 1, 2, 3, or 4 door room
-                switch (Random.Range(1, 5))
+                //0 adjacent doors, failed all randoms
+                Debug.Log("usingDoors = 0");
+                int zeroDoorCounter = 0;
+                
+                if(z > 0)
                 {
-                    case 1:
-                        //generate 1 door room
+                    if (referenceLevel[x, z - 1].GetComponent<RoomSpawnerController>().hasRoom == false)
+                    {
+                        zeroDoorCounter++;
+                        usingSouthDoor = true;
+                    }
+                }
 
+                if(z < width - 1)
+                {
+                    if (referenceLevel[x, z + 1].GetComponent<RoomSpawnerController>().hasRoom == false)
+                    {
+                        zeroDoorCounter++;
+                        usingNorthDoor = true;
+                    }
+                }
+                if(x > 0)
+                {
+                    if (referenceLevel[x - 1, z].GetComponent<RoomSpawnerController>().hasRoom == false)
+                    {
+                        zeroDoorCounter++;
+                        usingWestDoor = true;
+                    }
+                }
+                if(x < length - 1)
+                {
+                    if (referenceLevel[x + 1, z].GetComponent<RoomSpawnerController>().hasRoom == false)
+                    {
+                        zeroDoorCounter++;
+                        usingEastDoor = true;
+                    }
+                }
+               
+
+                switch(zeroDoorCounter)
+                {
+                    case 0:
+                        Debug.Log("zeroDoorCounter == 0");
+                        break;
+                    case 1:
+                        Debug.Log("zeroDoorCounter == 1");
                         roomToPick = Random.Range(0, roomsOneDoor.Length);
-                        generatedLevel[x, y] = (GameObject)Instantiate(roomsOneDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        generatedLevel[x, z] = (GameObject)Instantiate(roomsOneDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        usingDoors = 1;
                         break;
                     case 2:
-                        if ((usingNorthDoor == true || usingSouthDoor == true) && (usingEastDoor == true || usingWestDoor == true))
+                        Debug.Log("zeroDoorCounter == 2");
+                        if (((usingNorthDoor == true) && (usingSouthDoor == true)) || ((usingEastDoor == true) && (usingWestDoor == true)))
                         {
-                            //generate corner
-                            roomToPick = Random.Range(0, roomsCorner.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                        }
-                        else
-                        {
-                            //generate hallway
                             roomToPick = Random.Range(0, roomsTwoDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                            generatedLevel[x, z] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
                         }
+                        else if (((usingNorthDoor == true) || (usingSouthDoor == true)) && ((usingEastDoor == true) || (usingWestDoor == true)))
+                        {
+                            roomToPick = Random.Range(0, roomsCorner.Length);
+                            generatedLevel[x, z] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x,z ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        }
+                        usingDoors = 2;
                         break;
                     case 3:
-                        //generate 3 door room
+                        Debug.Log("zeroDoorCounter == 3");
                         roomToPick = Random.Range(0, roomsThreeDoor.Length);
-                        generatedLevel[x, y] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        generatedLevel[x, z] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        usingDoors = 3;
                         break;
                     case 4:
-                        //generate 4 door room
+                        Debug.Log("zeroDoorCounter == 4");
                         roomToPick = Random.Range(0, roomsFourDoor.Length);
-                        generatedLevel[x, y] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        generatedLevel[x, z] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        usingDoors = 4;
                         break;
                 }
                 break;
+
             case 1:
-                if (optionalDoorCounter > 1)
-                {
-                    //generate a 1, 2, 3, or 4 door room
-                    switch(Random.Range(1,5))
-                    {
-                        case 1:
-                            //generate 1 door room
-                            
-                            roomToPick = Random.Range(0, roomsOneDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsOneDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                        case 2:
-                            if((usingNorthDoor == true || usingSouthDoor == true) && (usingEastDoor == true || usingWestDoor == true))
-                            {
-                                //generate corner
-                                roomToPick = Random.Range(0, roomsCorner.Length);
-                                generatedLevel[x, y] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            }
-                            else
-                            {
-                                //generate hallway
-                                roomToPick = Random.Range(0, roomsTwoDoor.Length);
-                                generatedLevel[x, y] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            }
-                            break;
-                        case 3:
-                            //generate 3 door room
-                            roomToPick = Random.Range(0, roomsThreeDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                        case 4:
-                            //generate 4 door room
-                            roomToPick = Random.Range(0, roomsFourDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                    }
-
-                }
-                else
-                {
-                    //generate a 1 door room
-                    roomToPick = Random.Range(0, roomsOneDoor.Length);
-                    generatedLevel[x, y] = (GameObject)Instantiate(roomsOneDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                }
+                //generate a 1 door room
+                roomToPick = Random.Range(0, roomsOneDoor.Length);
+                generatedLevel[x, z] = (GameObject)Instantiate(roomsOneDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                Debug.Log("usingDoors = 1");
                 break;
+
             case 2:
-                if (optionalDoorCounter > 2)
+                //check corner or 2 door room
+                if(((usingNorthDoor == true) && (usingSouthDoor == true)) || ((usingEastDoor == true) && (usingWestDoor == true)))
                 {
-                    //generate a 2, 3, or 4 door room
-                    switch (Random.Range(2, 5))
-                    {
-
-                        case 2:
-                            if ((usingNorthDoor == true || usingSouthDoor == true) && (usingEastDoor == true || usingWestDoor == true))
-                            {
-                                //generate corner
-                                roomToPick = Random.Range(0, roomsCorner.Length);
-                                generatedLevel[x, y] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            }
-                            else
-                            {
-                                //generate hallway
-                                roomToPick = Random.Range(0, roomsTwoDoor.Length);
-                                generatedLevel[x, y] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            }
-                            break;
-                        case 3:
-                            //generate 3 door room
-                            roomToPick = Random.Range(0, roomsThreeDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                        case 4:
-                            //generate 4 door room
-                            roomToPick = Random.Range(0, roomsFourDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                    }
-                }
-                else if ((usingNorthDoor == true || usingSouthDoor == true) && (usingEastDoor == true || usingWestDoor == true))
-                {
-                    //generate corner
-                    roomToPick = Random.Range(0, roomsCorner.Length);
-                    generatedLevel[x, y] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                }
-                else
-                {
-                    //generate a 2 door room
                     roomToPick = Random.Range(0, roomsTwoDoor.Length);
-                    generatedLevel[x, y] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-
+                    generatedLevel[x, z] = (GameObject)Instantiate(roomsTwoDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
                 }
+                else if (((usingNorthDoor == true) || (usingSouthDoor == true)) && ((usingEastDoor == true) || (usingWestDoor == true)))
+                {
+                    roomToPick = Random.Range(0, roomsCorner.Length);
+                    generatedLevel[x, z] = (GameObject)Instantiate(roomsCorner[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                }
+                Debug.Log("usingDoors = 2");
                 break;
+
             case 3:
-                if (optionalDoorCounter > 3)
-                {
-                    //generatea 3 or 4 door room
-                    switch (Random.Range(3, 5))
-                    {
-
-                        case 3:
-                            //generate 3 door room
-                            roomToPick = Random.Range(0, roomsThreeDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                        case 4:
-                            //generate 4 door room
-                            roomToPick = Random.Range(0, roomsFourDoor.Length);
-                            generatedLevel[x, y] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                            break;
-                    }
-                }
-                else
-                {
-                    //generate a 3 door room
-                    roomToPick = Random.Range(0, roomsThreeDoor.Length);
-                    generatedLevel[x, y] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
-                }
+                roomToPick = Random.Range(0, roomsThreeDoor.Length);
+                generatedLevel[x, z] = (GameObject)Instantiate(roomsThreeDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                Debug.Log("usingDoors = 3");
+                //generate 3 door room
                 break;
+
             case 4:
-                //generate 4 door room
                 roomToPick = Random.Range(0, roomsFourDoor.Length);
-                generatedLevel[x, y] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, y].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                generatedLevel[x, z] = (GameObject)Instantiate(roomsFourDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                Debug.Log("usingDoors = 4");
+                //generate 4 door room
                 break;
         }
-
-        referenceLevel[x, y].GetComponent<RoomSpawnerController>().hasRoom = true;
-        generatedRoom = generatedLevel[x, y];
+        referenceLevel[x, z].GetComponent<RoomSpawnerController>().hasRoom = true;
+        generatedRoom = generatedLevel[x, z];
+        Debug.Log("X -");
+        Debug.Log(x);
+        Debug.Log("z - ");
+        Debug.Log(z);
+        Debug.Log("Generatedroom - ");
+        Debug.Log(generatedRoom);
+        Debug.Log("usingNorthDoor - ");
+        Debug.Log(usingNorthDoor);
+        Debug.Log("usingSouthDoor - ");
+        Debug.Log(usingSouthDoor);
+        Debug.Log("usingEastDoor - ");
+        Debug.Log(usingEastDoor);
+        Debug.Log("usingWestDoor - ");
+        Debug.Log(usingWestDoor);
         //rotate room into position
-        rotateRoom(x, y);
-
+        rotateRoom(x, z, usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);   
     }
 
     //finds and returns a room that is not surrounded by other rooms
     GameObject findUseableRoom()
     {
         int adjacentFound;
-        for (int x = 0; x < length - 1; x++)
+        for (int x = 0; x < length; x++)
         {
-            for (int y = 0; y < width - 1; y++)
+            for (int z = 0; z < width; z++)
             {
                 adjacentFound = 0;
-                if (referenceLevel[x, y].GetComponent<RoomSpawnerController>().hasRoom == true)
+
+                //checking borders
+                if (x == 0)
                 {
-                    //if on north border, check south, east, west
-                    if (y == 0)
+                    adjacentFound++;
+                }
+                if (x == length - 1)
+                {
+                    adjacentFound++;
+                }
+                if (z == 0)
+                {
+                    adjacentFound++;
+                }
+                if (z == width - 1)
+                {
+                    adjacentFound++;
+                }
+
+                //checking rest of sides
+                if (x > 0)
+                {
+                    //checking west
+                    if (referenceLevel[x - 1, z].GetComponent<RoomSpawnerController>().hasRoom == true)
                     {
                         adjacentFound++;
-                        //In north west corner, check south, east
-                        if (x == 0)
-                        {
-                            adjacentFound++;
-                            //checking south
-                            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking east
-                            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                        }
-                        // in north east corner, check south, west
-                        else if (x == length - 1)
-                        {
-                            adjacentFound++;
-                            //checking south
-                            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking west
-                            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                        }
-                        //not on corner, check south, east, west
-                        else
-                        {
-                            //checking south
-                            if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking east
-                            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking west
-                            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                        }
-                    }
-                    //if on south border, check north, east, west
-                    else if (y == width - 1)
-                    {
-                        adjacentFound++;
-                        //on south west corner, check north, east
-                        if(x == 0)
-                        {
-                            adjacentFound++;
-                            //checking north
-                            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking east
-                            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                        }
-
-                        //on south east corner, check north, west
-                        else if(x == length - 1)
-                        {
-                            adjacentFound++;
-                            //checking north
-                            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking west
-                            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                        }
-
-                        //not on corner, check north, east, west
-                        else
-                        {
-                            //checking north
-                            if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking west
-                            if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            }
-                            //checking east
-                            if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                            {
-                                adjacentFound++;
-                            } 
-                        }
-                    }
-
-                    //if on east border, check north, south, west, already checked for corner
-                    else if (x == length - 1)
-                    {
-                        adjacentFound++;
-                        //checking north
-                        if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking south
-                        if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking west
-                        if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-
-                    }
-
-                    //if on west border, check north, south, east, already checked for corner
-                    else if(x == 0)
-                    {
-                        adjacentFound++;
-                        //checking north
-                        if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking south
-                        if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking east
-                        if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                    }
-
-                    //else in center, check north, south, east, west
-                    else
-                    {
-                        //checking north
-                        if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking south
-                        if (referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking east
-                        if (referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                        //checking west
-                        if (referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                        {
-                            adjacentFound++;
-                        }
-                    }
-
-                    if(adjacentFound < 4)
-                    {
-                        currentX = x;
-                        currentY = y;
-                        return referenceLevel[x, y];
                     }
                 }
+                if (x < length - 1)
+                {
+                    //checking east
+                    if (referenceLevel[x + 1, z].GetComponent<RoomSpawnerController>().hasRoom == true)
+                    {
+                        adjacentFound++;
+                    }
+                }
+                if(z > 0)
+                {
+                    //checking south
+                    if (referenceLevel[x, z - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+                    {
+                        adjacentFound++;
+                    }
+                }
+                if(z < width - 1)
+                {
+                    //checking north
+                    if (referenceLevel[x, z + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+                    {
+                        adjacentFound++;
+                    }
+                }
+
+                if (adjacentFound < 4)
+                {
+                    currentX = x;
+                    currentZ = z;
+                    return referenceLevel[x, z];
+                }   
             }
         }
         return null;
     }
 
-    //rotates generatedRoom
-    void rotateRoom(int x, int y)
-    { 
-        for(int breakCounter = 0; breakCounter < 4; breakCounter++)
-        {
-            //checking northern door
-            if(y > 0)
+    //rotates generatedRoom  90 degrees
+    void rotateRoom(int x, int y, bool usingNorthDoor, bool usingSouthDoor, bool usingEastDoor, bool usingWestDoor)
+    {
+            if ((usingNorthDoor == generatedRoom.GetComponent<RoomController>().hasNorthDoor) && (usingSouthDoor == generatedRoom.GetComponent<RoomController>().hasSouthDoor) && (usingEastDoor == generatedRoom.GetComponent<RoomController>().hasEastDoor) && (usingWestDoor == generatedRoom.GetComponent<RoomController>().hasWestDoor))
             {
-                if (referenceLevel[x, y - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedRoom.GetComponent<RoomController>().hasNorthDoor != generatedLevel[x, y - 1].GetComponent<RoomController>().hasSouthDoor)
-                    {
-                        Debug.Log("Rotating Room");
-                        changeDoorBools();
-                        generatedRoom.transform.Rotate(0, -90,0,Space.Self);
-                        continue;
-                    }
-                }
-                
+                //alligned perfectly, do nothing
             }
-
-            //checking southern door
-            if (y < width - 1)
+            else
             {
-                if(referenceLevel[x, y + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedRoom.GetComponent<RoomController>().hasSouthDoor != generatedLevel[x, y + 1].GetComponent<RoomController>().hasNorthDoor)
-                    {
-                        Debug.Log("Rotating Room");
-                        changeDoorBools();
-                        generatedRoom.transform.Rotate(0, -90, 0, Space.Self);
-                        continue;
-                    }
-                }
-                
+                Debug.Log("Rotating Room");
+                changeDoorBools();
+                generatedRoom.transform.Rotate(0, 90, 0, Space.Self);
+                rotateRoom(x, y, usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
             }
-
-            //checking eastern door
-            if (x < length - 1)
-            {
-                if(referenceLevel[x + 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedRoom.GetComponent<RoomController>().hasEastDoor != generatedLevel[x + 1, y].GetComponent<RoomController>().hasWestDoor)
-                    {
-                        Debug.Log("Rotating Room");
-                        changeDoorBools();
-                        generatedRoom.transform.Rotate(0, -90, 0, Space.Self);
-                        continue;
-                    }
-                }
-               
-            }
-
-            //checking western door
-            if (x > 0)
-            {
-                if(referenceLevel[x - 1, y].GetComponent<RoomSpawnerController>().hasRoom == true)
-                {
-                    if (generatedRoom.GetComponent<RoomController>().hasWestDoor != generatedLevel[x - 1, y].GetComponent<RoomController>().hasEastDoor)
-                    {
-                        Debug.Log("Rotating Room");
-                        changeDoorBools();
-                        generatedRoom.transform.Rotate(0, -90, 0, Space.Self);
-                        continue;
-                    }
-                }     
-            }
-        }
     }
 
-    //based on -90 degree X axis rotation, changes generatedRoom bools based on future 1 rotation
+    //based on 90 degree X axis rotation, changes generatedRoom bools based on future 1 rotation
     void changeDoorBools()
     {
         bool futureHasNorthDoor;
         bool futureHasSouthDoor;
         bool futureHasEastDoor;
         bool futureHasWestDoor;
-        futureHasNorthDoor = generatedRoom.GetComponent<RoomController>().hasEastDoor;
-        futureHasSouthDoor = generatedRoom.GetComponent<RoomController>().hasWestDoor;
-        futureHasEastDoor = generatedRoom.GetComponent<RoomController>().hasSouthDoor;
-        futureHasWestDoor = generatedRoom.GetComponent<RoomController>().hasNorthDoor;
-
-        /*
-        if (generatedRoom.GetComponent<RoomController>().hasNorthDoor == true)
-        {
-            futureHasWestDoor = true;
-        }
-        else
-        {
-            futureHasWestDoor = false;
-        }
-
-        if (generatedRoom.GetComponent<RoomController>().hasSouthDoor == true)
-        {
-            futureHasEastDoor = true;
-        }
-        else
-        {
-            futureHasEastDoor = false;
-        }
-
-        if (generatedRoom.GetComponent<RoomController>().hasEastDoor == true)
-        {
-            futureHasNorthDoor = true;
-        }
-        else
-        {
-            futureHasNorthDoor = false;
-        }
-
-        if (generatedRoom.GetComponent<RoomController>().hasWestDoor == true)
-        {
-            futureHasSouthDoor = true;
-        }
-        else
-        {
-            futureHasSouthDoor = false;
-        }
-        */
+        futureHasNorthDoor = generatedRoom.GetComponent<RoomController>().hasWestDoor;
+        futureHasSouthDoor = generatedRoom.GetComponent<RoomController>().hasEastDoor;
+        futureHasEastDoor = generatedRoom.GetComponent<RoomController>().hasNorthDoor;
+        futureHasWestDoor = generatedRoom.GetComponent<RoomController>().hasSouthDoor;
         generatedRoom.GetComponent<RoomController>().hasNorthDoor = futureHasNorthDoor;
         generatedRoom.GetComponent<RoomController>().hasSouthDoor = futureHasSouthDoor;
         generatedRoom.GetComponent<RoomController>().hasEastDoor = futureHasEastDoor;
         generatedRoom.GetComponent<RoomController>().hasWestDoor = futureHasWestDoor;
     }
-
-    
 }
