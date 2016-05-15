@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 
+//Responsible for generating the rooms in the game level
 public class RoomGenerator : MonoBehaviour
 {
 
@@ -28,6 +29,9 @@ public class RoomGenerator : MonoBehaviour
     public int currentZ;
     public int currentX;
     public int levelsCreated;
+    public int alphaMonsterChance; //how much of a chance a enemy spawner has to spawn a alpha version of a enemy
+    public int alphaMonsterIncrease; //how much alphaMonsterChance increases each level;
+    public int roomNumIncrease; //how much averageNumRooms is increased each level;
    
     // Use this for initialization
     void Start()
@@ -99,7 +103,10 @@ public class RoomGenerator : MonoBehaviour
         {
             destroyReferenceLevel();
             destroyLevel();
+            alphaMonsterChance += alphaMonsterIncrease;
+            averageNumRooms += roomNumIncrease;
         }
+        levelsCreated++;
         generateReferenceLevel();
         generatedLevel = new GameObject[length, width];
         currentX = Random.Range(1, length - 1);
@@ -110,7 +117,7 @@ public class RoomGenerator : MonoBehaviour
         generatedRoom = currentRoom;
         player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
         generateLevel();
-        levelsCreated++;
+        
     }
 
     //Fills referenceLevel with rooms, must be called before generateLevel()

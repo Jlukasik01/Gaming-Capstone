@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\BloodSplatterController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawnerController.cs" />
     <Compile Include="Assets\Scripts\IntController.cs" />
     <Compile Include="Assets\Scripts\ItemController.cs" />
     <Compile Include="Assets\Scripts\KittenSpellController.cs" />
@@ -177,6 +179,7 @@
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
     <None Include="Assets\Prefabs\Elven_Sword\ReadMe.txt" />
+    <None Include="Assets\Resources\EnemiesToLoad\Blank file so github will push this empty folder.txt" />
     <None Include="Assets\Resources\RoomsToLoad\Corner\Blank file so github will push this empty folder.txt" />
     <None Include="Assets\Resources\RoomsToLoad\FourDoor\Blank file so github will push this empty folder.txt" />
     <None Include="Assets\Resources\RoomsToLoad\OneDoor\Blank file so github will push this empty folder.txt" />

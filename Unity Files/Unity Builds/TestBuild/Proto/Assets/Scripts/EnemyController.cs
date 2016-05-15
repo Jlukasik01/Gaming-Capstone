@@ -2,10 +2,12 @@
 using System.Collections;
 
 public class EnemyController : MonoBehaviour {
+    public int baseDamage;
     public int damage;
+    public int baseHealth;
     public int health;
     public float Speed;
-    public int soulValue = 100;
+    public int soulValue;
     public Animator anim;
     public Transform SpellLocation;
     public GameObject Spell;
