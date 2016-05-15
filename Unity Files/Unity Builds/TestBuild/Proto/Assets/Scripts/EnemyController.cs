@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject Ragdoll;
     public float distance;
     private GameObject lootTable;
+    public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
 
 	// Use this for initialization
 	void Start () {

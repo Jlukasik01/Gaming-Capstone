@@ -15,6 +15,30 @@ public class EnemySpawnerController : MonoBehaviour {
         enemyList = Resources.LoadAll<GameObject>("EnemiesToLoad");
         roomGenerator = GameObject.FindGameObjectWithTag("RoomGenerator");
 
+        GameObject[] tempArray;
+        tempArray = new GameObject[enemyList.Length];
+        int arrayIndexToFind = 0;
+        Debug.Log("Starting to sort enemyList");
+        for(int i = 0; i < enemyList.Length; i++)
+        {
+            if (enemyList[i].GetComponent<EnemyController>().arrayIndex == arrayIndexToFind)
+            {
+                tempArray[arrayIndexToFind] = enemyList[i];
+                Debug.Log("Index:" + i + " tempArray:" + tempArray[arrayIndexToFind]);
+                arrayIndexToFind++;
+                i = -1;
+            }
+        }
+        Debug.Log("Done sorting");
+        Debug.Log("Assinging enemyList to sorted array");
+        for(int i = 0; i < enemyList.Length; i++)
+        {  
+            enemyList[i] = tempArray[i];
+            Debug.Log("Index:" + i + " enemyList:" + enemyList[i]);
+        }
+        //tempArray.CopyTo(enemyList, 0);
+       
+
     }
 	
 	public GameObject spawnEnemy()
