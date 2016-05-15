@@ -79,6 +79,7 @@
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
+    <Compile Include="Assets\MeshController.cs" />
     <Compile Include="Assets\Scripts\ArrowController.cs" />
     <Compile Include="Assets\Scripts\BloodSplatterController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />

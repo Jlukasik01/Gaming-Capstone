@@ -19,6 +19,7 @@ public class IntController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        weaponLoc = GetComponent<PlayerController>().Mesh[GetComponent<PlayerController>().ActiveMesh].GetComponent<MeshController>().WeaponLoc;
         getPress();
         if (Input.GetKeyDown(KeyCode.Q))
         {

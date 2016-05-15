@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting;
     public bool invincable;
     public GameObject Weapon;
-    public GameObject Mesh;
+    public GameObject []Mesh;
+    public int ActiveMesh =1;
     Animator animations;
     public int health;
     public int maxHealth;
@@ -35,12 +36,13 @@ public class PlayerController : MonoBehaviour
     public GameObject[] Spells = new GameObject[4]; // store spell game objects here 
     public float animationWalkSpeed = 2;
     private Vector3 MoveDir;
+    public int[] LevelUpCosts;
     
 
     void OnStart()
     {
         MoveDir = Vector3.zero;
-        animations = Mesh.GetComponent<GameObject>().GetComponent<Animator>();
+        animations = Mesh[ActiveMesh].GetComponent<GameObject>().GetComponent<Animator>();
         Hitbox = GetComponent<Collider>();
         maxHealth = health;
     }
@@ -48,9 +50,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Weapon = GetComponent<IntController>().Weapon;
-        if (animations == null)
+        if (animations == null || animations != Mesh[ActiveMesh].GetComponent<Animator>())
         {
-            animations = Mesh.GetComponent<Animator>();
+            animations = Mesh[ActiveMesh].GetComponent<Animator>();
         }
         //Debug.Log(animations);
         rotation();// Player faces mouse DIR
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("Regen");
         }
 
+        LevelUpMesh();
         sprintFunction();
     }
 
@@ -110,6 +113,26 @@ public class PlayerController : MonoBehaviour
         {
             stamina = maxStamina;
         }
+
+    }
+    void LevelUpMesh()
+    {
+        //lvl one check
+        if(souls > LevelUpCosts[0])
+        {
+            ActiveMesh = 1;
+            Mesh[0].gameObject.SetActive(false);
+            Mesh[ActiveMesh].gameObject.SetActive(true);
+        }
+        else if (souls < LevelUpCosts[0]) // go to lvl zero
+        {
+            ActiveMesh =0;
+            Mesh[1].gameObject.SetActive(false);
+            Mesh[ActiveMesh].gameObject.SetActive(true);
+        }
+
+
+
 
     }
     void attackFunction()
