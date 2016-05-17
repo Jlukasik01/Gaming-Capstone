@@ -115,7 +115,7 @@ public class RoomGenerator : MonoBehaviour
         referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
         currentRoom = generatedLevel[currentX, currentZ];
         generatedRoom = currentRoom;
-       // player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
+        player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
         generateLevel();
         
     }
