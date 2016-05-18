@@ -9,6 +9,7 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[,] referenceLevel;
     public GameObject[,] generatedLevel;
     public GameObject roomSpawner; //reference spawner
+    public GameObject[] roomsZeroDoor;
     public GameObject[] roomsOneDoor;
     public GameObject[] roomsCorner;
     public GameObject[] roomsTwoDoor;
@@ -37,6 +38,7 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
         levelsCreated = 0;
+        roomsZeroDoor = Resources.LoadAll<GameObject>("RoomsToLoad/ZeroDoor");
         roomsOneDoor = Resources.LoadAll<GameObject>("RoomsToLoad/OneDoor");
         roomsCorner = Resources.LoadAll<GameObject>("RoomsToLoad/Corner");
         roomsTwoDoor = Resources.LoadAll<GameObject>("RoomsToLoad/TwoDoor");
@@ -299,6 +301,9 @@ public class RoomGenerator : MonoBehaviour
                 {
                     case 0:
                         Debug.Log("zeroDoorCounter == 0");
+                        roomToPick = Random.Range(0, roomsZeroDoor.Length);
+                        generatedLevel[x, z] = (GameObject)Instantiate(roomsZeroDoor[roomToPick], referenceLevel[x, z].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+                        usingDoors = 1;
                         break;
                     case 1:
                         Debug.Log("zeroDoorCounter == 1");
