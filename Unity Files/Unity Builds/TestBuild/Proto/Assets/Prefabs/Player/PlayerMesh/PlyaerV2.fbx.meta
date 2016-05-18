@@ -64,6 +64,7 @@ ModelImporter:
     7400002: Walk
     7400004: Melee
     7400006: Bow
+    7400008: WalkB
     9500000: //RootNode
     13700000: demon
   materials:
@@ -345,6 +346,88 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: demon
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint6
+        weight: 1
+      - path: joint1/joint2/joint6/joint7
+        weight: 1
+      - path: joint1/joint2/joint6/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint9
+        weight: 1
+      - path: joint1/joint2/joint9/joint10
+        weight: 1
+      - path: joint1/joint2/joint9/joint10/joint11
+        weight: 1
+      - path: joint1/joint12
+        weight: 1
+      - path: joint1/joint12/joint13
+        weight: 1
+      - path: joint1/joint12/joint13/joint14
+        weight: 1
+      - path: joint1/joint12/joint13/joint14/joint18
+        weight: 1
+      - path: joint1/joint12/joint13/joint14/joint18/joint19
+        weight: 1
+      - path: joint1/joint15
+        weight: 1
+      - path: joint1/joint15/joint16
+        weight: 1
+      - path: joint1/joint15/joint16/joint17
+        weight: 1
+      - path: joint1/joint15/joint16/joint17/joint20
+        weight: 1
+      - path: joint1/joint15/joint16/joint17/joint20/joint21
+        weight: 1
+      - path: LeftArmIk
+        weight: 1
+      - path: LeftLegIk
+        weight: 1
+      - path: RightArmIk
+        weight: 1
+      - path: RightLegIK
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: WalkB
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

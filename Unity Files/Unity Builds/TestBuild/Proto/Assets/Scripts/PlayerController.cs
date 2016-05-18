@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     void sprintFunction()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina > 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina > 0 && isMoving)
         {
             isSprinting = true;
             moveSpeed = moveSpeed * sprintSpeedMultiplier;
