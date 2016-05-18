@@ -198,6 +198,7 @@
     <None Include="Assets\Scripts\SeeThrough\Resources\STS_red_maskRTTM.shader" />
     <None Include="Assets\Scripts\SeeThrough\Resources\STS_saturate_mask.shader" />
     <None Include="Assets\Scripts\SeeThrough\Resources\STS_save_orig_depth.shader" />
+    <None Include="Assets\Sound\Description.txt" />
     <None Include="Assets\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
