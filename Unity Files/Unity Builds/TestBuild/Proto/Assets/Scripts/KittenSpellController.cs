@@ -32,15 +32,17 @@ public class KittenSpellController : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Enemy")
-        {
-            Destroy(gameObject);
-        }
-        if(other.gameObject.tag == "Player")
-        {
-            other.gameObject.GetComponent<PlayerController>().health -= 1;
-            Destroy(gameObject);
-        }
+    
+            if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Weapon" && other.gameObject.tag != "Item")
+            {
+                Destroy(gameObject);
+            }
+            if (other.gameObject.tag == "Player")
+            {
+                other.gameObject.GetComponent<PlayerController>().health -= 1;
+                Destroy(gameObject);
+            }
+        
 
     }
 }

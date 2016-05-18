@@ -17,7 +17,7 @@ public class LootController : MonoBehaviour
     private int maxSize;
     public void Start()
     {
-        blankItem = GameObject.FindGameObjectWithTag("blankItem");
+        //blankItem = GameObject.FindGameObjectWithTag("blankItem");
     }
 
     //returns random game object from MasterLootTable 

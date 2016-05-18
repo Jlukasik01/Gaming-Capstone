@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BlackDestroy.cs" />
     <Compile Include="Assets\Character\CommodityProgect\CommodityShowScript\DestorySelf.cs" />
     <Compile Include="Assets\Character\CommodityProgect\CommodityShowScript\ObjMoveFront.cs" />
     <Compile Include="Assets\Character\CommodityProgect\CommodityShowScript\UIObjRotation.cs" />
@@ -79,8 +80,8 @@
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
-    <Compile Include="Assets\MeshController.cs" />
     <Compile Include="Assets\Prefabs\UI\StartButtonScript.cs" />
+    <Compile Include="Assets\QuitButtonController.cs" />
     <Compile Include="Assets\Scripts\ArrowController.cs" />
     <Compile Include="Assets\Scripts\BlankItem.cs" />
     <Compile Include="Assets\Scripts\BloodSplatterController.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\ItemController.cs" />
     <Compile Include="Assets\Scripts\KittenSpellController.cs" />
     <Compile Include="Assets\Scripts\LootController.cs" />
+    <Compile Include="Assets\Scripts\MeshController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
     <Compile Include="Assets\Scripts\RoomGenerator.cs" />
@@ -100,18 +102,19 @@
     <Compile Include="Assets\Scripts\SeeThrough\STS_TransMask_Global.cs" />
     <Compile Include="Assets\Scripts\SeeThrough\SeeThroughSystem.cs" />
     <Compile Include="Assets\Scripts\SmashController.cs" />
+    <Compile Include="Assets\Scripts\SoundController.cs" />
     <Compile Include="Assets\Scripts\SpellController.cs" />
     <Compile Include="Assets\Scripts\StoreButtonController.cs" />
     <Compile Include="Assets\Scripts\StoreController.cs" />
     <Compile Include="Assets\Scripts\StoreExitController.cs" />
     <Compile Include="Assets\Scripts\StoreUIController.cs" />
     <Compile Include="Assets\Scripts\UIButtonControllerInventory.cs" />
+    <Compile Include="Assets\Scripts\UICreditsButton.cs" />
+    <Compile Include="Assets\Scripts\UIDirectionsScript.cs" />
     <Compile Include="Assets\Scripts\UI_Controller.cs" />
     <Compile Include="Assets\Scripts\UI_SwitchScript.cs" />
     <Compile Include="Assets\Scripts\UI_buttonBehavior.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
-    <Compile Include="Assets\UICreditsButton.cs" />
-    <Compile Include="Assets\UIDirectionsScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />

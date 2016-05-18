@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour
     public float animationWalkSpeed = 2;
     private Vector3 MoveDir;
     public int[] LevelUpCosts;
-    
+    public GameObject SoundController;
+    public Transform projectLoc;
 
     void OnStart()
     {
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         animations = Mesh[ActiveMesh].GetComponent<GameObject>().GetComponent<Animator>();
         Hitbox = GetComponent<Collider>();
         maxHealth = health;
+
     }
 
     void Update()
@@ -82,7 +84,10 @@ public class PlayerController : MonoBehaviour
             }
             StartCoroutine("Regen");
         }
-
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.LoadLevel(0);
+        }
         LevelUpMesh();
         sprintFunction();
     }
@@ -118,17 +123,21 @@ public class PlayerController : MonoBehaviour
     void LevelUpMesh()
     {
         //lvl one check
-        if(souls > LevelUpCosts[0])
+        if(souls > LevelUpCosts[0] && ActiveMesh != 1)
         {
             ActiveMesh = 1;
             Mesh[0].gameObject.SetActive(false);
             Mesh[ActiveMesh].gameObject.SetActive(true);
+            SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().lvlUp;
+            SoundController.GetComponent<AudioSource>().Play();
         }
-        else if (souls < LevelUpCosts[0]) // go to lvl zero
+        else if (souls < LevelUpCosts[0] && ActiveMesh != 2) // go to lvl zero
         {
             ActiveMesh =0;
             Mesh[1].gameObject.SetActive(false);
             Mesh[ActiveMesh].gameObject.SetActive(true);
+            SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().lvlUp;
+            SoundController.GetComponent<AudioSource>().Play();
         }
 
 
@@ -358,7 +367,15 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
                     {
-                        Instantiate(Weapon.GetComponent<WeaponController>().projectile, Weapon.transform.position, gameObject.transform.rotation);
+               
+                        Instantiate(Weapon.GetComponent<WeaponController>().projectile, projectLoc.position, gameObject.transform.rotation);
+                        SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().Bow;
+                        SoundController.GetComponent<AudioSource>().Play();
+                    }
+                    else
+                    {
+                        SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().Bow;
+                        SoundController.GetComponent<AudioSource>().Play();
                     }
                 }
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class ArrowController : MonoBehaviour {
     public float speed;
     public bool isActive;
-
+    public int Damage;
 	// Use this for initialization
 	void Start ()
     {
@@ -39,7 +39,7 @@ public class ArrowController : MonoBehaviour {
         {
             if (other.gameObject.tag == "Enemy" && isActive)
             {
-                other.gameObject.GetComponent<EnemyController>().health -= 1;
+                other.gameObject.GetComponent<EnemyController>().health -= Damage;
             }
             isActive = false;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
