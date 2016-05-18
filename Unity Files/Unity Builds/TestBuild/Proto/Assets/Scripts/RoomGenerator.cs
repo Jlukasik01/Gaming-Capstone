@@ -33,7 +33,7 @@ public class RoomGenerator : MonoBehaviour
     public int alphaMonsterChance; //how much of a chance a enemy spawner has to spawn a alpha version of a enemy
     public int alphaMonsterIncrease; //how much alphaMonsterChance increases each level;
     public int roomNumIncrease; //how much averageNumRooms is increased each level;
-    public int roomsGenerated; //check to get out of loops
+    public bool continueGeneration;
     
    
     // Use this for initialization
@@ -120,7 +120,7 @@ public class RoomGenerator : MonoBehaviour
         currentRoom = generatedLevel[currentX, currentZ];
         generatedRoom = currentRoom;
         player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
-        roomsGenerated = 1;
+        continueGeneration = true;
         generateLevel();
         
     }
@@ -199,14 +199,23 @@ public class RoomGenerator : MonoBehaviour
            
         }
 
-        //worst case, look for room
-        Debug.Log("Surrounded, looking for new room.");
-        currentRoom = findUseableRoom();
-        if(currentRoom != null)
+        if(continueGeneration == true)
         {
-            generateRooms();
+            //worst case, look for room
+            currentRoom = findUseableRoom();
+            if (currentRoom != null)
+            {
+                Debug.Log("Surrounded, looking for new room.");
+                generateRooms();
+            }
+            else
+            {
+                continueGeneration = false;
+                Debug.Log("Failed to find new room in findUseableRoom(). Level done.");
+            }
+            
         }
-        Debug.Log("Failed to find new room in findUseableRoom(). Level done.");
+       
         
       
     }
