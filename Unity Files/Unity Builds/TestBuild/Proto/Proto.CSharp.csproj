@@ -82,6 +82,7 @@
     <Compile Include="Assets\MeshController.cs" />
     <Compile Include="Assets\Prefabs\UI\StartButtonScript.cs" />
     <Compile Include="Assets\Scripts\ArrowController.cs" />
+    <Compile Include="Assets\Scripts\BlankItem.cs" />
     <Compile Include="Assets\Scripts\BloodSplatterController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
