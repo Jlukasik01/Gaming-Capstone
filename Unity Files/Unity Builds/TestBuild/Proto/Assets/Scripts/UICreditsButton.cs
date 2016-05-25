@@ -14,9 +14,4 @@ public class UICreditsButton : MonoBehaviour {
 	
 	}
     // OnClick function
-	public void ClickMe()
-	{
-		CreditsImage.enabled = true;
-		CreditsImage.GetComponentInChildren<Text> ().enabled = true;
-	}
 }

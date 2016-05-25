@@ -13,11 +13,6 @@ public class UIDirectionsScript : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void ClickMe()
-    {
-        DirectionsImage.enabled = true;
-		DirectionsImage.GetComponentInChildren<Text> ().enabled = true;
-    }
 
     //add activate image
 }
