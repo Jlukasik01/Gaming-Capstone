@@ -44,13 +44,13 @@ public class EnemySpawnerController : MonoBehaviour {
 	public GameObject spawnEnemy()
     {
         int rangeIncreaseLv = 1; //how often a new enemy can appear on spawn list
-        int maxRange = 2 + Mathf.RoundToInt(roomGenerator.GetComponent<RoomGenerator>().levelsCreated / rangeIncreaseLv)+5; //max range of indexs of enemies that can spawn
+        int maxRange = 1 + Mathf.RoundToInt(roomGenerator.GetComponent<RoomGenerator>().levelsCreated / rangeIncreaseLv); //max range of indexs of enemies that can spawn
         //makes sure maxRange stays within array size
         if(maxRange > enemyList.Length)
         {
             maxRange = enemyList.Length;
         }
-        //first few levels can spawn anything, due to limited choices
+        //first few levels can spawn anything, due to limited choices. If maxRange ois greater then a set number (4), lets it spawn enemies in later parts of the array. 
         if(maxRange > 4)
         {
             //75% of the time, select enemy in last 75% of enemyList

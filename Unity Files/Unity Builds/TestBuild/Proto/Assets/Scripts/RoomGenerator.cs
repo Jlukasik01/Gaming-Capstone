@@ -39,7 +39,7 @@ public class RoomGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        levelsCreated = 0;
+        //levelsCreated = 0;
         roomsZeroDoor = Resources.LoadAll<GameObject>("RoomsToLoad/ZeroDoor");
         roomsOneDoor = Resources.LoadAll<GameObject>("RoomsToLoad/OneDoor");
         roomsCorner = Resources.LoadAll<GameObject>("RoomsToLoad/Corner");
