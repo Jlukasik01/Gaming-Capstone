@@ -43,8 +43,8 @@ public class EnemySpawnerController : MonoBehaviour {
 	
 	public GameObject spawnEnemy()
     {
-        int rangeIncreaseLv = 3; //how often a new enemy can appear on spawn list
-        int maxRange = 2 + Mathf.RoundToInt(roomGenerator.GetComponent<RoomGenerator>().levelsCreated / rangeIncreaseLv); //max range of indexs of enemies that can spawn
+        int rangeIncreaseLv = 1; //how often a new enemy can appear on spawn list
+        int maxRange = 2 + Mathf.RoundToInt(roomGenerator.GetComponent<RoomGenerator>().levelsCreated / rangeIncreaseLv)+5; //max range of indexs of enemies that can spawn
         //makes sure maxRange stays within array size
         if(maxRange > enemyList.Length)
         {

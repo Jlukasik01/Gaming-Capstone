@@ -1,0 +1,832 @@
+fileFormatVersion: 2
+guid: 4984c33ff98d1e34f9b14c46f6c6fb1e
+timeCreated: 1464487103
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BackDress
+    100002: BackDressEnd
+    100004: BackDressMid
+    100006: Bip01 L Finger0
+    100008: Bip01 L Finger01
+    100010: Bip01 L Finger0Nub
+    100012: Bip01 L Finger1
+    100014: Bip01 L Finger11
+    100016: Bip01 L Finger1Nub
+    100018: Bip01 L Toe0
+    100020: Bip01 L Toe0Nub
+    100022: Bip01 R Finger0
+    100024: Bip01 R Finger01
+    100026: Bip01 R Finger0Nub
+    100028: Bip01 R Finger1
+    100030: Bip01 R Finger11
+    100032: Bip01 R Finger1Nub
+    100034: Bip01 R Toe0
+    100036: Bip01 R Toe0Nub
+    100038: Bone02
+    100040: Bone03
+    100042: Bone05
+    100044: Bone05(mirrored)
+    100046: Bones
+    100048: //RootNode
+    100050: FeetLocation
+    100052: Head
+    100054: HeadTip
+    100056: HuaYao_01
+    100058: LeftArm
+    100060: LeftCalf
+    100062: LeftDrees1
+    100064: LeftDress
+    100066: LeftDressEnd
+    100068: LeftFoot
+    100070: LeftLEg
+    100072: LeftShoulder
+    100074: LeftWing
+    100076: LeftWing1end
+    100078: LeftWing2
+    100080: LForArm
+    100082: LWing1
+    100084: Neck
+    100086: Pevlis
+    100088: Right_Hand
+    100090: RightArm
+    100092: RightCalve
+    100094: RightDress
+    100096: RightDressEnd
+    100098: RightDressMid
+    100100: RightFoot
+    100102: RightForArm
+    100104: RightHand
+    100106: RightLeg
+    100108: RightShoulder
+    100110: RightWing
+    100112: RightWing1
+    100114: Spine
+    100116: Spine1
+    400000: BackDress
+    400002: BackDressEnd
+    400004: BackDressMid
+    400006: Bip01 L Finger0
+    400008: Bip01 L Finger01
+    400010: Bip01 L Finger0Nub
+    400012: Bip01 L Finger1
+    400014: Bip01 L Finger11
+    400016: Bip01 L Finger1Nub
+    400018: Bip01 L Toe0
+    400020: Bip01 L Toe0Nub
+    400022: Bip01 R Finger0
+    400024: Bip01 R Finger01
+    400026: Bip01 R Finger0Nub
+    400028: Bip01 R Finger1
+    400030: Bip01 R Finger11
+    400032: Bip01 R Finger1Nub
+    400034: Bip01 R Toe0
+    400036: Bip01 R Toe0Nub
+    400038: Bone02
+    400040: Bone03
+    400042: Bone05
+    400044: Bone05(mirrored)
+    400046: Bones
+    400048: //RootNode
+    400050: FeetLocation
+    400052: Head
+    400054: HeadTip
+    400056: HuaYao_01
+    400058: LeftArm
+    400060: LeftCalf
+    400062: LeftDrees1
+    400064: LeftDress
+    400066: LeftDressEnd
+    400068: LeftFoot
+    400070: LeftLEg
+    400072: LeftShoulder
+    400074: LeftWing
+    400076: LeftWing1end
+    400078: LeftWing2
+    400080: LForArm
+    400082: LWing1
+    400084: Neck
+    400086: Pevlis
+    400088: Right_Hand
+    400090: RightArm
+    400092: RightCalve
+    400094: RightDress
+    400096: RightDressEnd
+    400098: RightDressMid
+    400100: RightFoot
+    400102: RightForArm
+    400104: RightHand
+    400106: RightLeg
+    400108: RightShoulder
+    400110: RightWing
+    400112: RightWing1
+    400114: Spine
+    400116: Spine1
+    4300000: HuaYao_01
+    7400000: MeleeAttack
+    7400002: Attack
+    7400004: Idle
+    7400006: Walk
+    9500000: //RootNode
+    13700000: HuaYao_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MeleeAttack
+      takeName: Take 001
+      firstFrame: 300
+      lastFrame: 350
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bones
+        weight: 1
+      - path: Bones/FeetLocation
+        weight: 1
+      - path: Bones/Pevlis
+        weight: 1
+      - path: Bones/Pevlis/BackDress
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid/BackDressEnd
+        weight: 1
+      - path: Bones/Pevlis/LeftDress
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1/LeftDressEnd
+        weight: 1
+      - path: Bones/Pevlis/RightDress
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid/RightDressEnd
+        weight: 1
+      - path: Bones/Pevlis/Spine
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0/Bip01 L Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0/Bip01
+          R Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head/HeadTip
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2/Bone05(mirrored)
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01/Bip01 L Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11/Bip01 L Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing/LeftWing1end
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01/Bip01 R Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11/Bip01 R Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing/Bone05
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02/Bone03
+        weight: 1
+      - path: HuaYao_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 200
+      lastFrame: 270
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bones
+        weight: 1
+      - path: Bones/FeetLocation
+        weight: 1
+      - path: Bones/Pevlis
+        weight: 1
+      - path: Bones/Pevlis/BackDress
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid/BackDressEnd
+        weight: 1
+      - path: Bones/Pevlis/LeftDress
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1/LeftDressEnd
+        weight: 1
+      - path: Bones/Pevlis/RightDress
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid/RightDressEnd
+        weight: 1
+      - path: Bones/Pevlis/Spine
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0/Bip01 L Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0/Bip01
+          R Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head/HeadTip
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2/Bone05(mirrored)
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01/Bip01 L Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11/Bip01 L Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing/LeftWing1end
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01/Bip01 R Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11/Bip01 R Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing/Bone05
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02/Bone03
+        weight: 1
+      - path: HuaYao_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bones
+        weight: 1
+      - path: Bones/FeetLocation
+        weight: 1
+      - path: Bones/Pevlis
+        weight: 1
+      - path: Bones/Pevlis/BackDress
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid/BackDressEnd
+        weight: 1
+      - path: Bones/Pevlis/LeftDress
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1/LeftDressEnd
+        weight: 1
+      - path: Bones/Pevlis/RightDress
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid/RightDressEnd
+        weight: 1
+      - path: Bones/Pevlis/Spine
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0/Bip01 L Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0/Bip01
+          R Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head/HeadTip
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2/Bone05(mirrored)
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01/Bip01 L Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11/Bip01 L Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing/LeftWing1end
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01/Bip01 R Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11/Bip01 R Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing/Bone05
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02/Bone03
+        weight: 1
+      - path: HuaYao_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bones
+        weight: 1
+      - path: Bones/FeetLocation
+        weight: 1
+      - path: Bones/Pevlis
+        weight: 1
+      - path: Bones/Pevlis/BackDress
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid
+        weight: 1
+      - path: Bones/Pevlis/BackDress/BackDressMid/BackDressEnd
+        weight: 1
+      - path: Bones/Pevlis/LeftDress
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1
+        weight: 1
+      - path: Bones/Pevlis/LeftDress/LeftDrees1/LeftDressEnd
+        weight: 1
+      - path: Bones/Pevlis/RightDress
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid
+        weight: 1
+      - path: Bones/Pevlis/RightDress/RightDressMid/RightDressEnd
+        weight: 1
+      - path: Bones/Pevlis/Spine
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/LeftLEg/LeftCalf/LeftFoot/Bip01 L Toe0/Bip01 L Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0
+        weight: 1
+      - path: Bones/Pevlis/Spine/RightLeg/RightCalve/RightFoot/Bip01 R Toe0/Bip01
+          R Toe0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/Head/HeadTip
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LeftWing2/Bone05(mirrored)
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger0/Bip01 L Finger01/Bip01 L Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LForArm/Right_Hand/Bip01
+          L Finger1/Bip01 L Finger11/Bip01 L Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/LeftShoulder/LeftArm/LWing1/LeftWing/LeftWing1end
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger0/Bip01 R Finger01/Bip01 R Finger0Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightForArm/RightHand/Bip01
+          R Finger1/Bip01 R Finger11/Bip01 R Finger1Nub
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing/Bone05
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02
+        weight: 1
+      - path: Bones/Pevlis/Spine/Spine1/Neck/RightShoulder/RightArm/RightWing1/Bone02/Bone03
+        weight: 1
+      - path: HuaYao_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

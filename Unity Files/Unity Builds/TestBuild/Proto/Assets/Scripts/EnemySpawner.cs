@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour {
         if(canSpawn == true)
         {
             spawningEnemy = enemySpawnerController.GetComponent<EnemySpawnerController>().spawnEnemy();
-            Instantiate(spawningEnemy, gameObject.transform.position, Quaternion.identity);
+            Instantiate(spawningEnemy, new Vector3(transform.position.x, transform.position.y + 5, transform.position.z), Quaternion.identity);
             Destroy(gameObject);
         }
     }

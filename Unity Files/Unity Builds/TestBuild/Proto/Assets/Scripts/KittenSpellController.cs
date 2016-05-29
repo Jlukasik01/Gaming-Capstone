@@ -39,7 +39,7 @@ public class KittenSpellController : MonoBehaviour {
             }
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<PlayerController>().health -= 1;
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(5);
                 Destroy(gameObject);
             }
         

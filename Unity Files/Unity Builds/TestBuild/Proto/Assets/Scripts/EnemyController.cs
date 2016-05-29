@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour {
     public int baseHealth;
     public int health;
     public float Speed;
+    public float attackDelay = 1;
     public int soulValue;
     public Animator anim;
     public Transform SpellLocation;
@@ -22,13 +23,29 @@ public class EnemyController : MonoBehaviour {
     public GameObject Ragdoll;
     public float distance;
     private GameObject lootTable;
+    public BoxCollider MeleeCollider;
+    public bool meleeOn = false;
+    public bool canMoveAndAttack = false;
+    public float attackPause = 0;
+    public bool canMove = true;
+    bool AttackPaused;
+    public float attackTime= 2f;
+    public bool secondaryAttack = false;
+    public GameObject SecondaryAttackLoc;
+    public float SecondaryDistance = 0;
+    public bool AttackingSecondary= false;
     public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
 
 	// Use this for initialization
 	void Start () {
+        AttackPaused = false;
+        meleeOn = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponentInChildren<Animator>();
         lootTable = GameObject.FindGameObjectWithTag("LootTable");
+        if (Spell == null)
+        { MeleeCollider = GetComponent<BoxCollider>(); }
+
 	}
 	
 	// Update is called once per frame
@@ -53,6 +70,18 @@ public class EnemyController : MonoBehaviour {
         {
             health -= Player.GetComponent<IntController>().Weapon.GetComponent<WeaponController>().damage;
         }
+        
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            if(MeleeCollider != null && meleeOn)
+            {
+                other.GetComponent<PlayerController>().health -= damage;
+                meleeOn = false;
+            }
+        }
     }
     void takeDamage(int damage)
     {
@@ -63,64 +92,126 @@ public class EnemyController : MonoBehaviour {
         if(distance < detectionDistance)
         {
             gameObject.transform.LookAt(Player.transform);
-            if(!isAttacking)
+            if((canMove && !isAttacking )|| (canMoveAndAttack && canMove) && !AttackPaused)
             {
                 isMoving = true;
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime * Speed);
             }
-            else { isMoving = false; }
+            else { isMoving = false;
+               gameObject.transform.Translate(transform.position*0);
+            }
         }
         
     }
 
     void Attack()
     {
-        if (distance < attackDistance)
+        if (distance < attackDistance && !AttackPaused)
         {
             canAttack = true;
         }
         else canAttack = false;
         if(canAttack && !isAttacking)
         {
-            StartCoroutine("AttackSeq");
+            if(distance<SecondaryDistance && secondaryAttack)
+            {
+                StartCoroutine("secondaryAttackSeq", attackDelay);
+            }
+            else StartCoroutine("AttackSeq", attackDelay);
         }
     }
 
-    IEnumerator AttackSeq() // Destory object in time
+    IEnumerator AttackSeq(float AttackDelay) // Destory object in time
     {
         isAttacking = true;
         bool Attacked = false;
         for (float f = 0.0f; f <= 2; f += 0.1f)
         {
-            if(f >= 1 && !Attacked)
+            if(canMoveAndAttack)
             {
-                if (Spell != null)
+                meleeOn = true;
+            }
+            if (f >= attackDelay && !Attacked)
+            {
+                if (Spell != null) // cast spell if spell
                 {
                     Instantiate(Spell, SpellLocation.transform.position, SpellLocation.transform.rotation);
                 }
-                else { }
+                else // else do melee
+                {
+                    meleeOn = true;
+                }
+                Attacked = true;
+            }
+            else { if (!canMoveAndAttack) { meleeOn = false; } } // cancel melee hitbox if enemy meleed
+
+            yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
+        }
+        StartCoroutine("attackPuaseTimer", attackPause);
+        isAttacking = false;
+    }
+    IEnumerator attackPuaseTimer(float attackPauseTime)
+    {
+
+        anim.Play("Idle");
+        anim.speed = 1;
+        for (float f = 0.0f; f <= attackPauseTime; f+= 0.1f)
+        {
+            AttackPaused = true;
+            canAttack = false;
+            canMove = false;
+            isMoving = false;
+            yield return new WaitForSeconds(0.1f); 
+        }
+        AttackPaused = false;
+        canAttack = true;
+        canMove = true;
+    }
+    IEnumerator secondaryAttackSeq(float AttackDelay) // Destory object in time
+    {
+        isAttacking = true;
+        AttackingSecondary = true;
+        bool Attacked = false;
+        for (float f = 0.0f; f <= 2; f += 0.1f)
+        {
+            if(!Attacked)
+            {
+                SecondaryAttackLoc.GetComponent<SecondaryAttackController>().isActive = true;
+                SecondaryAttackLoc.GetComponent<SecondaryAttackController>().callSpell();
                 Attacked = true;
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
         }
+        AttackingSecondary = false;
+        StartCoroutine("attackPuaseTimer", attackPause);
         isAttacking = false;
     }
-
     void AnimationFunction()
     {
-        if(isAttacking)
+        if(isAttacking && !AttackingSecondary)
         {
             anim.Play("Attack");
+            if(canMoveAndAttack)
+            {
+                anim.speed = 5;
+            }
+            else { anim.speed = 1; }
         }
-        if(isMoving)
+        if(isMoving && !isAttacking)
         {
             anim.Play("Walk");
             anim.speed = 5;
         }
-        else { anim.speed = 1; }
-        if(!isMoving && !isAttacking)
+        
+        if((!isMoving && !isAttacking) || !canMove)
         {
             anim.Play("Idle");
+            anim.speed = 1;
+        }
+        if(AttackingSecondary)
+        {
+            anim.Play("MeleeAttack");
+            anim.speed = 1;
         }
     }
 }

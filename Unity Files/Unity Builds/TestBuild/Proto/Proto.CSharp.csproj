@@ -80,6 +80,8 @@
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
     <Compile Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
+    <Compile Include="Assets\CloudSpell.cs" />
+    <Compile Include="Assets\Destroyer.cs" />
     <Compile Include="Assets\Prefabs\UI\StartButtonScript.cs" />
     <Compile Include="Assets\QuitButtonController.cs" />
     <Compile Include="Assets\Scripts\ArrowController.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Assets\Scripts\UI_SwitchScript.cs" />
     <Compile Include="Assets\Scripts\UI_buttonBehavior.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
+    <Compile Include="Assets\SecondaryAttackController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
