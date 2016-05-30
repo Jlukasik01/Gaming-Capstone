@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour {
     public int damage; 
     public Sprite ImageUI;
     public bool inInventory;
+    public float attackSpeed;
     public GameObject projectile;
     Rigidbody body;
     Collider coll;

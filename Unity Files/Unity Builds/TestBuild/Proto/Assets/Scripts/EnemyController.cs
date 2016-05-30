@@ -69,6 +69,7 @@ public class EnemyController : MonoBehaviour {
         if(other.gameObject.tag == "Weapon")
         {
             health -= Player.GetComponent<IntController>().Weapon.GetComponent<WeaponController>().damage;
+
         }
         
     }
