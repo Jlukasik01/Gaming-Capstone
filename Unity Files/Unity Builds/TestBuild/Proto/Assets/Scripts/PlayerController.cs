@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting;
     public bool invincable;
     public GameObject Weapon;
-    public GameObject []Mesh;
-    public int ActiveMesh =1;
+    public GameObject[] Mesh;
+    public int ActiveMesh = 1;
     Animator animations;
     public int health;
     public int maxHealth;
@@ -78,18 +78,23 @@ public class PlayerController : MonoBehaviour
             {
                 mana = maxMana;
             }
-            if(stamina > maxStamina)
+            if (stamina > maxStamina)
             {
                 stamina = maxStamina;
             }
             StartCoroutine("Regen");
         }
-        if(Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape))
         {
             Application.LoadLevel(0);
         }
         LevelUpMesh();
         sprintFunction();
+        if(Weapon != null)
+        {
+            attackTime = Weapon.GetComponent<WeaponController>().attackSpeed;
+        }
+        
     }
 
     public void equip() { Weapon = GetComponent<IntController>().Weapon; }
@@ -114,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         { stamina += Time.deltaTime * 0.2f; }
-        if(stamina > maxStamina)
+        if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
@@ -123,7 +128,7 @@ public class PlayerController : MonoBehaviour
     void LevelUpMesh()
     {
         //lvl one check
-        if(souls > LevelUpCosts[0] && ActiveMesh != 1)
+        if (souls > LevelUpCosts[0] && ActiveMesh != 1)
         {
             ActiveMesh = 1;
             Mesh[0].gameObject.SetActive(false);
@@ -133,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (souls < LevelUpCosts[0] && ActiveMesh != 2) // go to lvl zero
         {
-            ActiveMesh =0;
+            ActiveMesh = 0;
             Mesh[1].gameObject.SetActive(false);
             Mesh[ActiveMesh].gameObject.SetActive(true);
             SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().lvlUp;
@@ -152,6 +157,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Weapon.tag == "Weapon")
                 {
+
                     IsAttacking = true;
                     StartCoroutine("Attack", attackTime);
                 }
@@ -254,17 +260,19 @@ public class PlayerController : MonoBehaviour
         {
             if (isMoving)
             {
+                //Walking forward
                 if (!CheckIfMovingFoward())
                 {
                     animations.Play("WalkB");
                     animations.speed = animationWalkSpeed;
 
                 }
-                else {
+                //walking backwards
+                else
+                {
                     animations.Play("Walk");
                     animations.speed = animationWalkSpeed;
                 }
-                //walking backwards
             }
         }
 
@@ -275,17 +283,17 @@ public class PlayerController : MonoBehaviour
                 if (Weapon.GetComponent<WeaponController>().WeaponType == "Sword")
                 {
                     Weapon.GetComponent<WeaponController>().ActivateCollider();
-                    animations.speed = 3;
+                    animations.speed = 3 * attackTime;
                     animations.Play("Melee");
                 }
                 else if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
                 {
-                    animations.speed = 3;
+                    animations.speed = 3 * attackTime;
                     animations.Play("Bow");
                 }
                 else if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
                 {
-                    animations.speed = 3;
+                    animations.speed = 3 * attackTime;
                     animations.Play("Spell");
                 }
 
@@ -333,32 +341,27 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-
-            if (IsAttacking)
-            {
-                // if enemy is in hit box take damage
-            }
-        }
-
-        if (other.gameObject.tag == "Wall")
-        {
-            // make sure you dont go through wall
-        }
-
-        if (other.gameObject.tag == "Loot")
-        {
-            // add to inv
-        }
-
-    }
-
     IEnumerator Attack(float attackTime) // Attack
     {
         IsAttacking = true; // do damage
+        yield return new WaitForSeconds(.6f / attackTime); // wait for animation to be in the position to do damage.
+        if (Weapon != null)
+        {
+            if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
+            {
+
+                Instantiate(Weapon.GetComponent<WeaponController>().projectile, projectLoc.position, gameObject.transform.rotation);
+                SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().Bow;
+                SoundController.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().Bow;
+                SoundController.GetComponent<AudioSource>().Play();
+            }
+        }
+        yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
+        /*
         for (float f = 0.0f; f <= 0.5f; f += 0.1f)
         {
             if (f == 0.4f)
@@ -367,7 +370,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Weapon.GetComponent<WeaponController>().WeaponType == "Bow")
                     {
-               
+
                         Instantiate(Weapon.GetComponent<WeaponController>().projectile, projectLoc.position, gameObject.transform.rotation);
                         SoundController.GetComponent<AudioSource>().clip = SoundController.GetComponent<SoundController>().Bow;
                         SoundController.GetComponent<AudioSource>().Play();
@@ -382,7 +385,7 @@ public class PlayerController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f); // wait for animation to be in the position to do damage.
         }
-
+        */
         IsAttacking = false;
     }
 
@@ -429,10 +432,5 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
     }
-
-    private void spell()
-    {
-
-    }
 }
-
+    

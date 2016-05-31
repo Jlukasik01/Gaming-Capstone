@@ -18,7 +18,8 @@ public class ItemDesciptionController : MonoBehaviour {
             if(player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<WeaponController>() != null)
             {
                text.text += "\nDamage: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<WeaponController>().damage.ToString();
-                
+                text.text += "\nWeapon Speed: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<WeaponController>().attackSpeed.ToString();
+
             }
             text.text += "\nValue: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().value + " Souls";
             text.text += "\nHealth Modifier: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().maxHealthModifier;

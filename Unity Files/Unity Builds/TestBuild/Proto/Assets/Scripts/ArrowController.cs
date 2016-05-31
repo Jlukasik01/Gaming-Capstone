@@ -5,11 +5,16 @@ public class ArrowController : MonoBehaviour {
     public float speed;
     public bool isActive;
     public int Damage;
+    public GameObject Player;
 	// Use this for initialization
 	void Start ()
     {
         isActive = true;
-	}
+        if (Player == null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -39,7 +44,7 @@ public class ArrowController : MonoBehaviour {
         {
             if (other.gameObject.tag == "Enemy" && isActive)
             {
-                other.gameObject.GetComponent<EnemyController>().health -= Damage;
+                other.gameObject.GetComponent<EnemyController>().health -= (Damage + Player.GetComponent<IntController>().Weapon.GetComponent<WeaponController>().damage);
             }
             isActive = false;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
