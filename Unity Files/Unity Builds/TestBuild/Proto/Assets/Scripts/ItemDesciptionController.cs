@@ -29,6 +29,7 @@ public class ItemDesciptionController : MonoBehaviour {
             text.text += "\nDefense Modifier: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().defenseModifier;
             text.text += "\nSpeed Modifier: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().speedModifier;
             text.text += "\nStackable Item: " + player.GetComponent<IntController>().inventory[player.GetComponent<IntController>().keyPress].GetComponent<ItemController>().stackable;
+            text.text += "\nPress Space To Hide ToolTip";
         }
     }
 }

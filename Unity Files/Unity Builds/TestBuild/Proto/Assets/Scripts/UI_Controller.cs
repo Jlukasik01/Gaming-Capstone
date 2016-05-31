@@ -7,7 +7,7 @@ public class UI_Controller : MonoBehaviour
 
     public Slider healthSlider;
     public Slider StanimaSlider;
-    //public Slider manaBarSlider;
+    public Slider manaBarSlider;
     public Text SoulsCounter;
     //public Image[] items;
     
@@ -26,7 +26,9 @@ public class UI_Controller : MonoBehaviour
             healthSlider.value = GetComponent<PlayerController>().health;
             StanimaSlider.maxValue = GetComponent<PlayerController>().maxStamina;
             StanimaSlider.value = GetComponent<PlayerController>().stamina;
-            //SoulsCounter.text = "Souls: " + GetComponent<PlayerController>().souls;
+            manaBarSlider.maxValue = GetComponent<PlayerController>().maxMana;
+            manaBarSlider.value = GetComponent<PlayerController>().mana;
+            SoulsCounter.text = GetComponent<PlayerController>().souls.ToString();
         }
     }
 

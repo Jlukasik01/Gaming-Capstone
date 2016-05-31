@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\UI_SwitchScript.cs" />
     <Compile Include="Assets\Scripts\UI_buttonBehavior.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
+    <Compile Include="Assets\ToolTipController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
