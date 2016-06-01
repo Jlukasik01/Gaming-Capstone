@@ -10,19 +10,21 @@ public class StartButtonScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        UiOne = GameObject.FindGameObjectWithTag("UiOne");
-        UiTwo = GameObject.FindGameObjectWithTag("UiTwo");
+//        UiOne = GameObject.FindGameObjectWithTag("UiOne");
+//        UiTwo = GameObject.FindGameObjectWithTag("UiTwo");
         StartUI = GameObject.FindGameObjectWithTag("StartUI");
-        UiOne.GetComponent<Canvas>().enabled = false;
-        UiTwo.GetComponent<Canvas>().enabled = false;
+//        UiOne.GetComponent<Canvas>().enabled = false;
+//        UiTwo.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 0;
     }
 
     public void clickStart()
     {
         Time.timeScale = 1;
-        UiOne.GetComponent<Canvas>().enabled = true;
-        UiTwo.GetComponent<Canvas>().enabled = true;
-        StartUI.GetComponent<Canvas>().enabled = false;
+        //        UiOne.GetComponent<Canvas>().enabled = true;
+        //        UiTwo.GetComponent<Canvas>().enabled = true;
+        //        StartUI.GetComponent<Canvas>().enabled = false;
+        StartUI.SetActive(false);
+
     }
 }
