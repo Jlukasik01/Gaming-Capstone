@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool IsIdle;
     public bool isMoving = true;
     public bool isSprinting;
-    public bool invincable;
+	public bool invincible;
     public GameObject Weapon;
     public GameObject[] Mesh;
     public int ActiveMesh = 1;
@@ -389,16 +389,16 @@ public class PlayerController : MonoBehaviour
         IsAttacking = false;
     }
 
-    IEnumerator Damage(float DamageTimer) // Take Damage make invinvible
+    IEnumerator Damage(float DamageTimer) // Take Damage make invincible
     {
-        invincable = true;
+		invincible = true;
         for (float f = 0f; f <= DamageTimer; f += 0.1f)
         {
 
             yield return new WaitForSeconds(0.1f); // can't take damage until timer ends
         }
 
-        invincable = false;
+		invincible = false;
     }
 
     //Timer for regenerating mana and stamina
@@ -411,7 +411,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (!invincable)
+		if (!invincible)
         {
             health -= damage;
             StartCoroutine("Damage", DamageTimer);
