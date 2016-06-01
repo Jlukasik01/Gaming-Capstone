@@ -82,6 +82,13 @@ public class EnemySpawnerController : MonoBehaviour {
             //increase all monster's stats by double
             spawningEnemy.GetComponent<EnemyController>().health *= 2;
             spawningEnemy.GetComponent<EnemyController>().damage *= 2;
+            
+            spawningEnemy.GetComponent<EnemyController>().isAlpha = true;
+        }
+        else
+        {
+            spawningEnemy.GetComponent<EnemyController>().isAlpha = false;
+            spawningEnemy.transform.localScale = spawningEnemy.GetComponent<EnemyController>().baseSize;
         }
     }
 

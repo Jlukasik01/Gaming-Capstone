@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour {
     public int baseDamage;
     public int damage;
     public int baseHealth;
+    public Vector3 baseSize;
     public int health;
     public float Speed;
     public float attackDelay = 1;
@@ -35,9 +36,23 @@ public class EnemyController : MonoBehaviour {
     public float SecondaryDistance = 0;
     public bool AttackingSecondary= false;
     public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
+    public bool isAlpha;
+
 
 	// Use this for initialization
 	void Start () {
+        if(baseSize == null|| baseSize == Vector3.zero)
+        {
+            baseSize = Vector3.one;
+            transform.localScale = baseSize;
+        }
+
+        if(isAlpha)
+        {
+            transform.localScale *= 1.2f;
+        }
+
+        
         AttackPaused = false;
         meleeOn = false;
         Player = GameObject.FindGameObjectWithTag("Player");

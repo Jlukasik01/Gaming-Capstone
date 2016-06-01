@@ -16,9 +16,11 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[] roomsThreeDoor;
     public GameObject[] roomsFourDoor;
     public GameObject[] roomsStartingRoom;
+    public GameObject[] roomsBossRoom;
     public GameObject currentRoom; //current room being used as origin
     public GameObject generatedRoom; //room that is being created and placed
     public GameObject player;
+    public GameObject enemyList;
     public int currentLevel; //What level player is currently on
     public int completedLevels; // How many levels have been completed
     public int averageNumRooms; //Set for number of rooms to spawn
@@ -35,6 +37,7 @@ public class RoomGenerator : MonoBehaviour
     public int roomNumIncrease; //how much averageNumRooms is increased each level;
     public bool continueGeneration;
     
+    
    
     // Use this for initialization
     void Start()
@@ -47,10 +50,12 @@ public class RoomGenerator : MonoBehaviour
         roomsThreeDoor = Resources.LoadAll<GameObject>("RoomsToLoad/ThreeDoor");
         roomsFourDoor = Resources.LoadAll<GameObject>("RoomsToLoad/Fourdoor");
         roomsStartingRoom = Resources.LoadAll<GameObject>("RoomsToLoad/StartingRoom");
+        roomsBossRoom = Resources.LoadAll<GameObject>("RoomsToLoad/BossRoom");
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        
         newLevel();
     }
 
@@ -113,6 +118,8 @@ public class RoomGenerator : MonoBehaviour
         levelsCreated++;
         generateReferenceLevel();
         generatedLevel = new GameObject[length, width];
+
+        //Generate player starting room
         currentX = Random.Range(1, length - 1);
         currentZ = Random.Range(1, width - 1);
         generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsStartingRoom[0], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
@@ -120,6 +127,22 @@ public class RoomGenerator : MonoBehaviour
         currentRoom = generatedLevel[currentX, currentZ];
         generatedRoom = currentRoom;
         player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
+        
+        //generate boss room
+        findRandomEmptyRoom();
+        if (levelsCreated > GetComponent<EnemySpawnerController>().enemyList.Length)
+        {
+            
+            //generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[Mathf.RoundToInt(levelsCreated / GetComponent<EnemySpawnerController>().enemyList.Length)], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+            referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
+        }
+        else
+        {
+            generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[levelsCreated - 1], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+            referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
+        }
+        
+
         continueGeneration = true;
         generateLevel();
         
@@ -561,5 +584,24 @@ public class RoomGenerator : MonoBehaviour
         generatedRoom.GetComponent<RoomController>().hasSouthDoor = futureHasSouthDoor;
         generatedRoom.GetComponent<RoomController>().hasEastDoor = futureHasEastDoor;
         generatedRoom.GetComponent<RoomController>().hasWestDoor = futureHasWestDoor;
+    }
+
+    //use with caution. Used to find empty spot for boss room. NO CHECKS IN PLACE TO STOP FOR LOOP
+    void findRandomEmptyRoom()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            currentX = Random.Range(0, length);
+            currentZ = Random.Range(0, width);
+            if (referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                i--;
+            }
+            else
+            {
+                break;
+            }
+
+        }
     }
 }
