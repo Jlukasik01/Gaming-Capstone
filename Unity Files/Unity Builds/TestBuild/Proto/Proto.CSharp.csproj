@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\BlackDestroy.cs" />
     <Compile Include="Assets\Scripts\BlankItem.cs" />
     <Compile Include="Assets\Scripts\BloodSplatterController.cs" />
+    <Compile Include="Assets\Scripts\BossRoomController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\CloudSpell.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\KittenSpellController.cs" />
     <Compile Include="Assets\Scripts\LootController.cs" />
     <Compile Include="Assets\Scripts\MeshController.cs" />
+    <Compile Include="Assets\Scripts\NewLevel.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\QuitButtonController.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
@@ -108,18 +110,24 @@
     <Compile Include="Assets\Scripts\SmashController.cs" />
     <Compile Include="Assets\Scripts\SoundController.cs" />
     <Compile Include="Assets\Scripts\SpellController.cs" />
+    <Compile Include="Assets\Scripts\StartCreditsButton.cs" />
+    <Compile Include="Assets\Scripts\StartDirectionsButton.cs" />
     <Compile Include="Assets\Scripts\StoreButtonController.cs" />
     <Compile Include="Assets\Scripts\StoreController.cs" />
     <Compile Include="Assets\Scripts\StoreExitController.cs" />
     <Compile Include="Assets\Scripts\StoreUIController.cs" />
     <Compile Include="Assets\Scripts\UIButtonControllerInventory.cs" />
     <Compile Include="Assets\Scripts\UICreditsButton.cs" />
-    <Compile Include="Assets\Scripts\UIDirectionsScript1.cs" />
+    <Compile Include="Assets\Scripts\UIDirectionsScript.cs" />
     <Compile Include="Assets\Scripts\UI_Controller.cs" />
     <Compile Include="Assets\Scripts\UI_SwitchScript.cs" />
     <Compile Include="Assets\Scripts\UI_buttonBehavior.cs" />
+    <Compile Include="Assets\Scripts\UIdirImageControl.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
+    <Compile Include="Assets\StartDirectionsScript.cs" />
     <Compile Include="Assets\ToolTipController.cs" />
+    <Compile Include="Assets\UICreditImageScript.cs" />
+    <Compile Include="Assets\UIdirectionsImageScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Character\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />

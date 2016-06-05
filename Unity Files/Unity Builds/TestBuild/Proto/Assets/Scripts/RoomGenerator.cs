@@ -24,11 +24,8 @@ public class RoomGenerator : MonoBehaviour
     public int currentLevel; //What level player is currently on
     public int completedLevels; // How many levels have been completed
     public int averageNumRooms; //Set for number of rooms to spawn
-    public int levelheight;
     public int length;
     public int width;
-    public int requiredDoorCounter;
-    public int optionalDoorCounter;
     public int currentZ;
     public int currentX;
     public int levelsCreated;
@@ -106,7 +103,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     //destroys old level and creates a new one;
-    void newLevel()
+    public void newLevel()
     {
         if(levelsCreated > 0)
         {
@@ -130,6 +127,7 @@ public class RoomGenerator : MonoBehaviour
         
         //generate boss room
         findRandomEmptyRoom();
+        /*
         if (levelsCreated > GetComponent<EnemySpawnerController>().enemyList.Length)
         {
             
@@ -141,7 +139,7 @@ public class RoomGenerator : MonoBehaviour
             generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[levelsCreated - 1], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
             referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
         }
-        
+        */
 
         continueGeneration = true;
         generateLevel();
@@ -589,8 +587,15 @@ public class RoomGenerator : MonoBehaviour
     //use with caution. Used to find empty spot for boss room. NO CHECKS IN PLACE TO STOP FOR LOOP
     void findRandomEmptyRoom()
     {
+        int breakCount = 0;
         for (int i = 0; i < 1; i++)
         {
+            breakCount++;
+            if(breakCount > 100)
+            {
+                Debug.Log("In findRandomEmptyRoom(), for loop exceeded 100 checks");
+                break;
+            }
             currentX = Random.Range(0, length);
             currentZ = Random.Range(0, width);
             if (referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom == true)

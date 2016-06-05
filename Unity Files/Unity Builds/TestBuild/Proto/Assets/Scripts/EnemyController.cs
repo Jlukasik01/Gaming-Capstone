@@ -37,6 +37,8 @@ public class EnemyController : MonoBehaviour {
     public bool AttackingSecondary= false;
     public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
     public bool isAlpha;
+    public bool isBoss = false;
+    
 
 
 	// Use this for initialization
@@ -74,7 +76,11 @@ public class EnemyController : MonoBehaviour {
             Instantiate(Gore, gameObject.transform.position, Gore.transform.rotation);
             Instantiate(Ragdoll, gameObject.transform.position, gameObject.transform.rotation);
             Instantiate(lootTable.GetComponent<LootController>().dropItem(), transform.position, transform.rotation);
-            Player.GetComponent<PlayerController>().souls += soulValue; 
+            Player.GetComponent<PlayerController>().souls += soulValue;
+            if (isBoss == true)
+            {
+                GetComponent<BossRoomController>().bossAlive = false;
+            }
             Destroy(gameObject);
         }
     }
