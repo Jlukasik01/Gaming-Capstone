@@ -3,8 +3,8 @@ using System.Collections;
 
 public class StartButtonScript : MonoBehaviour {
 
-    public GameObject UiOne;
-    public GameObject UiTwo;
+    //public GameObject UiOne;
+    //public GameObject UiTwo;
     public GameObject StartUI;
 
 
