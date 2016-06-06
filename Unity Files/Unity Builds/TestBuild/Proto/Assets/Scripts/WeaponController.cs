@@ -26,13 +26,18 @@ public class WeaponController : MonoBehaviour {
             body.useGravity = true;
             coll.isTrigger = false;
         }
-        if(gameObject.GetComponent<ItemController>().inInventory && WeaponType == "Bow")
+        if(gameObject.GetComponent<ItemController>().inInventory && (WeaponType == "Bow" || WeaponType == "Spell"))
         {
             coll.isTrigger = true;
             body.useGravity = false;
         }
+        
     }
-
+    public void CastSpell()
+    {
+        Instantiate(projectile, transform.position, transform.rotation);
+    }
+    
     public void ActivateCollider()
     {
         StartCoroutine("Activation");

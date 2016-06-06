@@ -38,13 +38,14 @@ public class EnemyController : MonoBehaviour {
     public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
     public bool isAlpha;
     public bool isBoss;
+    public bool canTakeDamage;
     public GameObject BossRoom;
     
 
 
 	// Use this for initialization
 	void Start () {
-        
+        canTakeDamage = true;
         if(baseSize == null|| baseSize == Vector3.zero)
         {
             if(isBoss == false)
@@ -94,7 +95,14 @@ public class EnemyController : MonoBehaviour {
             Player.GetComponent<PlayerController>().souls += soulValue;
             if (isBoss == true)
             {
-                BossRoom.GetComponent<BossRoomController>().bossAlive = false;
+                if (BossRoom.GetComponent<BossRoomController>() != null)
+                {
+                    BossRoom.GetComponent<BossRoomController>().bossAlive = false;
+                }
+                else
+                {
+
+                }
                 Debug.Log("SETTING bossAlive to false");
             }
             Destroy(gameObject);
@@ -121,10 +129,28 @@ public class EnemyController : MonoBehaviour {
             }
         }
     }
-    void takeDamage(int damage)
+    public void takeDamage(int damage)
     {
-        health -= damage;
+        if (canTakeDamage)
+        {
+            health -= damage;
+            StartCoroutine( "CancelDamage");
+        }
+
     }
+    IEnumerator CancelDamage() // Take Damage make invincible
+    {
+        canTakeDamage = false;
+        for (float f = 0f; f <=1; f += 0.1f)
+        {
+
+            yield return new WaitForSeconds(0.1f); // can't take damage until timer ends
+        }
+
+        canTakeDamage = true;
+    }
+
+
     void DetectAndChase()
     {
         if(distance < detectionDistance)

@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public int[] LevelUpCosts;
     public GameObject SoundController;
     public Transform projectLoc;
+    public bool CastandBlast;
 
     void OnStart()
     {
@@ -155,22 +156,34 @@ public class PlayerController : MonoBehaviour
         {
             if (IsAttacking == false && Weapon != null)
             {
-                if (Weapon.tag == "Weapon")
+                if (Weapon.tag == "Weapon" && Weapon.GetComponent<WeaponController>().WeaponType != "Spell")
                 {
 
                     IsAttacking = true;
                     StartCoroutine("Attack", attackTime);
                 }
+
                 else if (Weapon.tag == "Item")
                 {
                     GetComponent<IntController>().useItem();
                 }
-                else
-                {
-                    IsAttacking = true;
-                    StartCoroutine("Attack", attackTime);
-                }
             }
+        }
+       if(Input.GetMouseButtonDown(0))
+       {
+            if (Weapon != null && Weapon.tag == "Weapon" && Weapon.GetComponent<WeaponController>().WeaponType == "Spell")
+            {
+                
+                Weapon.GetComponent<WeaponController>().CastSpell();
+                CastandBlast = true;
+            }
+       }
+        if(!Input.GetMouseButton(0))
+        {
+
+
+                CastandBlast = false;
+
         }
     }
 
@@ -291,7 +304,7 @@ public class PlayerController : MonoBehaviour
                     animations.speed = 3 * attackTime;
                     animations.Play("Bow");
                 }
-                else if (Weapon.GetComponent<WeaponController>().WeaponType == "Magic")
+                else if (Weapon.GetComponent<WeaponController>().WeaponType == "Spell")
                 {
                     animations.speed = 3 * attackTime;
                     animations.Play("Spell");
