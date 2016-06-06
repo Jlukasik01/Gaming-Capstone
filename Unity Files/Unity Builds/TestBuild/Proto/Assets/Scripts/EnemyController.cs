@@ -37,21 +37,36 @@ public class EnemyController : MonoBehaviour {
     public bool AttackingSecondary= false;
     public int arrayIndex; //spot where it appears on the EnemySpawnerController array. Only 1 enemy can have 1 number. Lower the number, lower level it starts to spawn at. Only needs to be applied to enemies in Resources/EnemiesToLoad
     public bool isAlpha;
-    public bool isBoss = false;
+    public bool isBoss;
+    public GameObject BossRoom;
     
 
 
 	// Use this for initialization
 	void Start () {
+        
         if(baseSize == null|| baseSize == Vector3.zero)
         {
-            baseSize = Vector3.one;
-            transform.localScale = baseSize;
+            if(isBoss == false)
+            {
+                baseSize = Vector3.one;
+                transform.localScale = baseSize;
+            }
+          
         }
-
+        
         if(isAlpha)
         {
             transform.localScale *= 1.2f;
+        }
+        if(isBoss)
+        {
+            health = baseHealth;
+            damage = baseDamage;
+            if(BossRoom == null)
+            {
+                BossRoom = GameObject.FindGameObjectWithTag("BossRoom");
+            }
         }
 
         
@@ -79,7 +94,8 @@ public class EnemyController : MonoBehaviour {
             Player.GetComponent<PlayerController>().souls += soulValue;
             if (isBoss == true)
             {
-                GetComponent<BossRoomController>().bossAlive = false;
+                BossRoom.GetComponent<BossRoomController>().bossAlive = false;
+                Debug.Log("SETTING bossAlive to false");
             }
             Destroy(gameObject);
         }

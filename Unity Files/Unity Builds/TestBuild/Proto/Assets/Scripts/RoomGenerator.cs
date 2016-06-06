@@ -21,25 +21,24 @@ public class RoomGenerator : MonoBehaviour
     public GameObject generatedRoom; //room that is being created and placed
     public GameObject player;
     public GameObject enemyList;
-    public int currentLevel; //What level player is currently on
-    public int completedLevels; // How many levels have been completed
+    public int currentLevel = 0; //What level player is currently on
     public int averageNumRooms; //Set for number of rooms to spawn
     public int length;
     public int width;
     public int currentZ;
     public int currentX;
-    public int levelsCreated;
+    public int levelsCreated = 0;
     public int alphaMonsterChance; //how much of a chance a enemy spawner has to spawn a alpha version of a enemy
     public int alphaMonsterIncrease; //how much alphaMonsterChance increases each level;
     public int roomNumIncrease; //how much averageNumRooms is increased each level;
     public bool continueGeneration;
+    int bossToPick = 0;
     
     
    
     // Use this for initialization
     void Start()
     {
-        //levelsCreated = 0;
         roomsZeroDoor = Resources.LoadAll<GameObject>("RoomsToLoad/ZeroDoor");
         roomsOneDoor = Resources.LoadAll<GameObject>("RoomsToLoad/OneDoor");
         roomsCorner = Resources.LoadAll<GameObject>("RoomsToLoad/Corner");
@@ -52,7 +51,30 @@ public class RoomGenerator : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        
+
+        //sort boss rooms to spawn them in correct order
+        GameObject[] tempArray;
+        tempArray = new GameObject[roomsBossRoom.Length];
+        int arrayIndexToFind = 0;
+        Debug.Log("Starting to sort roomsBossRoom");
+        for (int i = 0; i < roomsBossRoom.Length; i++)
+        {
+            if (roomsBossRoom[i].GetComponent<BossRoomController>().arrayIndex == arrayIndexToFind)
+            {
+                tempArray[arrayIndexToFind] = roomsBossRoom[i];
+                Debug.Log("Index:" + i + " tempArray:" + tempArray[arrayIndexToFind]);
+                arrayIndexToFind++;
+                i = -1;
+            }
+        }
+        Debug.Log("Done sorting");
+        Debug.Log("Assinging roomsBossRoom to sorted array");
+        for (int i = 0; i < roomsBossRoom.Length; i++)
+        {
+            roomsBossRoom[i] = tempArray[i];
+            Debug.Log("Index:" + i + " enemyList:" + roomsBossRoom[i]);
+        }
+
         newLevel();
     }
 
@@ -89,6 +111,30 @@ public class RoomGenerator : MonoBehaviour
                 Destroy(generatedLevel[x, z]);
             }
         }
+
+        GameObject[] EnemyToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
+        for (var i = 0; i < EnemyToDestroy.Length; i++)
+        {
+            Destroy(EnemyToDestroy[i]);
+        }
+        GameObject[] ItemToDestroy = GameObject.FindGameObjectsWithTag("Item");
+        for (var i = 0; i < ItemToDestroy.Length; i++)
+        {
+            Destroy(ItemToDestroy[i]);
+        }
+        GameObject[] SpellToDestroy = GameObject.FindGameObjectsWithTag("SpellEffect");
+        for (var i = 0; i < SpellToDestroy.Length; i++)
+        {
+            Destroy(SpellToDestroy[i]);
+        }
+        GameObject[] WeaponToDestroy = GameObject.FindGameObjectsWithTag("Weapon");
+        for (var i = 0; i < WeaponToDestroy.Length; i++)
+        {
+            if (WeaponToDestroy[i].GetComponent<ItemController>().inInventory != true)
+            {
+                Destroy(WeaponToDestroy[i]);
+            }       
+        }
     }
 
     void destroyReferenceLevel()
@@ -105,7 +151,8 @@ public class RoomGenerator : MonoBehaviour
     //destroys old level and creates a new one;
     public void newLevel()
     {
-        if(levelsCreated > 0)
+
+        if (levelsCreated > 0)
         {
             destroyReferenceLevel();
             destroyLevel();
@@ -126,21 +173,29 @@ public class RoomGenerator : MonoBehaviour
         player.transform.position = Vector3.Lerp(player.transform.position, referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, 1);
         
         //generate boss room
+        
         findRandomEmptyRoom();
-        /*
-        if (levelsCreated > GetComponent<EnemySpawnerController>().enemyList.Length)
+        if (levelsCreated > roomsBossRoom.Length)
         {
             
-            //generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[Mathf.RoundToInt(levelsCreated / GetComponent<EnemySpawnerController>().enemyList.Length)], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+            generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[bossToPick], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
             referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
         }
         else
         {
-            generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[levelsCreated - 1], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
+            generatedLevel[currentX, currentZ] = (GameObject)Instantiate(roomsBossRoom[bossToPick], referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().pos, Quaternion.identity);
             referenceLevel[currentX, currentZ].GetComponent<RoomSpawnerController>().hasRoom = true;
         }
-        */
+        bossToPick++;
+        if(bossToPick >= roomsBossRoom.Length)
+        {
+            bossToPick = 0;
+        }
+        currentRoom = generatedLevel[currentX, currentZ];
+        generatedRoom = currentRoom;
+        rotateRoomManualPlace();
 
+        //generate rest of level
         continueGeneration = true;
         generateLevel();
         
@@ -157,7 +212,6 @@ public class RoomGenerator : MonoBehaviour
         else
         {
             generateRooms();
-            //generateLevel();
         }
     }
 
@@ -236,9 +290,6 @@ public class RoomGenerator : MonoBehaviour
             }
             
         }
-       
-        
-      
     }
        
     //Generates a room based on adjacent doors or emptz space at x,z
@@ -457,23 +508,7 @@ public class RoomGenerator : MonoBehaviour
         }
         referenceLevel[x, z].GetComponent<RoomSpawnerController>().hasRoom = true;
         generatedRoom = generatedLevel[x, z];
-        /*
-        Debug.Log("X -");
-        Debug.Log(x);
-        Debug.Log("z - ");
-        Debug.Log(z);
-        Debug.Log("Generatedroom - ");
-        Debug.Log(generatedRoom);
-        Debug.Log("usingNorthDoor - ");
-        Debug.Log(usingNorthDoor);
-        Debug.Log("usingSouthDoor - ");
-        Debug.Log(usingSouthDoor);
-        Debug.Log("usingEastDoor - ");
-        Debug.Log(usingEastDoor);
-        Debug.Log("usingWestDoor - ");
-        Debug.Log(usingWestDoor);*/
-        //rotate room into position
-        rotateRoom(x, z, usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
+        rotateRoom(usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
         currentX = x;
         currentZ = z;
     }
@@ -551,8 +586,8 @@ public class RoomGenerator : MonoBehaviour
         return null;
     }
 
-    //rotates generatedRoom  90 degrees
-    void rotateRoom(int x, int y, bool usingNorthDoor, bool usingSouthDoor, bool usingEastDoor, bool usingWestDoor)
+    //rotates generatedRoom  90 degrees if room generated in generateIndividualRoom()
+    void rotateRoom(bool usingNorthDoor, bool usingSouthDoor, bool usingEastDoor, bool usingWestDoor)
     {
             if ((usingNorthDoor == generatedRoom.GetComponent<RoomController>().hasNorthDoor) && (usingSouthDoor == generatedRoom.GetComponent<RoomController>().hasSouthDoor) && (usingEastDoor == generatedRoom.GetComponent<RoomController>().hasEastDoor) && (usingWestDoor == generatedRoom.GetComponent<RoomController>().hasWestDoor))
             {
@@ -560,13 +595,85 @@ public class RoomGenerator : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Rotating Room");
                 changeDoorBools();
                 generatedRoom.transform.Rotate(0, 90, 0, Space.Self);
-                rotateRoom(x, y, usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
+                rotateRoom(usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
             }
     }
 
+    //gets bools and rotates room if room is placed manually in start()
+    void rotateRoomManualPlace()
+    {
+        bool usingSouthDoor = false;
+        bool usingNorthDoor = false;
+        bool usingEastDoor = false;
+        bool usingWestDoor = false;
+
+        if (currentZ > 0)
+        {
+            if (referenceLevel[currentX, currentZ - 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                if(generatedLevel[currentX, currentZ - 1].GetComponent<RoomController>().hasNorthDoor == true)
+                {
+                    usingSouthDoor = true;
+                }
+            }
+        }
+
+        if (currentZ < width - 1)
+        {
+            if (referenceLevel[currentX, currentZ + 1].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                if (generatedLevel[currentX, currentZ + 1].GetComponent<RoomController>().hasNorthDoor == true)
+                {
+                    usingNorthDoor = true;
+                }
+            }
+        }
+        if (currentX > 0)
+        {
+            if (referenceLevel[currentX - 1, currentZ].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                if (generatedLevel[currentX - 1, currentZ].GetComponent<RoomController>().hasEastDoor == true)
+                {
+                    usingWestDoor = true;
+                }
+                
+            }
+        }
+        if (currentX < length - 1)
+        {
+            if (referenceLevel[currentX + 1, currentZ].GetComponent<RoomSpawnerController>().hasRoom == true)
+            {
+                if (generatedLevel[currentX + 1, currentZ].GetComponent<RoomController>().hasWestDoor == true)
+                {
+                    usingEastDoor = true;
+                } 
+            }
+        }
+        if (usingNorthDoor == false && usingSouthDoor == false && usingEastDoor == false && usingWestDoor == false)
+        {
+            if(currentZ == 0)
+            {
+                usingNorthDoor = true;
+            }
+            else if(currentX == length - 1)
+            {
+                usingSouthDoor = true;
+            }
+            else if(currentX == 0)
+            {
+                usingEastDoor = true;
+            }
+            else if(currentX == width - 1)
+            {
+                usingWestDoor = true;
+            }
+        }
+        rotateRoom(usingNorthDoor, usingSouthDoor, usingEastDoor, usingWestDoor);
+        
+    }
+   
     //based on 90 degree X axis rotation, changes generatedRoom bools based on future 1 rotation
     void changeDoorBools()
     {
@@ -584,7 +691,7 @@ public class RoomGenerator : MonoBehaviour
         generatedRoom.GetComponent<RoomController>().hasWestDoor = futureHasWestDoor;
     }
 
-    //use with caution. Used to find empty spot for boss room. NO CHECKS IN PLACE TO STOP FOR LOOP
+    //use with caution. Used to find empty spot for boss room.
     void findRandomEmptyRoom()
     {
         int breakCount = 0;

@@ -36,8 +36,6 @@ public class EnemySpawnerController : MonoBehaviour {
             enemyList[i] = tempArray[i];
             Debug.Log("Index:" + i + " enemyList:" + enemyList[i]);
         }
-        //tempArray.CopyTo(enemyList, 0);
-       
 
     }
 	
